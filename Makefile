@@ -1,5 +1,5 @@
 JEKYLL ?= bundle exec jekyll
-PROJECT = "MediGroup B.V."
+PROJECT = "Mina Nabil Sami personal-blog"
 
 all: install clean build lint run
 
