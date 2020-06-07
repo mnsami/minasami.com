@@ -35,6 +35,7 @@ plugins:
   - jekyll-feed
 
 include: ['_pages', 'htaccess']
+markdown: kramdown
 exclude_from_localization: ["images", "css"]
 parallel_localization: true
 
