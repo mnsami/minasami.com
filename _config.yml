@@ -14,11 +14,10 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "minasami.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: MinaNabilSami
 github_username:  mnsami
+show_excerpts: true
 
 # Build settings
-theme: minima
-plugins:
-  - jekyll-feed
+theme: plainwhite
 
 include: ['_pages', 'htaccess']
 markdown: kramdown
@@ -46,3 +45,21 @@ exclude:
   - vendor/ruby/
   - README.md
   - Makefile
+
+# plugin configuration
+plainwhite:
+  name: Mina Sami
+  tagline: Developer. Chef. Gamer.
+  date_format: "%b %-d, %Y"
+  sitemap: true
+
+  navigation:
+    - title: My Work
+      url: "/my-work"
+    - title: Resume
+      url: "/resume"
+
+  social_links:
+    twitter: MinaNabilSami
+    github: mnsami
+    linkedIn: in/mnsami # format: locale/username
