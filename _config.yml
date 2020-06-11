@@ -53,13 +53,8 @@ plainwhite:
   date_format: "%b %-d, %Y"
   sitemap: true
 
-  navigation:
-    - title: My Work
-      url: "/my-work"
-    - title: Resume
-      url: "/resume"
-
   social_links:
     twitter: MinaNabilSami
     github: mnsami
     linkedIn: in/mnsami # format: locale/username
+    instagram: minansami
