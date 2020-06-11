@@ -53,6 +53,10 @@ plainwhite:
   date_format: "%b %-d, %Y"
   sitemap: true
 
+  navigation:
+    - title: About
+      url: "/about"
+
   social_links:
     twitter: MinaNabilSami
     github: mnsami
