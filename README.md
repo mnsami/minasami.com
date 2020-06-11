@@ -1,5 +1,11 @@
 # My Personal blog
 
+My personal blog is built using:
+
+- Jekyll
+- [Plainwhite theme](https://github.com/thelehhman/plainwhite-jekyll)
+- Twitter bootstrap.
+
 ## Requirements
 
 - Ruby

@@ -1,3 +1,18 @@
 .social a {
     color: #000;
 }
+
+main .about h2.tags-header {
+    margin: 0px;
+}
+
+.tags-cloud {
+    margin: 5%;
+}
+
+.tags-cloud .tag-title {
+    padding: 3%;
+    background-color: bisque;
+    display: inline-block;
+    margin: 2%;
+}

@@ -69,13 +69,6 @@
         </a>
         {% endif %}
     </ul>
-    {% if site.tags.size > 0 %}
-        <div class="post-tags">
-            {% for tag in site.tags %}
-                <a href="/tags/{{ tag[0] }}">{{ tag[0] }}</a>
-            {% endfor %}
-        </div>
-    {% endif %}
     {% if site.plainwhite.navigation %}
     <nav class="navigation">
         <ul>
@@ -86,6 +79,16 @@
             {% endfor %}
         </ul>
     </nav>
+    {% endif %}
+    {% if site.tags.size > 0 %}
+        <div class="post-tags text-center">
+            <h2 class="tags-header">tags</h2>
+            <div class="tags-cloud">
+                {% for tag in site.tags %}
+                    <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">{{ tag[0] }}</a>
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
     <p>&copy;
         {{ "now" | date: "%Y" }}</p>
