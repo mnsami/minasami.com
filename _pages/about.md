@@ -1,7 +1,10 @@
 ---
 layout: page
-title: About
-permalink: /about/
+title: About Me
+menu: About Me
+permalink: /about
+description: "I'm Mina, I'm a professional software engineer - since 2007 - with strong focus on back-end development and architecture. I'm very passionate about open source, product development and contributing to building solutions to the problems of life."
+image: /assets/portfolio.png
 ---
 
 <h1>About Me</h1>

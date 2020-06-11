@@ -34,17 +34,6 @@
         </li>
         {% endif %}
     </ul>
-    {% if site.plainwhite.navigation %}
-    <nav class="navigation">
-        <ul>
-            {% for link in site.plainwhite.navigation %}
-            <li>
-                <a href="{{ link.url }}">{{ link.title }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </nav>
-    {% endif %}
     {% if site.tags.size > 0 %}
         <div class="post-tags text-center">
             <h2 class="tags-header">tags</h2>
