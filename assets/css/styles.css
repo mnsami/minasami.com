@@ -1,5 +1,10 @@
-.social a {
+.social {
+    flex-wrap: nowrap;
+}
+
+.social li {
     color: #000;
+    margin: 0px 5%;
 }
 
 main .about h2.tags-header {

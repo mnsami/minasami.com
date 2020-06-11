@@ -54,7 +54,7 @@ plainwhite:
   sitemap: true
 
   navigation:
-    - title: About
+    - title: About Me
       url: "/about"
 
   social_links:
