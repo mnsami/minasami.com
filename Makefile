@@ -1,4 +1,4 @@
-JEKYLL ?= bundle exec jekyll
+JEKYLL_CMD ?= bundle exec jekyll
 PROJECT = "Mina Nabil Sami personal-blog"
 
 all: install clean build lint run
@@ -12,7 +12,7 @@ install:
 
 build:
 	@echo "\n==> Building ${PROJECT} site ..."
-	$(JEKYLL) b
+	$(JEKYLL_CMD) b
 
 lint:
 	@echo "\n==> Linting: running html-proofer ..."
@@ -20,15 +20,17 @@ lint:
 
 clean:
 	@echo "\n==> Clean all ..."
-	$(JEKYLL) clean
+	$(JEKYLL_CMD) clean
 
-run:
+serve:
 	@echo "\n==> Serving ${PROJECT} website ..."
-	$(JEKYLL) s
+	$(JEKYLL_CMD) s
+
+run: clean build serve
 
 rsync:
 	@echo "\n===> Sync to prod ..."
 	scp -r ./_site/* root@admcgroup:/mnt/vdb/medigroupnl/.
 
 
-.PHONY: build clean lint all rsync test install run
+.PHONY: build clean lint all rsync test install run serve
