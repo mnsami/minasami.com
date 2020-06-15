@@ -19,7 +19,10 @@ image: /assets/portfolio.png
         Born and raised in Egypt, and moved to the Netherlands in 2013 and living there since then. Currently, I live in Haarlem, with my wife who is, also, a software engineer focused on front-end development, ironic, right?
     </p>
     <p>
-        Coming from a very food oriented culture, I'm a foodie, like to cook and experiment with new recipes from around the world. Also, I am an old PC gamer, and after buying PS4 in 2018, because of Spider-Man PS4 release, I have returned to the gaming arena.
+        Coming from a very food oriented culture, I'm a foodie, like to cook and experiment with new recipes from all around the world, in my free time.
+    </p>
+    <p>
+         Also, I am an old PC gamer, I played all Max Payne, Metal Gear Solid on PC. After buying PS4 in 2018, because of Spider-Man PS4 release, I have returned to the gaming arena.
     </p>
     <p>
         I used to blog in the past, and stopped very long time ago, but I'm here now with a new blog.
