@@ -7,9 +7,9 @@ layout: default
 <h1 class="page-heading">Tag: {{ page.tag | escape }}</h1>
 <h1 class="posts-label">{% if site.tags[page.tag].size == 1 %} 1 post {% else %} {{ site.tags[page.tag].size }} posts {% endif %}</h1>
 
-{% if site.posts.size > 0 %}
+{% if site.tags[page.tag].size > 0 %}
     <div class="list-group list-group-flush">
-        {% for post in site.posts %}
+        {% for post in site.tags[page.tag] %}
             <div class="list-group-item list-group-item-action">
                 <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}">
                     <h2 class="card-title">{{ post.title | escape }}</h2>
