@@ -8,32 +8,20 @@ layout: default
 <h1 class="posts-label">{% if site.tags[page.tag].size == 1 %} 1 post {% else %} {{ site.tags[page.tag].size }} posts {% endif %}</h1>
 
 {% if site.posts.size > 0 %}
-<ul class="posts">
-    {% for post in site.posts %}
-        <li>
-            {% assign date_format = site.plainwhite.date_format | default: "%b %-d, %Y" %}
-            <a class="post-link" href="{{ post.url | relative_url }}">
-                <h2 class="post-title">{{ post.title | escape }}</h2>
-            </a>
-            <div class="post-meta">
-                <div class="post-date">
-                    <i class="icon-calendar"></i>
-                    {{ post.date | date: date_format }}
-                </div>
-                {% if post.categories.size > 0%}
-                <ul class="post-categories">
-                    {% for tag in post.categories %}
-                    <li>{{ tag }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
-            </div>
-            <div class="post">
+    <div class="list-group list-group-flush">
+        {% for post in site.posts %}
+            <div class="list-group-item list-group-item-action">
+                <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}">
+                    <h2 class="card-title">{{ post.title | escape }}</h2>
+                </a>
+                <p>
+                    <img width="28" src="/assets/images/calendar-icon.png"/>
+                    {{ post.date | date: "%b %-d, %Y" }}
+                </p>
                 {% if site.show_excerpts %}
-                {{ post.excerpt }}
+                    <p class="mb-1">{{ post.excerpt }}</p>
                 {% endif %}
             </div>
-        </li>
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </div>
 {% endif %}

@@ -1,61 +1,51 @@
-<section class="about">
-    <a href="/"><img src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.plainwhite.name }}"></a>
-    <h2 id="title">
-        <a href="/">{{ site.plainwhite.name }}</a>
-    </h2>
-    <p class="tagline">{{ site.plainwhite.tagline }}</p>
-    <ul class="social">
-        {% if site.plainwhite.social_links.github %}
-        <li>
-            <a href="https://github.com/{{ site.plainwhite.social_links.github }}">
-                <img width="30" src="/assets/images/github.png" alt="https://github.com/{{ site.plainwhite.social_links.github }}"/>
-            </a>
-        </li>
-        {% endif %}
-        {% if site.plainwhite.social_links.linkedIn %}
-        <li>
-            <a href="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}">
-                <img width="34" src="/assets/images/linkedin.png" alt="https://www.linkedin.com/{{ site.plainwhite.social_links.linkedIn }}"/>
-            </a>
-        </li>
-        {% endif %}
-        {% if site.plainwhite.social_links.twitter %}
-        <li>
-            <a href="https://twitter.com/{{ site.plainwhite.social_links.twitter }}">
-                <img width="29" src="/assets/images/twitter.png" alt="https://twitter.com/{{ site.plainwhite.social_links.twitter }}"/>
-            </a>
-        </li>
-        {% endif %}
-        {% if site.plainwhite.social_links.instagram %}
-        <li>
-            <a href="https://instagram.com/{{ site.plainwhite.social_links.instagram }}">
-                <img width="29" src="/assets/images/instagram.png" alt="https://instagram.com/{{ site.plainwhite.social_links.instagram }}"/>
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-    {% if site.tags.size > 0 %}
-        <div class="post-tags text-center">
-            <h2 class="tags-header">tags</h2>
-            <div class="tags-cloud">
-                {% for tag in site.tags %}
-                    <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">{{ tag[0] }}</a>
-                {% endfor %}
+<div class="row sticky-top text-center">
+    <div class="col">
+        <a href="/"><img class="img-thumbnail rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
+        <h2 id="title">
+            <a href="/">{{ site.params.name }}</a>
+        </h2>
+        <p class="tagline">{{ site.params.tagline }}</p>
+
+        <ul class="social list-unstyled list-inline">
+            {% if site.params.social_links.github %}
+            <li class="list-inline-item">
+                <a href="https://github.com/{{ site.params.social_links.github }}">
+                    <img width="30" src="/assets/images/github.png" alt="https://github.com/{{ site.params.social_links.github }}"/>
+                </a>
+            </li>
+            {% endif %}
+            {% if site.params.social_links.linkedIn %}
+            <li class="list-inline-item">
+                <a href="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}">
+                    <img width="34" src="/assets/images/linkedin.png" alt="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}"/>
+                </a>
+            </li>
+            {% endif %}
+            {% if site.params.social_links.twitter %}
+            <li class="list-inline-item">
+                <a href="https://twitter.com/{{ site.params.social_links.twitter }}">
+                    <img width="29" src="/assets/images/twitter.png" alt="https://twitter.com/{{ site.params.social_links.twitter }}"/>
+                </a>
+            </li>
+            {% endif %}
+            {% if site.params.social_links.instagram %}
+            <li class="list-inline-item">
+                <a href="https://instagram.com/{{ site.params.social_links.instagram }}">
+                    <img width="29" src="/assets/images/instagram.png" alt="https://instagram.com/{{ site.params.social_links.instagram }}"/>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+        {% if site.tags.size > 0 %}
+            <div class="post-tags text-center">
+                <h2 class="tags-header">tags</h2>
+                <div class="tags-cloud">
+                    {% for tag in site.tags %}
+                        <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">{{ tag[0] }}</a>
+                    {% endfor %}
+                </div>
             </div>
-        </div>
-    {% endif %}
-    <p>&copy;
-        {{ "now" | date: "%Y" }}</p>
-        {% if site.plainwhite.dark_mode %}
-        <div>
-            <p>Dark Mode
-                <i class="icon-moon"></i>
-                <label class="switch">
-                    <input type="checkbox" id="dark-mode-toggle">
-                    <span class="slider round" onclick="toggleDarkMode()"></span>
-                </label>
-            </p>
-        </div>
-        <script type="text/javascript" src="/assets/js/darkmode.js"></script>
         {% endif %}
-</section>
+        <p>&copy; {{ "now" | date: "%Y" }}</p>
+    </div>
+</div>

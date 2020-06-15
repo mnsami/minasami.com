@@ -1,10 +1,33 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-content {
+    margin: 10% 0px;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.about {
+    max-width: 100%;
+}
+
 .social {
     flex-wrap: nowrap;
 }
 
 .social li {
     color: #000;
-    margin: 0px 5%;
 }
 
 main .about h2.tags-header {

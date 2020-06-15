@@ -32,7 +32,7 @@ author:
 show_excerpts: true
 
 # Build settings
-theme: plainwhite
+# theme: plainwhite
 
 include: ['_pages', 'htaccess']
 markdown: kramdown
@@ -62,7 +62,7 @@ exclude:
   - Makefile
 
 # plugin configuration
-plainwhite:
+params:
   name: Mina Nabil Sami
   tagline: Developer. Chef. Gamer.
   date_format: "%b %-d, %Y"
