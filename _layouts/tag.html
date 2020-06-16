@@ -15,7 +15,7 @@ layout: default
                     <h2 class="card-title">{{ post.title | escape }}</h2>
                 </a>
                 <p>
-                    <img width="28" src="/assets/images/calendar-icon.png"/>
+                    <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
                     {{ post.date | date: "%b %-d, %Y" }}
                 </p>
                 {% if site.show_excerpts %}
