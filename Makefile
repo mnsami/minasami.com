@@ -26,7 +26,13 @@ serve:
 	@echo "\n==> Serving ${PROJECT} website ..."
 	$(JEKYLL_CMD) s
 
+dev-serve:
+	@echo "\n==> Serving ${PROJECT} website in draft mode ..."
+	$(JEKYLL_CMD) s --drafts
+
 run: clean build serve
+
+dev: clean build dev-serve
 
 rsync:
 	@echo "\n===> Sync to prod ..."
