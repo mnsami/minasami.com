@@ -19,8 +19,8 @@ So, again the urge got higher to create another `ssh` key to be used for work pl
 1. You need to create another separate `ssh` key, and you can do that simple by running
 
     <pre>
-        <code class="language-Bash">
-    $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+        <code class="bash">
+$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
         </code>
     </pre>
 and this will guide you to a step by step creating process. Or, you can follow this [github](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) guide for more details.
@@ -28,6 +28,22 @@ and this will guide you to a step by step creating process. Or, you can follow t
 2. Set your configuration
 
     You need to modify your `ssh` configuration file located in `~/.ssh/config` as follows
+    <pre>
+        <code class="common config">
+    ForwardAgent yes
+
+    Host github.com
+        HostName github.com
+        IdentityFile ~/.ssh/personal_rsa
+        IdentitiesOnly yes
+
+    Host work.github.com
+        HostName github.com
+        IdentityFile ~/.ssh/work_rsa
+        IdentitiesOnly yes
+        </code>
+    </pre>
+    
 
 
 [Want to know more about `ssh`?](https://www.ssh.com/ssh/public-key-authentication)
