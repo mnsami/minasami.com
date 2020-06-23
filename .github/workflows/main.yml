@@ -35,12 +35,15 @@ jobs:
     
     - name: Test website
       id: website-lint
-      run: make lint
+      run: |
+        make lint
+        ls -lah ./_site
     
     - name: ssh deploy
       if: ${{ success() }}
       uses: easingthemes/ssh-deploy@v2.1.2
       env:
+        ARGS: "-rltgoDzvO --delete"
         # Private Key
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         # Remote host
