@@ -33,16 +33,6 @@ jobs:
       id: website-build
       run: make build
     
-    - name: Cache
-      uses: actions/cache@v2.0.0
-      with:
-        # A list of files, directories, and wildcard patterns to cache and restore
-        path: ./_site
-        # An explicit key for restoring and saving the cache
-        key: ${{ runner.os }}-site_build-${{ hashFiles('./_site') }}
-        # An ordered list of keys to use for restoring the cache if no cache hit occurred for key
-        restore-keys: ${{ runner.os }}-site_build
-    
     - name: Test website
       id: website-lint
       run: make lint
@@ -60,6 +50,6 @@ jobs:
         # Remote port
         REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
         # Source directory
-        SOURCE: "_site/"
+        SOURCE: "./_site/"
         # Target directory
         TARGET: ${{ secrets.TARGET }}
