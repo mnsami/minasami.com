@@ -56,4 +56,5 @@ jobs:
         TARGET: ${{ secrets.TARGET }}
         
     - name: Set htaccess
+      if: ${{ success() }}
       run: cp ${{ secrets.TARGET }}/htaccess ${{ secrets.TARGET }}/.htaccess
