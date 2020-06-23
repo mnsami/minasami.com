@@ -44,4 +44,22 @@ jobs:
         restore-keys: ${{ runner.os }}-site_build
     
     - name: Test website
+      id: website-lint
       run: make lint
+    
+    - name: ssh deploy
+      if: ${{ success() }}
+      uses: easingthemes/ssh-deploy@v2.1.2
+      with:
+        # Private Key
+        SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        # Remote host
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        # Remote user
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        # Remote port
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+        # Source directory
+        SOURCE: "_site/"
+        # Target directory
+        TARGET: ${{ secrets.TARGET }}
