@@ -20,14 +20,7 @@ image: /assets/portfolio.png
         Born and raised in Egypt, and moved to the Netherlands in 2013 and living there since then. Currently, I live in Haarlem, with my wife who is, also, a software engineer focused on front-end development, ironic, right?
     </p>
     <p>
-        Coming from a very food oriented culture, I'm a foodie, like to cook, experiment, make adaptation to recipes from all around the world, my favorite chefs are:
-        <ol>
-            <li><a href="http://jamieoliver.com/" alt="http://jamieoliver.com/">Jamie Oliver</a></li>
-            <li><a href="http://nigella.com/" alt="http://nigella.com/">Nigella Lawson</a></li>
-            <li><a href="https://www.gordonramsay.com/" alt="https://www.gordonramsay.com/">Gordon Ramsay</a></li>
-            <li><a href="https://giadzy.com/" alt="https://giadzy.com/">Giada De Laurentiis</a></li>
-            <li><a href="http://www.barefootcontessa.com/" alt="http://www.barefootcontessa.com/">Ina Garten</a></li>
-        </ol>
+        Coming from a very food oriented culture, I'm a foodie, like to cook, experiment, make adaptation to recipes from all around the world, my favorite chefs are: <a href="http://jamieoliver.com/" alt="http://jamieoliver.com/" target="_blank">Jamie Oliver</a>, <a href="http://nigella.com/" alt="http://nigella.com/" target="_blank">Nigella Lawson</a>, <a href="https://www.gordonramsay.com/" alt="https://www.gordonramsay.com/" target="_blank">Gordon Ramsay</a>, <a href="https://giadzy.com/" alt="https://giadzy.com/" target="_blank">Giada De Laurentiis</a> and <a href="http://www.barefootcontessa.com/" alt="http://www.barefootcontessa.com/" target="_blank">Ina Garten</a>
     </p>
     <p>
          Also, I am an old PC gamer, I played all Max Payne, Metal Gear Solid on PC. After buying PS4 in 2018, because of Spider-Man PS4 release, I have returned to the gaming arena.

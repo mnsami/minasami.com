@@ -9,7 +9,7 @@
             {% for node in site.pages %}
                 {% if (node.layout != "tag" and node.layout == "page") %}
                     <li class="nav-item {% if page.url == node.url %}active{% endif %}">
-                        <a class="nav-link" href="{{site.baseurl}}{{node.url}}">{{ node.menu }}</a>
+                        <a class="nav-link" href="{{site.url}}{{node.url}}">{{ node.menu }}</a>
                     </li>
                 {% endif %}
             {% endfor %}
