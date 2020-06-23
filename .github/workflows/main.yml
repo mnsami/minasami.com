@@ -41,6 +41,7 @@ jobs:
       if: ${{ success() }}
       uses: easingthemes/ssh-deploy@v2.1.2
       env:
+        ARGS: "-rltgoDzvO --delete"
         # Private Key
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         # Remote host
@@ -50,6 +51,6 @@ jobs:
         # Remote port
         REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
         # Source directory
-        SOURCE: "./_site/"
+        SOURCE: "_site/*"
         # Target directory
         TARGET: ${{ secrets.TARGET }}
