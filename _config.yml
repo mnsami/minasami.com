@@ -7,9 +7,7 @@
 title: Mina Nabil Sami - Blog
 email: mina.nsami@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  I'm Mina, I'm a professional software engineer - since 2007 - with strong focus on back-end development and architecture. I'm very passionate about open source, product development and contributing to building solutions to the problems of life.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minasami.com" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -34,7 +32,7 @@ show_excerpts: true
 # Build settings
 # theme: plainwhite
 
-include: ['_pages', 'htaccess']
+include: ['_pages', '.htaccess']
 markdown: kramdown
 exclude_from_localization: ["images", "css"]
 parallel_localization: true
