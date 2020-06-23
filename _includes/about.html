@@ -7,28 +7,28 @@
         <ul class="social list-unstyled list-inline">
             {% if site.params.social_links.github %}
             <li class="list-inline-item">
-                <a href="https://github.com/{{ site.params.social_links.github }}" target="_blank">
+                <a href="https://github.com/{{ site.params.social_links.github }}" target="_blank" rel="noopener">
                     <img width="30" src="/assets/images/github.png" alt="https://github.com/{{ site.params.social_links.github }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.linkedIn %}
             <li class="list-inline-item">
-                <a href="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}" target="_blank">
+                <a href="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}" target="_blank" rel="noopener">
                     <img width="34" src="/assets/images/linkedin.png" alt="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.twitter %}
             <li class="list-inline-item">
-                <a href="https://twitter.com/{{ site.params.social_links.twitter }}" target="_blank">
+                <a href="https://twitter.com/{{ site.params.social_links.twitter }}" target="_blank" rel="noopener">
                     <img width="29" src="/assets/images/twitter.png" alt="https://twitter.com/{{ site.params.social_links.twitter }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.instagram %}
             <li class="list-inline-item">
-                <a href="https://instagram.com/{{ site.params.social_links.instagram }}" target="_blank">
+                <a href="https://instagram.com/{{ site.params.social_links.instagram }}" target="_blank" rel="noopener">
                     <img width="29" src="/assets/images/instagram.png" alt="https://instagram.com/{{ site.params.social_links.instagram }}"/>
                 </a>
             </li>
@@ -45,6 +45,6 @@
             </div>
         {% endif %}
         <p>Copyright &copy; {{ "now" | date: "%Y" }}</p>
-        <p><small>Powered by <a href="https://jekyllrb.com" alt="Jekyll" target="_blank">Jekyll</a> and <a href="https://getbootstrap.com" target="_blank" alt="Bootstrap">Bootstrap</a></small></p>
+        <p><small>Powered by <a href="https://jekyllrb.com" alt="Jekyll" target="_blank" rel="noopener">Jekyll</a> and <a href="https://getbootstrap.com" target="_blank" rel="noopener" alt="Bootstrap">Bootstrap</a></small></p>
     </div>
 </div>
