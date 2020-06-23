@@ -58,6 +58,7 @@ exclude:
   - vendor/ruby/
   - README.md
   - Makefile
+  - .github/
 
 # website param
 params:
