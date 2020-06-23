@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.main-content {
+.content {
     margin: 10% 0px;
 }
 
@@ -10,12 +10,18 @@ img {
     max-width: 100%;
 }
 
-a {
-    /* color: #000; */
+.main-content a {
+    color: #6610f2;
+    text-decoration: none;
+    padding-bottom: 1px;
+	border-bottom: 1px solid #6610f2;
 }
 
-a:hover {
+.main-content a:hover {
+    color: #0056b3;
     text-decoration: none;
+    padding-bottom: 1px;
+	border-bottom: 1px solid #0056b3;
 }
 
 .about {
