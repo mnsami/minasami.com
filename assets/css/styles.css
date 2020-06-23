@@ -10,7 +10,7 @@ img {
     max-width: 100%;
 }
 
-.main-content a {
+/* .main-content a {
     color: #6610f2;
     text-decoration: none;
     padding-bottom: 1px;
@@ -22,6 +22,21 @@ img {
     text-decoration: none;
     padding-bottom: 1px;
 	border-bottom: 1px solid #0056b3;
+} */
+
+/* a hover => #0056b3 */
+/* a => 007bff */
+
+.profile a,
+.main-content a {
+    text-decoration: none;
+    padding-bottom: 1px;
+    border-bottom: 1px solid #007bff;
+}
+
+.social a,
+.tags a {
+    border: none;
 }
 
 .about {

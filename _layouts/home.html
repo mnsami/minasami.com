@@ -9,10 +9,8 @@ layout: default
 {% if site.posts.size > 0 %}
     <div class="posts list-group list-group-flush">
         {% for post in site.posts %}
-            <div class="list-group-item list-group-item-action">
-                <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}">
-                    <h2 class="card-title">{{ post.title | escape }}</h2>
-                </a>
+            <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="list-group-item list-group-item-action">
+                <h2 class="card-title">{{ post.title | escape }}</h2>
                 <p>
                     <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
                     {{ post.date | date: "%b %-d, %Y" }}
@@ -20,7 +18,7 @@ layout: default
                 {% if site.show_excerpts %}
                     <p class="mb-1">{{ post.excerpt }}</p>
                 {% endif %}
-            </div>
+            </a>
         {% endfor %}
     </div>
 {% endif %}

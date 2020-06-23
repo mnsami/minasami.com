@@ -20,7 +20,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "html-proofer"
   gem "jekyll-seo-tag"
-#   gem "plainwhite"
+  gem "jekyll-sitemap"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

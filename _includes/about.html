@@ -35,11 +35,14 @@
             {% endif %}
         </ul>
         {% if site.tags.size > 0 %}
-            <div class="post-tags text-center">
+            <div class="tags text-center">
                 <h2 class="tags-header">tags</h2>
                 <div class="tags-cloud">
                     {% for tag in site.tags %}
-                        <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">{{ tag[0] }}</a>
+                        <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">
+                            {{ tag[0] }}
+                            <span class="badge badge-pill">{{ tag[1].size }}</span>
+                        </a>
                     {% endfor %}
                 </div>
             </div>
