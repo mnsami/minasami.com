@@ -3,29 +3,12 @@ body {
 }
 
 .content {
-    margin: 10% 0px;
+    margin: 5% 0px;
 }
 
 img {
     max-width: 100%;
 }
-
-/* .main-content a {
-    color: #6610f2;
-    text-decoration: none;
-    padding-bottom: 1px;
-	border-bottom: 1px solid #6610f2;
-}
-
-.main-content a:hover {
-    color: #0056b3;
-    text-decoration: none;
-    padding-bottom: 1px;
-	border-bottom: 1px solid #0056b3;
-} */
-
-/* a hover => #0056b3 */
-/* a => 007bff */
 
 .profile a,
 .main-content a {
