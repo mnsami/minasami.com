@@ -66,6 +66,7 @@ params:
   tagline: Developer. Chef. Gamer.
   date_format: "%b %-d, %Y"
   sitemap: true
+  analytics_id: "UA-170613544-1"
 
   navigation:
     - title: About Me
