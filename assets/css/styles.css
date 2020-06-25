@@ -22,8 +22,8 @@ img {
     border: none;
 }
 
-.about {
-    max-width: 100%;
+.list-inline-item:not(:last-child) {
+    margin: 1%;
 }
 
 .social {
@@ -32,10 +32,6 @@ img {
 
 .social li {
     color: #000;
-}
-
-main .about h2.tags-header {
-    margin: 0px;
 }
 
 .tags-cloud {

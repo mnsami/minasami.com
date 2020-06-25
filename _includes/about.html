@@ -1,6 +1,6 @@
-<div class="row sticky-top text-center">
-    <div class="col">
-        <a href="/"><img class="img-thumbnail rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
+<div class="row sticky-top text-center justify-content-center">
+    <div class="col-4 col-sm-4 col-md-6 col-lg-12">
+        <a href="/"><img class="img-thumbnail img-fluid rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
         <a href="/" alt="{{ site.params.name }}"><h3>{{ site.params.name }}</h3></a>
         <p class="tagline">{{ site.params.tagline }}</p>
 
@@ -8,28 +8,28 @@
             {% if site.params.social_links.github %}
             <li class="list-inline-item">
                 <a href="https://github.com/{{ site.params.social_links.github }}" target="_blank" rel="noopener">
-                    <img width="30" src="/assets/images/github.png" alt="https://github.com/{{ site.params.social_links.github }}"/>
+                    <img class="img-fluid" width="30" src="/assets/images/github.png" alt="https://github.com/{{ site.params.social_links.github }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.linkedIn %}
             <li class="list-inline-item">
                 <a href="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}" target="_blank" rel="noopener">
-                    <img width="34" src="/assets/images/linkedin.png" alt="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}"/>
+                    <img class="img-fluid" width="34" src="/assets/images/linkedin.png" alt="https://www.linkedin.com/{{ site.params.social_links.linkedIn }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.twitter %}
             <li class="list-inline-item">
                 <a href="https://twitter.com/{{ site.params.social_links.twitter }}" target="_blank" rel="noopener">
-                    <img width="29" src="/assets/images/twitter.png" alt="https://twitter.com/{{ site.params.social_links.twitter }}"/>
+                    <img class="img-fluid" width="29" src="/assets/images/twitter.png" alt="https://twitter.com/{{ site.params.social_links.twitter }}"/>
                 </a>
             </li>
             {% endif %}
             {% if site.params.social_links.instagram %}
             <li class="list-inline-item">
                 <a href="https://instagram.com/{{ site.params.social_links.instagram }}" target="_blank" rel="noopener">
-                    <img width="29" src="/assets/images/instagram.png" alt="https://instagram.com/{{ site.params.social_links.instagram }}"/>
+                    <img class="img-fluid" width="29" src="/assets/images/instagram.png" alt="https://instagram.com/{{ site.params.social_links.instagram }}"/>
                 </a>
             </li>
             {% endif %}
@@ -47,7 +47,7 @@
                 </div>
             </div>
         {% endif %}
-        <p>Copyright &copy; {{ "now" | date: "%Y" }}</p>
-        <p><small>Powered by <a href="https://jekyllrb.com" alt="Jekyll" target="_blank" rel="noopener">Jekyll</a> and <a href="https://getbootstrap.com" target="_blank" rel="noopener" alt="Bootstrap">Bootstrap</a></small></p>
+        <p class="text-center">Copyright &copy; {{ "now" | date: "%Y" }}</p>
+        <p class="text-center"><small>Powered by <a href="https://jekyllrb.com" alt="Jekyll" target="_blank" rel="noopener">Jekyll</a> and <a href="https://getbootstrap.com" target="_blank" rel="noopener" alt="Bootstrap">Bootstrap</a></small></p>
     </div>
 </div>
