@@ -1,8 +1,10 @@
 <div class="row sticky-top text-center justify-content-center">
-    <div class="col-4 col-sm-4 col-md-6 col-lg-12">
-        <a href="/"><img class="img-thumbnail img-fluid rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
-        <a href="/" alt="{{ site.params.name }}"><h3>{{ site.params.name }}</h3></a>
-        <p class="tagline">{{ site.params.tagline }}</p>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="header">
+            <a href="/"><img class="img-thumbnail img-fluid rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
+            <a href="/" alt="{{ site.params.name }}"><h3>{{ site.params.name }}</h3></a>
+            <p class="tagline">{{ site.params.tagline }}</p>
+        </div>
 
         <ul class="social list-unstyled list-inline">
             {% if site.params.social_links.github %}
