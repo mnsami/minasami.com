@@ -27,15 +27,12 @@ author:
   name: "Mina Nabil Sami"
   twitter: MinaNabilSami
 
+logo: "/assets/portfolio.png"
+google_site_verification: "4_ae8nciHvt4z5mqfgMMrtRRAK9XnXbOzZ8W6Z5nAhY"
 show_excerpts: true
-
-# Build settings
-# theme: plainwhite
 
 include: ['_pages', '.htaccess']
 markdown: kramdown
-exclude_from_localization: ["images", "css"]
-parallel_localization: true
 
 # Exclude from processing.
 # The following items will not be processed, by default.
