@@ -7,18 +7,27 @@ layout: default
 <h1 class="lead text-uppercase">posts</h1>
 
 {% if site.posts.size > 0 %}
-    <div class="posts list-group list-group-flush">
+    <div class="posts">
         {% for post in site.posts %}
-            <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="list-group-item list-group-item-action">
-                <h2 class="card-title">{{ post.title | escape }}</h2>
-                <p>
-                    <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
-                    {{ post.date | date: "%b %-d, %Y" }}
-                </p>
-                {% if site.show_excerpts %}
-                    <p class="mb-1">{{ post.excerpt }}</p>
-                {% endif %}
-            </a>
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                    </a>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
+                        {{ post.date | date: "%b %-d, %Y" }}
+                    </h6>
+                    {% if site.show_excerpts == true %}
+                        <p class="card-text">
+                            {{- post.excerpt | remove: '<p>' | remove: '</p>' -}}
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
+                </div>
+            </div>
         {% endfor %}
     </div>
 {% endif %}

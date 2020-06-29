@@ -10,18 +10,25 @@
         <div class="container">
             <div class="row content text-center justify-content-center">
                 <div class="col-4 col-sm-4 col-md-4 col-lg-3 profile">
-                    {% include about.html %}
+                    {%- include about.html -%}
                 </div>
                 <div class="col-lg-9 main-content text-left">
                     <div class="post">
-                        <h1>{{ page.title }}</h1>
+                        <h1 class="post-title">{{ page.title }}</h1>
                         <p>
                             <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
                             {{ page.date | date: "%b %-d, %Y" }}
                         </p>
-
-                        
-                        {{ content }}
+                        <div class="post-body">
+                            {{- content -}}
+                        </div>
+                        <hr/>
+                        <div class="post-tags">
+                            Tags:
+                            {% for postTag in page.tags %}
+                                <a href="/tags/{{ postTag }}" alt="{{- postTag -}}">{{- postTag -}}</a>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
