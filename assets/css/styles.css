@@ -10,6 +10,23 @@ img {
     max-width: 100%;
 }
 
+.card {
+    border: 0;
+    border-bottom: 1px solid rgba(0,0,0,.125);
+    border-radius: 0;
+    padding: 1%;
+    margin-bottom: 1%;
+}
+
+.card:last-child {
+    border-bottom: 0;
+}
+
+.card-body {
+    padding: 0;
+    padding-bottom: 1%;
+}
+
 .profile a,
 .main-content a {
     text-decoration: none;
