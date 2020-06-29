@@ -10,7 +10,7 @@
         <div class="container">
             <div class="row content text-center justify-content-center">
                 <div class="col-4 col-sm-4 col-md-4 col-lg-3 profile">
-                    {% include about.html %}
+                    {%- include about.html -%}
                 </div>
                 <div class="col-lg-9 main-content text-left">
                     <div class="post">
@@ -20,13 +20,13 @@
                             {{ page.date | date: "%b %-d, %Y" }}
                         </p>
                         <div class="post-body">
-                            {{ content }}
+                            {{- content -}}
                         </div>
                         <hr/>
                         <div class="post-tags">
                             Tags:
                             {% for postTag in page.tags %}
-                                <a href="/tags/{{ postTag }}" alt="{{ postTag }}">{{ postTag }}</a>
+                                <a href="/tags/{{ postTag }}" alt="{{- postTag -}}">{{- postTag -}}</a>
                             {% endfor %}
                         </div>
                     </div>

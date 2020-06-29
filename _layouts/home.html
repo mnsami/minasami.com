@@ -20,9 +20,11 @@ layout: default
                     </h6>
                     {% if site.show_excerpts == true %}
                         <p class="card-text">
-                            {{ post.excerpt }}
+                            {{- post.excerpt | remove: '<p>' | remove: '</p>' -}}
                         </p>
                     {% endif %}
+                </div>
+                <div class="card-body">
                     <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
                 </div>
             </div>

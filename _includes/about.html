@@ -42,8 +42,8 @@
                 <div class="tags-cloud">
                     {% for tag in site.tags %}
                         <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">
-                            {{ tag[0] }}
-                            <span class="badge badge-pill">{{ tag[1].size }}</span>
+                            {{- tag[0] -}}
+                            <span class="badge badge-pill">{{- tag[1].size -}}</span>
                         </a>
                     {% endfor %}
                 </div>
