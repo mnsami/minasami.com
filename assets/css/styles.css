@@ -44,3 +44,12 @@ img {
     display: inline-block;
     margin: 2%;
 }
+
+.posts .tags-cloud {
+    margin: 0px;
+}
+
+.posts .tags-cloud .tag-title {
+    margin: 0px;
+    padding: 1%;
+}

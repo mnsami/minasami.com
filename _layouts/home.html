@@ -16,7 +16,17 @@ layout: default
                     {{ post.date | date: "%b %-d, %Y" }}
                 </p>
                 {% if site.show_excerpts %}
-                    <p class="mb-1">{{ post.excerpt }}</p>
+                    <div class="mb-1">{{ post.excerpt }}</div>
+                {% endif %}
+                {% if post.tags.size > 0 %}
+                    <div class="tags">
+                        <div class="tags-cloud">
+                            Tags: 
+                            {% for postTag in post.tags%}
+                                <a class="tag-title" href="/tags/{{ postTag }}">{{ postTag }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
                 {% endif %}
             </a>
         {% endfor %}

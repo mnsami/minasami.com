@@ -19,8 +19,12 @@
                             <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
                             {{ page.date | date: "%b %-d, %Y" }}
                         </p>
+                        <ul class="list-group list-group-horizontal-sm">
+                            {% for pageTag in page.tags%}
+                                <li class="list-group-item">{{ pageTag }}</li>
+                            {% endfor %}
+                        </ul>
 
-                        
                         {{ content }}
                     </div>
                 </div>
