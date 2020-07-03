@@ -7,9 +7,9 @@
 
     <body>
         {% include top_menu.html %}
-        <div class="container-fluid">
+        <main role="main" class="container-fluid">
             <div class="row content text-center justify-content-center">
-                <div class="col-4 col-sm-4 col-md-4 col-lg-3 profile">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 profile">
                     {%- include about.html -%}
                 </div>
                 <div class="col-lg-9 main-content text-left">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         {%- include footer.html -%}
         {%- if site.params.analytics_id -%}
             <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.params.analytics_id }}"></script>
