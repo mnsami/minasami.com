@@ -3,7 +3,12 @@
         <div class="row text-center justify-content-center">
             <div class="col-6 col-sm-6 col-md-6 col-lg-12">
                 <div class="header">
-                    <a href="/"><img class="img-thumbnail img-fluid rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}"></a>
+                    <a href="/">
+                        <picture>
+                            <source class="img-thumbnail img-fluid rounded" srcset="{{ "/assets/portfolio.jp2" | relative_url }}" type="image/jp2">
+                            <img class="img-thumbnail img-fluid rounded" src="{{ "/assets/portfolio.png" | relative_url }}" alt="{{ site.params.name }}">
+                        </picture>
+                    </a>
                 </div>
             </div>
             <div class="col-6 col-sm-6 col-md-6 col-lg-12">
