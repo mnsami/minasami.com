@@ -2,13 +2,10 @@
 layout: default
 ---
 
-{{ content }}
-
-<h1 class="lead text-uppercase">posts</h1>
-
-{% if site.posts.size > 0 %}
+{%- if site.posts.size > 0 -%}
+    <h1 class="lead text-uppercase">posts</h1>
     <div class="posts">
-        {% for post in site.posts %}
+        {%- for post in site.posts -%}
             <div class="card">
                 <div class="card-body">
                     <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">
@@ -28,6 +25,6 @@ layout: default
                     <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
                 </div>
             </div>
-        {% endfor %}
+        {%- endfor -%}
     </div>
-{% endif %}
+{%- endif -%}

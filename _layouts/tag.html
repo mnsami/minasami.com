@@ -2,8 +2,6 @@
 layout: default
 ---
 
-{{ content }}
-
 <h1 class="page-heading">Posts with tag: {{ page.tag | escape }}</h1>
 <h1 class="posts-label">{% if site.tags[page.tag].size == 1 %} 1 post {% else %} {{ site.tags[page.tag].size }} posts {% endif %}</h1>
 

@@ -1,70 +1,26 @@
-<!DOCTYPE html>
-<html lang="en" class="h-100">
+---
+layout: default
+---
 
-    <head>
-        {% include head.html %}
-    </head>
+<div class="post">
+    <h1 class="post-title">{{- page.title -}}</h1>
+    <p>
+        <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
+        {{- page.date | date: "%b %-d, %Y" -}}
+    </p>
+    <div class="post-body">
+        {{- content -}}
+    </div>
+    <hr/>
+    <div class="post-tags">
+        Tags:
+        {% for postTag in page.tags %}
+            <a href="/tags/{{ postTag }}" alt="{{- postTag -}}">{{- postTag -}}</a> 
+        {% endfor %}
+    </div>
+</div>
 
-    <body class="d-flex flex-column h-100">
-        {% include top_menu.html %}
-        <main role="main">
-            <div class="container-fluid">
-                <div class="row content">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 profile">
-                        {%- include about.html -%}
-                    </div>
-                    <div class="col-lg-9 col-xl-9 main-content text-left">
-                        <div class="post">
-                            <h1 class="post-title">{{- page.title -}}</h1>
-                            <p>
-                                <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
-                                {{- page.date | date: "%b %-d, %Y" -}}
-                            </p>
-                            <div class="post-body">
-                                {{- content -}}
-                            </div>
-                            <hr/>
-                            <div class="post-tags">
-                                Tags:
-                                {% for postTag in page.tags %}
-                                    <a href="/tags/{{ postTag }}" alt="{{- postTag -}}">{{- postTag -}}</a>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-        {%- include footer.html -%}
-        {%- if site.params.analytics_id -%}
-            <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.params.analytics_id }}"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-                function gtag() { dataLayer.push(arguments); }
-                gtag('js', new Date());
-                gtag('config', '{{ site.params.analytics_id }}');
-            </script>
-        {%- endif -%}
-        
-        {% if site.params.search %}
-            <script src="/assets/js/simple-jekyll-search.min.js"></script>
-            <script src="/assets/js/search.js"></script>
-        {% endif %}
-        <!-- CSS only -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        <link rel="stylesheet" href="/assets/css/styles.css"/>
-        
-        <!-- JS, Popper.js, and jQuery -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous" defer></script>
-
-        <!-- font -->
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-        <!-- code highlighter -->
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/styles/atom-one-dark.min.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-    </body>    
-</html>
+<!-- code highlighter -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/styles/atom-one-dark.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
