@@ -21,6 +21,7 @@ lint:
 clean:
 	@echo "\n==> Clean all ..."
 	$(JEKYLL_CMD) clean
+	rm -rf _site_tags/*
 
 serve:
 	@echo "\n==> Serving ${PROJECT} website ..."
