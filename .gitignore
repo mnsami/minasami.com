@@ -3,5 +3,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-!_site_tags/.keep
 _site_tags/*
+!_site_tags/.keep
