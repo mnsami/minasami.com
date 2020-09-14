@@ -27,9 +27,13 @@ jobs:
     - name: Install dependencies
       run: make install
 
-    - name: Clean and build the website
+    - name: Clean build folder
+      id: website-clean
+      run: make clean
+
+    - name: Build the website
       id: website-build
-      run: make clean build
+      run: make build
     
     - name: Test website
       id: website-lint
