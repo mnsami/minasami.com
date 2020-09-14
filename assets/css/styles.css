@@ -103,3 +103,7 @@ blockquote:before {
 #disqus_thread {
     margin-top: 5%;
 }
+
+pre code {
+    font-size: 12px;
+}
