@@ -2,7 +2,7 @@
 layout: post
 title:  "Should repositories throw exceptions ?"
 tags: software-architecture patterns design exception separation-of-concerns
-description: This is a how-to post about syncing VS code extension list, editor settings and adding all that to source control, so you are able to keep track of your vs-code settings changes, change by change, and backup and restore when needed, by adding it to source control.
+description: Recently, I have been practicing separating the infrastructure layer in the projects I work or contribute to, from the rest of the application by using/writing repository classes. Which in turn consumed by the application services to read and/or write to the data models. What I want to focus on here, is mainly lookup operations, and model lookup isn't found, should the repository throw the exception, which in turn surrounded by a `try...catch` block in the application service, to decide how to handle this exception ? or should the repository just return `null` and the service checks for the return value ?
 ---
 
 Recently, I have been practicing separating the infrastructure layer in the projects I work or contribute to, from the rest of the application by using/writing repository classes. Which in turn consumed by the application services to read and/or write to the data models.
