@@ -7,7 +7,7 @@ test: install clean build lint
 
 install:
 	@echo "\n==> Installing gems, jekyll-plugins ..."
-	gem install --user-install bundler jekyll
+	gem install bundler jekyll
 	bundle install
 
 build:
