@@ -27,9 +27,9 @@ jobs:
     - name: Install dependencies
       run: make install
 
-    - name: Build website
+    - name: Clean and build the website
       id: website-build
-      run: make build
+      run: make clean build
     
     - name: Test website
       id: website-lint
