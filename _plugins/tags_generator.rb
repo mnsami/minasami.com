@@ -1,14 +1,11 @@
-Jekyll::Hooks.register :site, :pre_render do |site|
-    posts = site.posts
+Jekyll::Hooks.register :posts, :post_write do |post|
     all_existing_tags = Dir.entries("_site_tags")
       .map { |t| t.match(/(.*).md/) }
       .compact.map { |m| m[1] }
   
-    for post in posts.docs
-        tags = post['tags'].reject { |t| t.empty? }
-        tags.each do |tag|
-            generate_tag_file(tag) if !all_existing_tags.include?(tag)
-        end
+    tags = post['tags'].reject { |t| t.empty? }
+    tags.each do |tag|
+      generate_tag_file(tag) if !all_existing_tags.include?(tag)
     end
   end
   

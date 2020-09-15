@@ -34,6 +34,10 @@ jobs:
     - name: Build the website
       id: website-build
       run: make build
+
+    - name: Build the tags
+      id: tags-build
+      run: make build
     
     - name: Test website
       id: website-lint
