@@ -11,7 +11,8 @@ body {
 }
 
 .content {
-    margin: 5% 0px;
+    margin: 5% auto;
+    width: 90%;
 }
 
 img {
