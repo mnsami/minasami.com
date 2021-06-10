@@ -7,6 +7,7 @@ description: Managing multiple ssh keys, Usually when joining a new work place y
 
 Usually when joining a new work place you are asked to provide your public `ssh` key to get access to all the private organization repositories.
 And after sometime, I came to the conclusion that I want to separate between work and personal `ssh` keys, and I want to achieve that in an easy, hassle free way from the same computer.
+{:.section}
 
 #### Why do I want manage multiple `ssh` keys?
 
@@ -15,10 +16,12 @@ The answer is simple, I want one `SSH` key-pair for work related matters (i.e. c
 Also, I want to be mind free that when I decide to change my work place, on my last day, all I have to do is to just delete my work `ssh` key or it gets forgotten when my work laptop is wiped, then automatically I'm out of all the company's systems.
 
 So, again the urge got higher to create another `ssh` key to be used for work place.
+{:.section}
 
 ##### Assumption
 
 I assume you have knowledge using `git`, `ssh` and you know your way around your OS terminal.
+{:.section}
 
 #### How will I do it?
 
@@ -30,6 +33,7 @@ $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
     </code>
 </pre>
 and this will guide you to a step by step creating process. Or, you can follow this [github](https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) guide for more details.
+{:.section}
 
 ##### 2. Set your configuration
 
@@ -57,6 +61,7 @@ Let me explain what have we done:
 - Since, we have defined two different hosts `github.com` and `work.github.com`, the second one in reality does not exist, it is just a mapping.
 - You add which `ssh` key to be used when authenticating with the host defined, by this line `IdentityFile /path/to/ssh_private_key`
 - **Bonus:** Adding `IdentitiesOnly yes`, tells the `ssh-agent` to not use the default behavior of trying to connect using the default `key` `~.ssh/id_rsa` first but only try the specified key.
+{:.section}
 
 ##### 3. How to use to connect?
 
@@ -69,6 +74,7 @@ $ git clone git@work.github.com:company/project.git
 </pre>
 
 This will resolve to the `work.github.com` host defined in `~/.ssh/config` and use the defined key there and will use the right key for it.
+{:.section}
 
 #### Conclusion
 
@@ -79,3 +85,4 @@ If you can avoid it, do so, as ideally, it is a good practice to have only one.
 I hope someone found this useful!
 
 [Want to know more about `ssh`?](https://www.ssh.com/ssh/public-key-authentication)
+{:.section}

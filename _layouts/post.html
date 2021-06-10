@@ -4,10 +4,15 @@ layout: default
 
 <div class="post">
     <h1 class="post-title">{{- page.title -}}</h1>
-    <p>
-        <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
-        {{- page.date | date: "%b %-d, %Y" -}}
-    </p>
+    <div class="post-meta">
+        <span class="post-post-date">
+            <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
+            {{- page.date | date: "%b %-d, %Y" -}}
+        </span>
+        <span class="post-reading-time">
+            | {%- include reading_time.html content=content-%} 
+        </span>
+    </div>
     <div class="post-body">
         {{- content -}}
     </div>
@@ -20,6 +25,7 @@ layout: default
     </div>
 </div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <!-- code highlighter -->
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/styles/atom-one-dark.min.css">
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.0/highlight.min.js"></script>

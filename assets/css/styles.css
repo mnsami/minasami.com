@@ -15,6 +15,14 @@ body {
     width: 90%;
 }
 
+.header {
+    margin-bottom: 1rem;
+}
+
+.navbar {
+    padding-left: 1rem;
+}
+
 img {
     max-width: 100%;
 }
@@ -80,6 +88,20 @@ img {
     padding: 1%;
 }
 
+.tags-cloud .badge {
+    color: #0d6efd;
+}
+
+.post .post-meta {
+    margin-bottom: 2rem;
+    color: rgba(117, 117, 117, 1);
+}
+
+.posts .post-meta {
+    margin-bottom: 1rem;
+    color: rgba(117, 117, 117, 1);
+}
+
 .blockquote {
     font-size: inherit;
 }
@@ -107,4 +129,12 @@ blockquote:before {
 
 pre code {
     font-size: 12px;
+}
+
+.post .section {
+    margin-bottom: 3rem;
+}
+
+.posts .section {
+    margin-bottom: 1rem;
 }

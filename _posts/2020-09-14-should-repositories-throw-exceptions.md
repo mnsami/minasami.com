@@ -27,10 +27,12 @@ Let's take a very basic example here, of interacting with users, below is `UserR
     }
     </code>
 </pre>
+{:.section}
 
 ### Infrastructure implementation
 
 Let's see the difference between returning `null` and throwing an `Exception` from the repository.
+{:.section}
 
 #### Repository throwing `Exception`
 
@@ -94,6 +96,7 @@ and since, the repository is now responsible for throwing the exception, the app
 </pre>
 
 In this case, which I don't like and I'm not in favor of, we catch the `UserNotFound` exception twice, once in the `UserReadService` and another time in the `UserController` which of course is redundant for no reason. Also, it doesn't make any sense, to catch the exception in the `UserReadService` just to throw it again.
+{:.section}
 
 #### Repository returning `null`
 
@@ -156,6 +159,7 @@ Then it becomes a simple decision for the repository is to return `null` when it
 </pre>
 
 This privileges the application service layer, to be in more control on how to handle the data layer, and thus feels more that it is the right responsibilities to have, rather than making the repository responsible to throw the exceptions.
+{:.section}
 
 ## Conclusion
 
@@ -164,3 +168,4 @@ In the end, it is a matter of choice. But for me, it is clear and makes sense, t
 Also, if you write complicated service functions, it makes easier with less amount of code by eliminating the `try...catch` and just enough with checking for `null` values returned from the repositories.
 
 If you think otherwise, or have a better way of doing things, I'm always open to learn from others, message me or leave a comment.
+{:.section}

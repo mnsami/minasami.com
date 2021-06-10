@@ -11,17 +11,20 @@ layout: default
                     <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">
                         <h5 class="card-title">{{ post.title }}</h5>
                     </a>
-                    <h6 class="card-subtitle mb-2 text-muted">
-                        <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
-                        {{ post.date | date: "%b %-d, %Y" }}
-                    </h6>
+                    <div class="post-meta">
+                        <span class="post-post-date">
+                            <img width="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
+                            {{- post.date | date: "%b %-d, %Y" -}}
+                        </span>
+                        <span class="post-reading-time">
+                            | {%- include reading_time.html content=post.content -%} 
+                        </span>
+                    </div>
                     {% if site.show_excerpts == true %}
                         <p class="card-text">
-                            {{- post.excerpt | remove: '<p>' | remove: '</p>' -}}
+                            {{- post.excerpt | strip_html -}}
                         </p>
                     {% endif %}
-                </div>
-                <div class="card-body">
                     <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
                 </div>
             </div>
