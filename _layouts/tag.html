@@ -6,19 +6,29 @@ layout: default
 <h1 class="posts-label">{% if site.tags[page.tag].size == 1 %} 1 post {% else %} {{ site.tags[page.tag].size }} posts {% endif %}</h1>
 
 {% if site.tags[page.tag].size > 0 %}
-    <div class="list-group list-group-flush">
+    <div class="posts">
         {% for post in site.tags[page.tag] %}
-            <div class="list-group-item list-group-item-action">
-                <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}">
-                    <h2 class="card-title">{{ post.title | escape }}</h2>
-                </a>
-                <p>
-                    <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}' />
-                    {{ post.date | date: "%b %-d, %Y" }}
-                </p>
-                {% if site.show_excerpts %}
-                    <p class="mb-1">{{ post.excerpt }}</p>
-                {% endif %}
+            <div class="card">
+                <div class="card-body">
+                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                    </a>
+                    <div class="post-meta">
+                        <span class="post-post-date">
+                            <img width="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}'/>
+                            {{- post.date | date: "%b %-d, %Y" -}}
+                        </span>
+                        <span class="post-reading-time">
+                            | {%- include reading_time.html content=post.content -%} 
+                        </span>
+                    </div>
+                    {% if site.show_excerpts == true %}
+                        <p class="card-text">
+                            {{- post.excerpt | strip_html -}}
+                        </p>
+                    {% endif %}
+                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
+                </div>
             </div>
         {% endfor %}
     </div>
