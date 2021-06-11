@@ -14,3 +14,7 @@
   ExpiresByType text/javascript "access plus 1 month"
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteRule ^reactjs-proxy.html$ http://minasami.com/2021/06/10/cors-errors-fix-with-reactjs.html [R=301,L]
+</IfModule>
