@@ -45,7 +45,7 @@ jobs:
     
     - name: ssh deploy
       if: ${{ success() }}
-      uses: easingthemes/ssh-deploy@v2.1.2
+      uses: easingthemes/ssh-deploy@main
       env:
         ARGS: "-rltgoDzvO --delete"
         # Private Key
