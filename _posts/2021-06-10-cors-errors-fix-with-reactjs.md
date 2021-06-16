@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Dealing with CORS Errors in React two ways"
-tags: reactjs nginx cors tips-tricks
+tags: reactjs nginx cors how-tos
 description: It is always a problem when working with reactjs or any other frontend js framework in local development specially when connected to a backend api, is that you get No Access-Control-Allow-Origin header is present on the requested resource. and you go crazy about the cause of the issue.
 ---
 

@@ -102,7 +102,17 @@ To create a skeleton of a symfony app run the below command
 
 <pre>
     <code class="shell">
-$ composer create-project symfony/skeleton monitoring-api
+$ composer create-project symfony/skeleton api
+    </code>
+</pre>
+
+So the folder `monitoring-app` contents would be as below
+
+<pre>
+    <code class="shell">
+monitoring-app/
+├── api
+└── docker-compose.yml
     </code>
 </pre>
 {:.section}

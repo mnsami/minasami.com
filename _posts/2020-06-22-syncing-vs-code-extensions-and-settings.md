@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Tips & tricks: Sync VS-Code extensions list, editor settings and add it to source control."
-tags: tips-tricks vs-code
+tags: how-tos vs-code automation
 description: This is a how-to post about syncing VS code extension list, editor settings and adding all that to source control, so you are able to keep track of your vs-code settings changes, change by change, and backup and restore when needed, by adding it to source control.
 ---
 
