@@ -2,7 +2,7 @@
 layout: post
 title:  "How to make use of Makefile to shorthand long commands"
 tags: how-tos docker automation
-description: to be determined
+description: I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects, either backend or frontend and specially `docker-compose`, I spend extra time writing and thinking about the command I would like to run inside my container
 ---
 
 I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects, either backend or frontend and specially `docker-compose`, I spend extra time writing and thinking about the command I would like to run inside my container, so, let's say I would like to run a simple `composer install` so this will result in typing
