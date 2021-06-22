@@ -28,16 +28,6 @@ jobs:
       - name: Get current timestamp
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
-
-      - name: Cache build folder
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-site-build
-        with:
-          path: _site
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ steps.date.outputs.date }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-${{ steps.date.outputs.date }}
       
       # Install dependencies
       - name: Install dependencies
@@ -55,10 +45,19 @@ jobs:
         id: tags-build
         run: make build
       
+      - name: Pack and upload the build
+        uses: actions/upload-artifact@v2
+        with:
+          name: website
+      
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: website
       - name: Test website
         id: website-lint
         run: make lint
@@ -66,7 +65,11 @@ jobs:
   deploy:
     needs: test
     runs-on: ubuntu-latest
-    steps:    
+    steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: site-build
       - name: ssh deploy
         if: ${{ success() }}
         uses: easingthemes/ssh-deploy@main
