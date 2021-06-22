@@ -65,6 +65,6 @@ jobs:
             # Remote port
             REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
             # Source directory
-          SOURCE: "_site/"
-          # Target directory
-          TARGET: ${{ secrets.TARGET }}
+            SOURCE: "_site/"
+            # Target directory
+            TARGET: ${{ secrets.TARGET }}
