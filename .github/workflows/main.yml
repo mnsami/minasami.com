@@ -27,7 +27,7 @@ jobs:
       
       - name: Get current timestamp
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d-H:i:s')"
+        run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H:%M:%S')"
 
       - name: Cache build folder
         uses: actions/cache@v2
