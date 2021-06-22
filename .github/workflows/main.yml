@@ -49,6 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: website
+          path: .
       
   test:
     needs: build
@@ -58,6 +59,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: website
+          path: .
       - name: Test website
         id: website-lint
         run: make lint
@@ -70,6 +72,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: site-build
+          path: .
       - name: ssh deploy
         if: ${{ success() }}
         uses: easingthemes/ssh-deploy@main
