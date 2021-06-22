@@ -17,54 +17,70 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.6
-    
-    # Install dependencies
-    - name: Install dependencies
-      run: make install
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.6
+      
+      - name: Get current timestamp
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d-H:i:s')"
 
-    - name: Clean build folder
-      id: website-clean
-      run: make clean
+      - name: Cache build folder
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-site-build
+        with:
+          path: _site
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ steps.date.outputs.date }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-${{ steps.date.outputs.date }}
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: make install
 
-    - name: Build the website
-      id: website-build
-      run: make build
+      - name: Clean build folder
+        id: website-clean
+        run: make clean
 
-    - name: Build the tags
-      id: tags-build
-      run: make build
+      - name: Build the website
+        id: website-build
+        run: make build
+
+      - name: Build the tags
+        id: tags-build
+        run: make build
       
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-        - name: Test website
-          id: website-lint
-          run: make lint
+      - name: Test website
+        id: website-lint
+        run: make lint
   
   deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:    
-        - name: ssh deploy
-          if: ${{ success() }}
-          uses: easingthemes/ssh-deploy@main
-          env:
-            ARGS: "-rltgoDzvO --delete"
-            # Private Key
-            SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            # Remote host
-            REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-            # Remote user
-            REMOTE_USER: ${{ secrets.REMOTE_USER }}
-            # Remote port
-            REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-            # Source directory
-            SOURCE: "_site/"
-            # Target directory
-            TARGET: ${{ secrets.TARGET }}
+      - name: ssh deploy
+        if: ${{ success() }}
+        uses: easingthemes/ssh-deploy@main
+        env:
+          ARGS: "-rltgoDzvO --delete"
+          # Private Key
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Remote host
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # Remote user
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # Remote port
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          # Source directory
+          SOURCE: "_site/"
+          # Target directory
+          TARGET: ${{ secrets.TARGET }}
