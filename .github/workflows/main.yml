@@ -64,11 +64,6 @@ jobs:
     runs-on: ubuntu-latest
     container: ruby:3.0
     steps:
-      # - name: Install Ruby
-      #   uses: ruby/setup-ruby@v1
-      #   with:
-      #     ruby-version: 3.0
-      #     bundler-cache: true
       - name: Download site build
         uses: actions/download-artifact@v2
         with:
@@ -83,29 +78,31 @@ jobs:
         id: website-lint
         run: make lint
   
-  # deploy:
-  #   needs: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download site build
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: site-build
-  #         path: .
-  #     - name: ssh deploy
-  #       if: ${{ success() }}
-  #       uses: easingthemes/ssh-deploy@main
-  #       env:
-  #         ARGS: "-rltgoDzvO --delete"
-  #         # Private Key
-  #         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-  #         # Remote host
-  #         REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-  #         # Remote user
-  #         REMOTE_USER: ${{ secrets.REMOTE_USER }}
-  #         # Remote port
-  #         REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-  #         # Source directory
-  #         SOURCE: "_site/"
-  #         # Target directory
-  #         TARGET: ${{ secrets.TARGET }}
+  deploy:
+    if: ${{ success() }}
+    needs: [ build, test ]
+    runs-on: ubuntu-latest
+    container: ruby:3.0
+    steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: site-build
+          path: .
+      - name: ssh deploy
+        if: ${{ success() }}
+        uses: easingthemes/ssh-deploy@main
+        env:
+          ARGS: "-rltgoDzvO --delete"
+          # Private Key
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Remote host
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # Remote user
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # Remote port
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          # Source directory
+          SOURCE: "_site/"
+          # Target directory
+          TARGET: ${{ secrets.TARGET }}
