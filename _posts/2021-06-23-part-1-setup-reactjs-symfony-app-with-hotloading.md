@@ -25,13 +25,16 @@ Also, it solve the most biggest problem
 
 ## Requirements for the development environment
 
-When setting up your day-to-day development environment, you are installing plugins, take caring of a lot of noise around your real work. But in my opinion, you shouldn't waste time on all the noise around the task at hand, instead the development environment should be:
+When setting up your day-to-day development environment, you are installing plugins, take caring of a lot of noise around your real work. But in my opinion, you shouldn't waste time on all the noise around the task at hand, instead your development environment should be:
 
 1. Easy to setup and run.
 2. Environment agnostic.
 3. Agile, meaning: you don't need to spend a lot of time to make slightest changes or adjustments.
 
-Also, this comes with a high **business value**, because it saves on development time, also, it is easier to on-board new comers to your team.
+Also, this comes with a high **business value**, because:
+
+1. It saves on development time, also, it is easier to on-board new comers to your team.
+2. Your team doesn't spend too much time fixing cross environment problems or operating system dependencies.
 {:.section}
 
 ## Getting started
@@ -54,7 +57,7 @@ $ mkdir monitoring-app
 
 ### Setting up the backend API
 
-I'm using [Symfony](https://symfony.com) a my `php` framework for the backend api service. So, let's first create a symfony skeleton app.
+I'm using [Symfony](https://symfony.com) as my `php` framework for the backend api service. So, let's first create a symfony skeleton app.
 {:.section}
 
 #### Creating a Symfony application
@@ -123,8 +126,8 @@ networks:
 
 The above will create two docker container services:
 
-1. nginx: the webserver to serve your api.
-2. api: which is running `php-fpm`
+1. **nginx**: the webserver to serve your api.
+2. **api**: which is running `php-fpm`
 {:.section}
 
 #### Your Dockerfiles
@@ -483,13 +486,15 @@ If you go to your browser the type `http://localhost:90/api/v1/healthCheck` you 
 <img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/i_am_alive.png" | relative_url }}" alt="I am alive" width="399" height="134" />
 {:.section}
 
-### Conclusion
+### Wrapping up
 
 So, we have come to an end of this tutorial, where we so far accomplished the following:
 
 1. Created a RESTful Symfony api, using the skeleton of Symfony and FOSRestBundle.
 2. Created a development using `docker`.
 3. Created our first API endpoint to retrieve the server health check.
+4. Achieved faster on-boarding for new developers in product teams.
+5. Help developers focus more on the user stories, rather than worry about a stable development environment.
 {:.section}
 
 ### What is next ?
