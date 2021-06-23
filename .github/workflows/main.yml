@@ -60,6 +60,8 @@ jobs:
         with:
           name: website
           path: .
+      - name: list all files
+        run: ls -lah
       - name: Test website
         id: website-lint
         run: make lint
