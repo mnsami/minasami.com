@@ -69,6 +69,15 @@ jobs:
         with:
           name: website
           path: .
+      - name: Cache Ruby vendor
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-ruby-bundles
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
       # Install dependencies
       - name: Install dependencies
         run: make install
@@ -82,7 +91,6 @@ jobs:
     if: ${{ success() }}
     needs: [ build, test ]
     runs-on: ubuntu-latest
-    container: ruby:3.0
     steps:
       - name: Download site build
         uses: actions/download-artifact@v2
