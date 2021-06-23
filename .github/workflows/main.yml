@@ -24,6 +24,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
+          bundler-cache: true
       
       - name: Get current timestamp
         id: date
@@ -44,31 +45,27 @@ jobs:
       - name: Build the tags
         id: tags-build
         run: make build
-      - name: list all files
-        run: ls -lah ~/vendor/bundle || ls -lah vendor/bundle
       
       - name: Pack and upload the build
         uses: actions/upload-artifact@v2
         with:
           name: website
-          path: |
-            .
-            ~/vendor/bundle
+          path: .
       
-  # test:
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Download site build
-  #       uses: actions/download-artifact@v2
-  #       with:
-  #         name: website
-  #         path: .
-  #     - name: list all files
-  #       run: ls -lah
-  #     - name: Test website
-  #       id: website-lint
-  #       run: make lint
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: .
+      - name: list all files
+        run: ls -lah
+      - name: Test website
+        id: website-lint
+        run: make lint
   
   # deploy:
   #   needs: test
