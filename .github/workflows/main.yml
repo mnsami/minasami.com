@@ -49,7 +49,9 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: website
-          path: .
+          path: |
+            .
+            vendor/bundle
       
   test:
     needs: build
