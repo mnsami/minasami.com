@@ -69,6 +69,9 @@ jobs:
       #   with:
       #     ruby-version: 3.0
       #     bundler-cache: true
+      # Install dependencies
+      - name: Install dependencies
+        run: make install
       - name: Download site build
         uses: actions/download-artifact@v2
         with:
