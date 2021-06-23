@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Deployment (Build, Test, Deploy)
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -14,49 +14,103 @@ jobs:
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    container: ruby:3.0
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 2.6
-    
-    # Install dependencies
-    - name: Install dependencies
-      run: make install
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      # - name: Install Ruby
+      #   uses: ruby/setup-ruby@v1
+      #   with:
+      #     ruby-version: 3.0
+      #     bundler-cache: true
+      - name: Cache Ruby vendor
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-ruby-bundles
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: make install
 
-    - name: Clean build folder
-      id: website-clean
-      run: make clean
+      - name: Clean build folder
+        id: website-clean
+        run: make clean
 
-    - name: Build the website
-      id: website-build
-      run: make build
+      - name: Build the website
+        id: website-build
+        run: make build
 
-    - name: Build the tags
-      id: tags-build
-      run: make build
-    
-    - name: Test website
-      id: website-lint
-      run: make lint
-    
-    - name: ssh deploy
-      if: ${{ success() }}
-      uses: easingthemes/ssh-deploy@main
-      env:
-        ARGS: "-rltgoDzvO --delete"
-        # Private Key
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        # Remote host
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        # Remote user
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        # Remote port
-        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        # Source directory
-        SOURCE: "_site/"
-        # Target directory
-        TARGET: ${{ secrets.TARGET }}
+      - name: Build the tags
+        id: tags-build
+        run: make build
+      
+      - name: Pack and upload the build
+        uses: actions/upload-artifact@v2
+        with:
+          name: website
+          path: .
+      
+  test:
+    if: ${{ success() }}
+    needs: build
+    runs-on: ubuntu-latest
+    container: ruby:3.0
+    steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: .
+      - name: Cache Ruby vendor
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-ruby-bundles
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      # Install dependencies
+      - name: Install dependencies
+        run: make install
+      - name: list all files
+        run: ls -lah
+      - name: Test website
+        id: website-lint
+        run: make lint
+  
+  deploy:
+    if: ${{ success() }}
+    needs: [ build, test ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download site build
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: .
+      - name: ssh deploy
+        if: ${{ success() }}
+        uses: easingthemes/ssh-deploy@main
+        env:
+          ARGS: "-rltgoDzvO --delete"
+          # Private Key
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Remote host
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # Remote user
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          # Remote port
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          # Source directory
+          SOURCE: "_site/"
+          # Target directory
+          TARGET: ${{ secrets.TARGET }}
