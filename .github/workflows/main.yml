@@ -45,7 +45,7 @@ jobs:
         id: tags-build
         run: make build
       - name: list all files
-        run: ls -lah ~/vendor/bundle && ls -ls -lah vendor/bundle
+        run: ls -lah ~/vendor/bundle || ls -lah vendor/bundle
       
       - name: Pack and upload the build
         uses: actions/upload-artifact@v2
