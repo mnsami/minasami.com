@@ -1,3 +1,5 @@
+[![Deployment (Build, Test, Deploy)](https://github.com/mnsami/minasami.com/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/mnsami/minasami.com/actions/workflows/main.yml)
+
 # My Personal blog
 
 My personal blog is built using:
