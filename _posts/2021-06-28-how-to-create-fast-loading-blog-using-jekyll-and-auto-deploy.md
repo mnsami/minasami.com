@@ -1,8 +1,15 @@
 ---
 layout: post
-title:  "How to create a fast loading blog or portfolio using Jekyll and auto deploy using github actions"
+title:  "How to create a fast loading blog or portfolio using Jekyll"
 tags: how-tos automation 
-description: As part of my work, I need to build backend services and attach it to frontend, and for this I use docker containers `docker-compose` to make life easier during development. But I have always faced some problems with that approach, specially with UI frameworks like ReactJs which uses hotloading during development phase. Previously, I have not been doing it correctly, I was just building the API in a container, then I run `npm start` locally to run the development server and connect to the backend api and have a headacheless development time. But, finally I have had come to have the time and effort to research and come to the most optimized way to have a better development dockerized environment.
+description: 
 ---
 
-New blog post another
+Writing a blog is sometimes hard, keeping the content flow is even harder, maintaining the blog from the technical aspect is even harder. Out there, there are a lot of blog writing platforms that can help you achieve your goal, and will handle everything and there comes the added benefits of using a SaaS service to have your blog.
+
+Let's us list some of the positive advantages of having your blog hosted somewhere on a platform:
+- Handle your UI theme template, unless you are using something like [medium](https://medium.com) which has its own predefined theme.
+- Make your blog posts reachable via managed SEO.
+- It manages everything else, like social sharing plugins, comments.
+
+## Why did I choose to build my own blog?
