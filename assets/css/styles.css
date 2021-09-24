@@ -138,3 +138,8 @@ pre code {
 .posts .section {
     margin-bottom: 1rem;
 }
+
+#hot-reloading-modal-link,
+#hot-reloading-compiling-modal-link{
+    cursor: zoom-in;
+}
