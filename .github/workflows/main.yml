@@ -46,11 +46,11 @@ jobs:
 
       - name: Build the website
         id: website-build
-        run: make build
+        run: JEKYLL_ENV=production make build
 
       - name: Build the tags
         id: tags-build
-        run: make build
+        run: JEKYLL_ENV=production make build
       
       - name: Pack and upload the build
         uses: actions/upload-artifact@v2
