@@ -2,7 +2,7 @@
 layout: post
 title:  "Part 1: Setup a dockerized Symfony backend app with ReactJs for frontend with hotloading enabled"
 tags: reactjs how-tos php symfony docker
-description: In this part 1 of this blog series, I will walk you through creating an efficient development environment, if you are fullstack developer, working with both backend and frontend. This how to, will explain how to setup a docker environment, with php - using Symfony as a framework - and nginx. This setup has its own advantages in saving time in setting up the development environment, fast onboarding of your team, and let your team focus more on the tasks.
+description: In this part 1 of this blog series, I will walk you through creating an efficient development environment, if you are fullstack developer, working with both backend and frontend This how to, will explain how to setup a docker environment - using docker compose -, with php - using Symfony as a framework - and nginx. This setup has its own advantages in saving time in setting up the development environment, fast onboarding of your team, and let your team focus more on the tasks.
 ---
 
 As part of my work, I need to build backend services and attach it to frontend, and for this I use docker containers `docker-compose` to make life easier during development.
@@ -42,6 +42,10 @@ Also, this comes with a high **business value**, because:
 As mentioned, during this blog series, I will describe the process on how to setup a `php` Symfony application with `ReactJs` acting as the frontend with hot-loading (live-loading) enabled for it.
 
 And for this, I will create a backend RESTful api that displays the application healthcheck on the frontend.
+
+So this tutorial will be split into two parts:
+1. Part 1: Setup a dockerized Symfony backend app with ReactJs for frontend with hotloading enabled.
+2. [Part 2: Setup a SPA reactjs frontend with hot reloading for development]({% link _posts/2021-09-24-part-2-setup-spa-reactjs-frontend-with-hot-reloading-for-development.md %})
 {:.section}
 
 ### Setting up the project directory
