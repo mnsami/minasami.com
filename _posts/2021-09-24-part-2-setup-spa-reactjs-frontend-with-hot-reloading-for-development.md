@@ -8,7 +8,7 @@ description: In this part 2 of this blog series, I will walk you through creatin
 Previously, in [part 1]({% link _posts/2021-06-23-part-1-setup-reactjs-symfony-app-with-hotloading.md %}) we went through building a very effective development environment using docker and achieved:
 
 1. Created a dockerized development environment.
-2. Created a RESTful microservice using [Symfony](symfony.com)
+2. Created a RESTful microservice using [Symfony](https://symfony.com)
 
 What we are going to tackle next, is to build a SPA using ReactJS and connect it to the back-end API to display a mocked server health-check status.
 
