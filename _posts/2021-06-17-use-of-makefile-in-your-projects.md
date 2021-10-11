@@ -245,7 +245,7 @@ phpcbf:
 
 ### 4. Let's handle database
 
-Now, in our project we are working with databases, so we need to shortcut some symfony ORM commands to interact with our databases, below is a list of the most used commands I use during development.
+Now, in our project we are working with databases, so we need to shortcut some Symfony doctrine ORM commands to interact with our databases, below we are going to append some useful `make` commands, which I consider the most used commands during development.
 
 You can adjust them to your liking.
 
