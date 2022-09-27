@@ -62,7 +62,7 @@ jobs:
     if: ${{ success() }}
     needs: build
     runs-on: ubuntu-latest
-    container: ruby:3.0
+    container: ruby:3.1
     steps:
       - name: Download site build
         uses: actions/download-artifact@v2
