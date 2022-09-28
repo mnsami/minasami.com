@@ -81,6 +81,6 @@ params:
     instagram: minansami
 
 collections:
-  tags:
+  site_tags:
     output: true
     permalink: tags/:path/
