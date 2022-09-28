@@ -20,6 +20,7 @@ module PostTagsPlugin
             self.read_yaml(File.join(base, '_layouts'), 'tag.html')
             self.data['tag'] = tag
             self.data['title'] = "Tag: #{tag}"
+            self.data['premalink'] = "/#{tag}/"
         end
     end
 end
