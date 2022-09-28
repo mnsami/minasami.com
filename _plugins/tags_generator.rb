@@ -1,16 +1,25 @@
-Jekyll::Hooks.register :posts, :post_write do |post|
-    all_existing_tags = Dir.entries("_site_tags")
-      .map { |t| t.match(/(.*).md/) }
-      .compact.map { |m| m[1] }
-  
-    tags = post['tags'].reject { |t| t.empty? }
-    tags.each do |tag|
-      generate_tag_file(tag) if !all_existing_tags.include?(tag)
+module PostTagsPlugin
+    class PostTagsGenerator < Jekyll::Generator
+        safe true
+
+        def generate(site)
+            site.tags.each do |tag, posts|
+                site.pages << PostTagPage.new(site, site.source, tag)
+            end
+        end
     end
-  end
-  
-  def generate_tag_file(tag)
-    File.open("_site_tags/#{tag}.md", "wb") do |file|
-      file << "---\nlayout: tag\ntitle: #{tag}\ntag: #{tag}\n---\n"
+
+    class PostTagPage < Jekyll::Page
+        def initialize(site, base, tag)
+            @site = site
+            @base = base
+            @dir  = File.join('tags')
+            @name = "#{tag}.html"
+
+            self.process(@name)
+            self.read_yaml(File.join(base, '_layouts'), 'tag.html')
+            self.data['tag'] = tag
+            self.data['title'] = "Tag: #{tag}"
+        end
     end
-  end
+end
