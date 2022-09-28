@@ -13,14 +13,13 @@ module PostTagsPlugin
         def initialize(site, base, tag)
             @site = site
             @base = base
-            @dir  = File.join('tags')
-            @name = "#{tag}.html"
+            @dir  = File.join('tags', tag)
+            @name = "index.html"
 
             self.process(@name)
             self.read_yaml(File.join(base, '_layouts'), 'tag.html')
             self.data['tag'] = tag
             self.data['title'] = "Tag: #{tag}"
-            self.data['premalink'] = "/#{tag}/"
         end
     end
 end
