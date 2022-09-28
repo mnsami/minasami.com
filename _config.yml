@@ -79,8 +79,3 @@ params:
     github: mnsami
     linkedIn: in/mnsami # format: locale/username
     instagram: minansami
-
-collections:
-  site_tags:
-    output: true
-    permalink: tags/:path/

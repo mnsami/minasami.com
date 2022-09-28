@@ -47,10 +47,6 @@ jobs:
       - name: Build the website
         id: website-build
         run: JEKYLL_ENV=production make build
-
-      - name: Build the tags
-        id: tags-build
-        run: JEKYLL_ENV=production make build
       
       - name: Pack and upload the build
         uses: actions/upload-artifact@v2
@@ -62,7 +58,7 @@ jobs:
     if: ${{ success() }}
     needs: build
     runs-on: ubuntu-latest
-    container: ruby:3.0
+    container: ruby:3.1
     steps:
       - name: Download site build
         uses: actions/download-artifact@v2
@@ -81,8 +77,6 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: make install
-      - name: list all files
-        run: ls -lah
       - name: Test website
         id: website-lint
         run: make lint
