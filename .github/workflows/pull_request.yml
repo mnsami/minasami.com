@@ -45,10 +45,6 @@ jobs:
       - name: Build the website
         id: website-build
         run: make build
-
-      - name: Build the tags
-        id: tags-build
-        run: make build
       
       - name: Pack and upload the build
         uses: actions/upload-artifact@v2
@@ -79,8 +75,6 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: make install
-      - name: list all files
-        run: ls -lah
       - name: Test website
         id: website-lint
         run: make lint
