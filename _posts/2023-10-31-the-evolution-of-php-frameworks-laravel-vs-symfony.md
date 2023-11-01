@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The Evolution of PHP Frameworks: Laravel vs. Symfony"
-tags: PHP Framework Symfony Laravel
+tags: php framework symfony laravel
 description: As someone who has dedicated over 16 years to backend software engineering, PHP has been an integral part of my journey. Two of its shining stars in the realm of frameworks are Laravel and Symfony. Both have their own strengths, character, and flair. Let’s dive into a deeper comparison of these two titans.
 ---
 
