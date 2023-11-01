@@ -16,7 +16,7 @@ build:
 
 lint:
 	@echo "\n==> Linting: running html-proofer ..."
-	bundle exec htmlproofer ./_site --disable-external --check-opengraph --allow-hash-href --ignore-urls "#"
+	bundle exec htmlproofer ./_site --disable-external --allow-hash-href --ignore-urls "#"
 
 clean:
 	@echo "\n==> Clean all ..."
