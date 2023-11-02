@@ -2,7 +2,7 @@
 layout: post
 title:  "How to make use of Makefile to shorthand long commands"
 tags: how-tos docker automation
-description: I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects, either backend or frontend and specially `docker-compose`, I spend extra time writing and thinking about the command I would like to run inside my container. In the blog article, I will show a how to, to make a makefile with targets to shorthand your docker-compose commands and it is a way to abstract your commands to be used in the automation pipeline instead of you using the direct commands. The sample I used here, I use with docker, php, symfony and nginx.
+description: Learn how to use Makefiles to simplify and speed up your Docker workflow, save time during development, and easily run commands inside your container. Suitable for both frontend and backend projects.
 ---
 
 I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects, either backend or frontend and specially `docker-compose`, I spend extra time writing and thinking about the command I would like to run inside my container, so, let's say I would like to run a simple `composer install` so this will result in typing

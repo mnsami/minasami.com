@@ -2,7 +2,7 @@
 layout: post
 title:  "Part 1: Setup a dockerized Symfony backend app with ReactJs for frontend with hotloading enabled"
 tags: reactjs how-tos php symfony docker
-description: In this part 1 of this blog series, I will walk you through creating an efficient development environment, if you are fullstack developer, working with both backend and frontend This how to, will explain how to setup a docker environment - using docker compose -, with php - using Symfony as a framework - and nginx. This setup has its own advantages in saving time in setting up the development environment, fast onboarding of your team, and let your team focus more on the tasks.
+description: A step-by-step guide on how to setup a dockerized development environment for building backend services using Symfony and a frontend in ReactJS with hotloading enabled. Explore the advantages of using Docker and learn how to overcome common challenges faced during development.
 ---
 
 As part of my work, I need to build backend services and attach it to frontend, and for this I use docker containers `docker-compose` to make life easier during development.
