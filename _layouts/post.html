@@ -2,28 +2,60 @@
 layout: default
 ---
 
-<div class="post">
-    <h1 class="post-title">{{- page.title -}}</h1>
+{%- include breadcrumb.html -%}
+
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+    <h1 class="post-title" itemprop="headline">{{- page.title -}}</h1>
     <div class="post-meta">
         <span class="post-post-date">
-            <img width="28" height="28" src="/assets/images/calendar-icon.png" alt='{{ page.date | date: "%b %-d, %Y" }}'/>
-            {{- page.date | date: "%b %-d, %Y" -}}
+            <img width="28" height="28" src="/assets/images/calendar-icon.png" alt='Published {{ page.date | date: "%b %-d, %Y" }}' loading="lazy"/>
+            <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                {{- page.date | date: "%b %-d, %Y" -}}
+            </time>
         </span>
+        {% if page.last_modified_at %}
+        <span class="post-modified-date">
+            | Updated: <time datetime="{{ page.last_modified_at | date_to_xmlschema }}" itemprop="dateModified">{{ page.last_modified_at | date: "%b %-d, %Y" }}</time>
+        </span>
+        {% endif %}
         <span class="post-reading-time">
-            | {%- include reading_time.html content=content-%} 
+            | {%- include reading_time.html content=content-%}
         </span>
     </div>
-    <div class="post-body">
+    <div class="post-body" itemprop="articleBody">
         {{- content -}}
     </div>
     <hr/>
     <div class="post-tags">
         Tags:
         {% for postTag in page.tags %}
-            <a href="/tags/{{ postTag }}" alt="{{- postTag -}}">{{- postTag -}}</a> 
+            <a href="/tags/{{ postTag }}" rel="tag" aria-label="View posts tagged with {{ postTag }}">{{- postTag -}}</a>
         {% endfor %}
     </div>
+</article>
+
+<!-- Author Bio -->
+<hr/>
+{%- include author-bio.html -%}
+
+<!-- Related Posts -->
+{% assign related_posts_count = 0 %}
+{% for post in site.posts %}
+  {% for tag in post.tags %}
+    {% if page.tags contains tag and post.url != page.url %}
+      {% assign related_posts_count = related_posts_count | plus: 1 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+{% if related_posts_count > 0 %}
+<hr/>
+<div class="related-posts">
+  <h3>Related Posts</h3>
+  {%- include related-posts.html -%}
 </div>
+{% endif %}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <!-- code highlighter -->

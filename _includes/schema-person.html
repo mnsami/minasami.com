@@ -1,0 +1,20 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.author.name }}",
+  "url": "{{ site.url }}",
+  "image": "{{ site.logo | absolute_url }}",
+  "sameAs": [
+    "{{ site.social.links[0] }}",
+    "{{ site.social.links[1] }}",
+    "{{ site.social.links[2] }}"
+  ],
+  "jobTitle": "Software Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "{{ site.author.name }}"
+  },
+  "description": "{{ site.description | strip_html | strip_newlines | escape }}"
+}
+</script>

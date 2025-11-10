@@ -1,0 +1,26 @@
+{% if page.layout == "post" %}
+<div class="author-bio" itemscope itemtype="https://schema.org/Person">
+  <div class="row">
+    <div class="col-md-2 col-sm-3">
+      <img src="{{ site.logo }}" alt="{{ site.author.name }}" class="rounded-circle img-fluid" itemprop="image" loading="lazy">
+    </div>
+    <div class="col-md-10 col-sm-9">
+      <h4 itemprop="name">{{ site.author.name }}</h4>
+      <p itemprop="description">{{ site.description | strip_html | truncate: 200 }}</p>
+      <div class="author-social-links">
+        <a href="https://twitter.com/{{ site.twitter.username }}" target="_blank" rel="noopener noreferrer me" aria-label="Twitter" itemprop="sameAs">
+          <i class="bi bi-twitter"></i>
+        </a>
+        <a href="https://github.com/{{ site.params.social_links.github }}" target="_blank" rel="noopener noreferrer me" aria-label="GitHub" itemprop="sameAs">
+          <i class="bi bi-github"></i>
+        </a>
+        <a href="https://linkedin.com/{{ site.params.social_links.linkedIn }}" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn" itemprop="sameAs">
+          <i class="bi bi-linkedin"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <meta itemprop="url" content="{{ site.url }}">
+  <meta itemprop="jobTitle" content="Software Engineer">
+</div>
+{% endif %}

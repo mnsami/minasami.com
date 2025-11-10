@@ -1,0 +1,21 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "{{ site.title }}",
+  "url": "{{ site.url }}",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ site.logo | absolute_url }}"
+  },
+  "sameAs": [
+    "{{ site.social.links[0] }}",
+    "{{ site.social.links[1] }}",
+    "{{ site.social.links[2] }}"
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}"
+  }
+}
+</script>

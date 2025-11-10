@@ -17,16 +17,25 @@ defaults:
       path: ""
     values:
       image: "/assets/portfolio.png"
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Mina Nabil Sami"
+      image: "/assets/portfolio.png"
+
 social:
   name: Mina Nabil Sami
   links:
     - https://twitter.com/MinaNabilSami
     - https://www.linkedin.com/in/mnsami
     - https://github.com/mnsami
-    - https://instagram/minansami
+    - https://instagram.com/minansami
+
 twitter:
   username: MinaNabilSami
-  card: summary
+  card: summary_large_image
 
 author:
   name: "Mina Nabil Sami"
@@ -35,6 +44,11 @@ author:
 logo: "/assets/portfolio.png"
 google_site_verification: "4_ae8nciHvt4z5mqfgMMrtRRAK9XnXbOzZ8W6Z5nAhY"
 show_excerpts: true
+
+# Jekyll Feed Plugin
+feed:
+  posts_limit: 20
+  excerpt_only: false
 
 include: ['_pages', '.htaccess']
 markdown: kramdown
@@ -68,7 +82,7 @@ params:
   tagline: Developer. Chef. Gamer.
   date_format: "%b %-d, %Y"
   sitemap: true
-  analytics_id: "UA-170613544-1"
+  analytics_id: "G-0HJ1QG88ND"
 
   navigation:
     - title: About Me
