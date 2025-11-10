@@ -1,0 +1,29 @@
+{% if page.layout == "post" or page.layout == "page" %}
+<nav aria-label="breadcrumb" class="breadcrumb-nav">
+  <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="{{ site.url }}">
+        <span itemprop="name">Home</span>
+      </a>
+      <meta itemprop="position" content="1" />
+    </li>
+    {% if page.layout == "post" %}
+    <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="{{ site.url }}">
+        <span itemprop="name">Blog</span>
+      </a>
+      <meta itemprop="position" content="2" />
+    </li>
+    <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">{{ page.title }}</span>
+      <meta itemprop="position" content="3" />
+    </li>
+    {% elsif page.layout == "page" %}
+    <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <span itemprop="name">{{ page.title }}</span>
+      <meta itemprop="position" content="2" />
+    </li>
+    {% endif %}
+  </ol>
+</nav>
+{% endif %}

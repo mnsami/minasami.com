@@ -2,34 +2,48 @@
 layout: default
 ---
 
-<h1 class="page-heading">Posts with tag: {{ page.tag | escape }}</h1>
-<h1 class="posts-label">{% if site.tags[page.tag].size == 1 %} 1 post {% else %} {{ site.tags[page.tag].size }} posts {% endif %}</h1>
+{%- include breadcrumb.html -%}
 
-{% if site.tags[page.tag].size > 0 %}
-    <div class="posts">
-        {% for post in site.tags[page.tag] %}
-            <div class="card">
-                <div class="card-body">
-                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                    </a>
-                    <div class="post-meta">
-                        <span class="post-post-date">
-                            <img width="28" height="28" src="/assets/images/calendar-icon.png" alt='{{ post.date | date: "%b %-d, %Y" }}'/>
-                            {{- post.date | date: "%b %-d, %Y" -}}
-                        </span>
-                        <span class="post-reading-time">
-                            | {%- include reading_time.html content=post.content -%} 
-                        </span>
+<div class="tag-page">
+    <h1 class="page-heading">{{ page.tag | capitalize }}</h1>
+    <p class="tag-description">
+        Explore {% if site.tags[page.tag].size == 1 %}1 article{% else %}{{ site.tags[page.tag].size }} articles{% endif %} about {{ page.tag | capitalize }}.
+        Learn from practical examples, tutorials, and in-depth technical content.
+    </p>
+
+    {% if site.tags[page.tag].size > 0 %}
+        <div class="posts">
+            {% for post in site.tags[page.tag] %}
+                <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="card-body">
+                        <a href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}" class="card-link">
+                            <h2 class="card-title h5" itemprop="headline">{{ post.title }}</h2>
+                        </a>
+                        <div class="post-meta">
+                            <span class="post-post-date">
+                                <img width="28" height="28" src="/assets/images/calendar-icon.png" alt='Published on {{ post.date | date: "%b %-d, %Y" }}' loading="lazy"/>
+                                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                                    {{- post.date | date: "%b %-d, %Y" -}}
+                                </time>
+                            </span>
+                            <span class="post-reading-time">
+                                | {%- include reading_time.html content=post.content -%}
+                            </span>
+                        </div>
+                        {% if site.show_excerpts == true %}
+                            <p class="card-text" itemprop="description">
+                                {% if post.description %}
+                                    {{- post.description -}}
+                                {% else %}
+                                    {{- post.excerpt | strip_html -}}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                        <a href="{{ post.url | relative_url }}" aria-label="Continue reading {{ post.title | escape }}" class="card-link">Continue reading →</a>
+                        <link itemprop="url" href="{{ post.url | absolute_url }}">
                     </div>
-                    {% if site.show_excerpts == true %}
-                        <p class="card-text">
-                            {{- post.excerpt | strip_html -}}
-                        </p>
-                    {% endif %}
-                    <a href="{{ post.url | relative_url }}" alt="{{ post.title | escape }}" class="card-link">Continue reading</a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
-{% endif %}
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
