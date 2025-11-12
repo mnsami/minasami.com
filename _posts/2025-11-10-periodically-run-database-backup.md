@@ -2,6 +2,8 @@
 layout: post
 title: "Building a Production-Ready Database Backup System: From Simple Script to Robust Automation"
 date: 2025-11-10
+author: Mina Sami
+categories: [devops, tutorials]
 tags: mariadb mysql devops bash automation backup database linux production logrotate cron
 description: Learn how to evolve a basic MySQL/MariaDB backup script into a production-ready automated system with proper logging, error handling, and security best practices.
 ---
@@ -19,7 +21,7 @@ Here's what I started with:
 ```bash
 #!/bin/bash
 export DATE=$(date +%F)
-export DB_PASS="<db-password>"
+export DB_PASS="mjaVYDdU(5p)uA3+u7"
 export BACKUPDIR=/backups/db_backups
 export BACKUPPATHMYSQL=${BACKUPDIR}/app2_mysql_${DATE}.sql
 
@@ -181,7 +183,7 @@ done
 
 The `mysqldump` command for app2 was returning a non-zero exit code (probably a warning about `--routines` or `--triggers`), and `set -e` saw that as a fatal error and killed the entire script.
 
-**The fix**: Temporarily disable strict mode around commands that might have non-critical failures:
+**First attempt at a fix**: Temporarily disable strict mode around commands that might have non-critical failures:
 
 ```bash
 for DB in $DATABASES; do
@@ -195,9 +197,9 @@ for DB in $DATABASES; do
     set -e  # Re-enable exit on error
     
     if [ $DUMP_EXIT_CODE -eq 0 ] || [ -s "${BACKUP_FILE}" ]; then
-        # Success: either exit code 0 OR file has content
         tar -czf "${BACKUP_FILE}.tar.gz" -C "${BACKUP_DATE_DIR}" "$(basename ${BACKUP_FILE})" && rm -f "${BACKUP_FILE}"
         log "✓ Successfully backed up ${DB}"
+        ((BACKUP_COUNT++))
     else
         log "✗ Failed to backup ${DB} (exit code: ${DUMP_EXIT_CODE})"
         rm -f "${BACKUP_FILE}"
@@ -205,12 +207,176 @@ for DB in $DATABASES; do
 done
 ```
 
-Now we:
-1. **Capture the exit code** explicitly
-2. **Check if the backup actually has content** (some tools warn but still succeed)
-3. **Log failures properly** instead of silently dying
+But this STILL didn't work. Time for deeper debugging...
 
-**Lesson learned**: Use `set -e` for safety, but handle expected failures explicitly.
+---
+
+## The Hidden Trap: Arithmetic Expressions and set -e
+
+Even with the `set +e / set -e` pattern around mysqldump, the script still only backed up the first database. I added extensive debug logging to find the exact point of failure:
+
+```bash
+log "DEBUG: About to increment BACKUP_COUNT (currently ${BACKUP_COUNT})"
+((BACKUP_COUNT++))
+log "DEBUG: BACKUP_COUNT incremented to ${BACKUP_COUNT}"
+```
+
+Here's what the logs showed:
+
+```
+2025-11-12 09:49:54: ✓ Successfully backed up app1 (388K)
+2025-11-12 09:49:54: DEBUG: About to increment BACKUP_COUNT (currently 0)
+[SCRIPT EXITS - NO ERROR MESSAGE]
+```
+
+**Found it!** The script died on `((BACKUP_COUNT++))`.
+
+### The Arithmetic Expression Gotcha
+
+This is one of bash's most subtle traps with `set -e`:
+
+```bash
+BACKUP_COUNT=0
+((BACKUP_COUNT++))  # Post-increment returns OLD value (0)
+                    # Expression evaluates to 0
+                    # Bash returns exit status 1 when expression = 0
+                    # set -e sees non-zero exit → kills script!
+```
+
+**Let me explain:**
+1. Post-increment `++` returns the value BEFORE incrementing
+2. When `BACKUP_COUNT=0`, `((BACKUP_COUNT++))` evaluates to 0 (then increments to 1)
+3. In bash, `(( expression ))` returns exit status 1 when the expression equals 0
+4. With `set -e`, exit status 1 = immediate script termination
+5. No error message, no log, just... death
+
+**You can test this yourself:**
+
+```bash
+# Test 1: Dies with value 0
+set -e
+count=0
+((count++))  # Script exits here!
+echo "You won't see this"
+
+# Test 2: Works with value 1
+set -e
+count=1
+((count++))  # This works fine
+echo "This prints"
+```
+
+**This is why only the first database succeeded!**
+- After first backup, `BACKUP_COUNT=0`
+- Hit `((BACKUP_COUNT++))` → expression returns 0 → script dies
+- Second database never starts
+
+### The Fix
+
+Three ways to handle this:
+
+**Option 1: Add `|| true` (Recommended)**
+```bash
+((BACKUP_COUNT++)) || true  # Prevents exit even if expression is 0
+((FAILED_COUNT++)) || true
+```
+
+**Option 2: Use pre-increment**
+```bash
+((++BACKUP_COUNT))  # Returns 1 (new value), not 0
+```
+
+**Option 3: Use assignment form**
+```bash
+BACKUP_COUNT=$((BACKUP_COUNT + 1))  # Assignments don't trigger set -e
+```
+
+### Testing Both Approaches
+
+I tested the script with both configurations:
+
+**With `set -euo pipefail` (strict mode - BEFORE fix):**
+```
+Found databases: app1 app2
+✓ Successfully backed up app1 (388K)
+[silent exit - no app2 backup]
+```
+
+**With `set -euo pipefail` (strict mode - AFTER adding `|| true`):**
+```
+Found databases: app1 app2
+✓ Successfully backed up app1 (388K)
+✓ Successfully backed up app2 (12M)
+Backup completed successfully
+```
+
+**With `set -u` only (simple mode):**
+```
+Found databases: app1 app2
+✓ Successfully backed up app1 (388K)
+✓ Successfully backed up app2 (12M)
+Backup completed successfully
+```
+
+Both work now, but this debugging journey taught me an important lesson...
+
+---
+
+## The Choice: Strict Mode vs Simple Mode
+
+After all this debugging, I had to make a decision: Which approach is better for production?
+
+### Strict Mode (`set -euo pipefail`)
+**Pros:**
+- Catches many errors automatically
+- "Fail fast" behavior
+- Industry best practice (in theory)
+
+**Cons:**
+- Subtle gotchas (arithmetic expressions, command substitutions, etc.)
+- Can cause silent failures if you miss an edge case
+- Requires defensive `|| true` on many commands
+- More cognitive load to maintain
+
+### Simple Mode (`set -u`)
+**Pros:**
+- Explicit error handling - YOU control what fails
+- No hidden traps or gotchas
+- Errors are logged, not hidden
+- Easier to debug and maintain
+- Works reliably without defensive programming
+
+**Cons:**
+- Less automatic error catching
+- Requires more explicit `if` statements
+
+### My Decision: Simple Mode
+
+I chose `set -u` only for this script. Here's why:
+
+1. **It works reliably** - No hidden traps with arithmetic, pipes, or command substitutions
+2. **Better for loops** - Scripts with multiple iterations and varying outcomes
+3. **Explicit is better than implicit** - I know exactly what fails and what doesn't
+4. **Production-proven** - Both databases backup successfully every time
+5. **Maintainable** - Future me (or other devs) won't hit unexpected gotchas
+
+**This isn't a compromise - it's the RIGHT choice for this use case.**
+
+### When to Use Each
+
+**Use `set -euo pipefail` when:**
+- Writing simple, linear scripts (no complex loops)
+- You want "any error stops everything" behavior
+- The script is short and easy to test thoroughly
+- You have complete control over all commands
+
+**Use `set -u` only when:**
+- Scripts have loops with varying outcomes
+- You need fine-grained error control
+- Working with arithmetic expressions or counters
+- Production reliability > theoretical "best practices"
+
+**The DevOps lesson:** Don't let "best practices" override real-world testing and practical engineering judgment.
 
 ---
 
@@ -227,10 +393,10 @@ This works, but it's not ideal for production:
 - Can't easily monitor for failures
 - Doesn't follow Linux conventions
 
-**Better approach**: Centralized logging to `/var/log/db_backups/`:
+**Better approach**: Centralized logging to `/var/log/`:
 
 ```bash
-export LOG_FILE="/var/log/db_backups/db_backup.log"
+export LOG_FILE="/var/log/db_backup.log"
 
 log() {
     echo "$(date +"%Y-%m-%d %H:%M:%S"): $1" >> "${LOG_FILE}"
@@ -238,7 +404,7 @@ log() {
 ```
 
 Now all backup logs go to one place, making it easy to:
-- Search for errors: `grep "ERROR" /var/log/db_backups/db_backup.log`
+- Search for errors: `grep "ERROR" /var/log/db_backup.log`
 - Monitor success rates
 - Integrate with monitoring tools (Prometheus, Grafana, ELK)
 - Follow standard Unix practices
@@ -252,7 +418,7 @@ Centralized logs are great, but they'll grow forever without rotation. Enter `lo
 I created `/etc/logrotate.d/db_backup`:
 
 ```bash
-/var/log/db_backups/db_backup.log {
+/var/log/db_backup.log {
     daily
     rotate 30
     compress
@@ -273,11 +439,11 @@ This configuration:
 
 After 30 days, you'll have:
 ```
-/var/log/db_backups/db_backup.log          # Current
-/var/log/db_backups/db_backup.log.1        # Yesterday
-/var/log/db_backups/db_backup.log.2.gz     # 2 days ago
+/var/log/db_backup.log          # Current
+/var/log/db_backup.log.1        # Yesterday
+/var/log/db_backup.log.2.gz     # 2 days ago
 ...
-/var/log/db_backups/db_backup.log.30.gz    # 30 days ago (oldest)
+/var/log/db_backup.log.30.gz    # 30 days ago (oldest)
 ```
 
 Test it before trusting it:
@@ -301,18 +467,18 @@ sudo crontab -e
 Added:
 ```bash
 # MariaDB Backups - Daily at midnight
-0 0 * * * /usr/local/bin/backup-mariadb.sh >> /var/log/db_backups/db_backup_cron.log 2>&1
+0 0 * * * /usr/local/bin/backup-mariadb.sh >> /var/log/db_backup_cron.log 2>&1
 ```
 
 **Two logs, two purposes:**
-- `/var/log/db_backups/db_backup.log` → Structured logs from the script
-- `/var/log/db_backups/db_backup_cron.log` → Captures any unexpected errors from cron
+- `/var/log/db_backup.log` → Structured logs from the script
+- `/var/log/db_backup_cron.log` → Captures any unexpected errors from cron
 
 While I was at it, I also automated cleanup of old backups:
 
 ```bash
 # Cleanup old backups (keep 30 days) - Daily at 2 AM
-0 2 * * * find /db_backups -mindepth 1 -type d -mtime +30 -exec rm -rf {} \; >> /var/log/db_backups/db_backup_cron.log 2>&1
+0 2 * * * find /db_backups -mindepth 1 -type d -mtime +30 -exec rm -rf {} \; >> /var/log/db_backup_cron.log 2>&1
 ```
 
 **Critical cron gotchas to avoid:**
@@ -323,23 +489,27 @@ While I was at it, I also automated cleanup of old backups:
 
 ---
 
-## The Final Production Script
+## The Final Production Scripts
 
-Here's what I ended up with:
+After all the debugging and testing, here are both working versions:
+
+### Version A: Simple Mode (Recommended)
+
+This is what I'm running in production:
 
 ```bash
 #!/bin/bash
 #
-# MariaDB Backup Script - Production Version
+# MariaDB Backup Script - Production Version (Simple Mode)
 #
 
-set -euo pipefail
+set -u  # Fail on undefined variables only
 
 # Configuration
 export BACKUPDIR="/db_backups"
 export DATE=$(date +%F)
 export BACKUP_DATE_DIR="${BACKUPDIR}/${DATE}"
-export LOG_FILE="/var/log/db_backups/db_backup.log"
+export LOG_FILE="/var/log/db_backup/backup.log"
 
 # System databases to exclude
 EXCLUDE_DBS="information_schema performance_schema mysql sys"
@@ -377,24 +547,22 @@ for DB in $DATABASES; do
     log "Backing up: ${DB}"
     BACKUP_FILE="${BACKUP_DATE_DIR}/${DB}_${DATE}.sql"
     
-    # Handle mysqldump with explicit error checking
-    set +e
+    # Run mysqldump and capture exit code
     /usr/bin/mysqldump --single-transaction --routines --triggers --events "${DB}" > "${BACKUP_FILE}" 2>&1
     DUMP_EXIT_CODE=$?
-    set -e
     
     if [ $DUMP_EXIT_CODE -eq 0 ] || [ -s "${BACKUP_FILE}" ]; then
         if tar -czf "${BACKUP_FILE}.tar.gz" -C "${BACKUP_DATE_DIR}" "$(basename ${BACKUP_FILE})" && rm -f "${BACKUP_FILE}"; then
             BACKUP_SIZE=$(du -h "${BACKUP_FILE}.tar.gz" | cut -f1)
             log "  ✓ ${DB} (${BACKUP_SIZE})"
-            ((BACKUP_COUNT++))
+            BACKUP_COUNT=$((BACKUP_COUNT + 1))
         else
             log "  ✗ Failed to compress ${DB}"
-            ((FAILED_COUNT++))
+            FAILED_COUNT=$((FAILED_COUNT + 1))
         fi
     else
         log "  ✗ Failed to backup ${DB} (exit: ${DUMP_EXIT_CODE})"
-        ((FAILED_COUNT++))
+        FAILED_COUNT=$((FAILED_COUNT + 1))
         rm -f "${BACKUP_FILE}"
     fi
 done
@@ -411,6 +579,112 @@ log "=========================================="
 exit 0
 ```
 
+**Why I chose this:**
+- No hidden gotchas with arithmetic or command substitutions
+- Explicit error handling - I control exactly what fails
+- Production-tested and reliable
+- Easy to maintain and debug
+
+---
+
+### Version B: Strict Mode (Fixed)
+
+If you prefer strict mode, here's the version with all the traps fixed:
+
+```bash
+#!/bin/bash
+#
+# MariaDB Backup Script - Production Version (Strict Mode)
+#
+
+set -euo pipefail  # Full strict mode
+
+# Configuration
+export BACKUPDIR="/db_backups"
+export DATE=$(date +%F)
+export BACKUP_DATE_DIR="${BACKUPDIR}/${DATE}"
+export LOG_FILE="/var/log/db_backup/backup.log"
+
+# System databases to exclude
+EXCLUDE_DBS="information_schema performance_schema mysql sys"
+
+# Functions
+log() {
+    echo "$(date +"%Y-%m-%d %H:%M:%S"): $1" >> "${LOG_FILE}"
+}
+
+error_exit() {
+    log "ERROR: $1"
+    exit 1
+}
+
+# Create backup directory
+mkdir -p "${BACKUP_DATE_DIR}" || error_exit "Failed to create backup directory"
+
+log "=========================================="
+log "Starting MariaDB backup process"
+
+# Get all databases except system ones
+DATABASES=$(mysql -e "SHOW DATABASES;" | grep -Ev "^(Database|$(echo $EXCLUDE_DBS | tr ' ' '|'))$")
+
+if [ -z "$DATABASES" ]; then
+    error_exit "No databases found to backup"
+fi
+
+log "Found databases: $(echo $DATABASES | tr '\n' ' ')"
+
+# Backup each database
+BACKUP_COUNT=0
+FAILED_COUNT=0
+
+for DB in $DATABASES; do
+    log "Backing up: ${DB}"
+    BACKUP_FILE="${BACKUP_DATE_DIR}/${DB}_${DATE}.sql"
+    
+    # Temporarily disable set -e for mysqldump
+    set +e
+    /usr/bin/mysqldump --single-transaction --routines --triggers --events "${DB}" > "${BACKUP_FILE}" 2>&1
+    DUMP_EXIT_CODE=$?
+    set -e
+    
+    if [ $DUMP_EXIT_CODE -eq 0 ] || [ -s "${BACKUP_FILE}" ]; then
+        if tar -czf "${BACKUP_FILE}.tar.gz" -C "${BACKUP_DATE_DIR}" "$(basename ${BACKUP_FILE})" && rm -f "${BACKUP_FILE}"; then
+            BACKUP_SIZE=$(du -h "${BACKUP_FILE}.tar.gz" | cut -f1)
+            log "  ✓ ${DB} (${BACKUP_SIZE})"
+            ((BACKUP_COUNT++)) || true  # Prevent exit on zero-valued expression
+        else
+            log "  ✗ Failed to compress ${DB}"
+            ((FAILED_COUNT++)) || true  # Prevent exit on zero-valued expression
+        fi
+    else
+        log "  ✗ Failed to backup ${DB} (exit: ${DUMP_EXIT_CODE})"
+        ((FAILED_COUNT++)) || true  # Prevent exit on zero-valued expression
+        rm -f "${BACKUP_FILE}"
+    fi
+done
+
+# Summary
+log "Summary: Success=${BACKUP_COUNT}, Failed=${FAILED_COUNT}"
+
+if [ ${FAILED_COUNT} -gt 0 ]; then
+    error_exit "Completed with ${FAILED_COUNT} failure(s)"
+fi
+
+log "Backup completed successfully"
+log "=========================================="
+exit 0
+```
+
+**Key differences from simple mode:**
+- Uses `set -euo pipefail` at the top
+- Requires `set +e / set -e` around mysqldump
+- Needs `|| true` on all arithmetic increments
+- More defensive programming required
+
+---
+
+**Both scripts are production-ready and tested.** Choose based on your preference for simplicity vs. strictness.
+
 ---
 
 ## What I Learned: The DevOps Mindset
@@ -421,17 +695,20 @@ Don't reach for Kubernetes when a bash script will do. Complexity has a cost: ma
 ### 2. Security First, Always
 Hardcoded credentials are never acceptable. Use proper credential management from day one. It's not more work—it's different work, and it's the right work.
 
-### 3. Explicit Error Handling > Magic
-Tools like `set -e` are powerful but can hide problems. Always handle errors explicitly for critical operations. Silent failures are the worst kind.
+### 3. Debug Before You Assume
+Silent failures are the hardest to track down. When something doesn't work as expected, add explicit debug logging to find the EXACT point of failure. My script worked perfectly for one database but silently died on the second - only thorough debugging revealed it was an arithmetic expression trap with `set -e`.
 
-### 4. Logs Are Your Future Self's Best Friend
+### 4. Explicit Error Handling > Magic
+Tools like `set -e` are powerful but have subtle gotchas (arithmetic expressions, command substitutions, pipelines). For complex scripts with loops and counters, explicit error handling with `if` statements is often MORE reliable than "strict mode." Don't let "best practices" override real-world reliability.
+
+### 5. Logs Are Your Future Self's Best Friend
 Centralized, rotated, searchable logs aren't optional. They're how you'll debug issues at 2 AM when something breaks. Do it right from the start.
 
-### 5. Automation Isn't Optional
+### 6. Automation Isn't Optional
 If it's important enough to do, it's important enough to automate. Manual processes are technical debt.
 
-### 6. Test Before You Trust
-Never wait for cron to tell you your script is broken. Test manually. Check logs. Verify backups can actually be restored.
+### 7. Test Before You Trust
+Never wait for cron to tell you your script is broken. Test manually. Check logs. Verify backups can actually be restored. Test both "happy path" and edge cases.
 
 ---
 
