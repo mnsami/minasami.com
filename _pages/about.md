@@ -21,13 +21,56 @@ In today's tech world, cloud technologies are essential. I have an intermediate 
 
 While my primary focus is on backend development, I'm not limited to it. I also have experience with front-end technologies, including React.js, Vue.js, and UI frameworks like Tailwind and Bootstrap. Understanding both backend and frontend helps me create holistic solutions.
 
+## Experience & Skills
+
+### 💻 Core Technologies
+
+**Backend Development:**
+- PHP (Symfony, Laravel, Doctrine ORM)
+- Node.js (Nest.js, mikro-ORM)
+- RESTful API Design & Implementation
+
+**Database & Infrastructure:**
+- MySQL & PostgreSQL
+- AWS Cloud Services (EC2, RDS, S3, Lambda)
+- Docker & Containerization
+
+**DevOps & Automation:**
+- CI/CD: Jenkins, GitHub Actions, GitLab Runners
+- Multi-stage Docker builds
+- Infrastructure as Code
+
+**Frontend Technologies:**
+- React.js & Vue.js
+- Tailwind CSS & Bootstrap
+- Modern JavaScript (ES6+)
+
+### 📚 Areas of Focus
+1. **Backend Architecture** - Designing scalable systems and APIs
+2. **API Development** - Building RESTful services for various use cases
+3. **Database Optimization** - Query tuning, indexing, and performance monitoring
+4. **Cloud Infrastructure** - AWS deployment and DevOps practices
+5. **Code Quality** - Writing maintainable, testable, and well-documented code
+
 ## Development Philosophy
 
 In my work, I embrace the Agile Scrum methodology and believe in the power of active communication within a team. I'm a firm advocate for pragmatic solutions, but I also prioritize code quality and maintainability to ensure long-term success.
 
-## Mentorship & Collaboration
+## 🤝 How I Can Help You
 
-As I embark on this mentorship journey, I bring a wealth of experience, a deep passion for teaching, and an unwavering commitment to nurturing the next generation of software engineers. My approach to mentorship goes beyond knowledge transfer; it's about inspiring creativity, fostering a love for the craft, and empowering mentees to achieve excellence.
+### 💼 Technical Consulting
+I can help with:
+- Backend architecture and scaling challenges
+- Database optimization and query performance
+- Legacy PHP application migration
+- CI/CD pipeline setup
+- AWS infrastructure decisions
+
+I provide consultation to help solve backend challenges and improve development workflows.
+
+### 👨‍🏫 Software Engineering Mentorship
+I offer 1-on-1 mentorship sessions for developers looking to advance their careers, learn backend development, or improve their technical skills. Learn more about my [mentorship program](/mentorship/).
+
 
 ## Let's Work Together
 

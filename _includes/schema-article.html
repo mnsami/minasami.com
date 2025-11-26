@@ -33,7 +33,15 @@
     "@id": "{{ page.url | absolute_url }}"
   },
   "keywords": "{{ page.tags | join: ', ' }}",
-  "articleBody": {{ content | strip_html | jsonify }}
+  "articleBody": {{ content | strip_html | jsonify }},
+  "timeRequired": "PT{{ content | number_of_words | divided_by: 200 }}M",
+  "wordCount": "{{ content | number_of_words }}",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": "True",
+  "isPartOf": {
+    "@type": "Blog",
+    "@id": "{{ site.url }}/#blog"
+  }
 }
 </script>
 {% endif %}
