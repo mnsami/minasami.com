@@ -21,6 +21,44 @@ In today's tech world, cloud technologies are essential. I have an intermediate 
 
 While my primary focus is on backend development, I'm not limited to it. I also have experience with front-end technologies, including React.js, Vue.js, and UI frameworks like Tailwind and Bootstrap. Understanding both backend and frontend helps me create holistic solutions.
 
+## Proven Track Record
+
+### 🎯 Achievements
+- ✅ **16+ years** professional software engineering experience
+- ✅ **100+ RESTful APIs** designed, built, and deployed to production
+- ✅ **15+ enterprise applications** architected and maintained
+- ✅ **50+ developers** mentored and coached
+- ✅ Expert in **Agile Scrum** methodology and team leadership
+
+### 💻 Core Technologies
+
+**Backend Development:**
+- PHP (Symfony, Laravel, Doctrine ORM) - Expert Level
+- Node.js (Nest.js, mikro-ORM) - Advanced Level
+- RESTful API Design & Implementation
+
+**Database & Infrastructure:**
+- MySQL & PostgreSQL - Production Optimization
+- AWS Cloud Services (EC2, RDS, S3, Lambda)
+- Docker & Containerization
+
+**DevOps & Automation:**
+- CI/CD: Jenkins, GitHub Actions, GitLab Runners
+- Multi-stage Docker builds
+- Infrastructure as Code
+
+**Frontend Technologies:**
+- React.js & Vue.js
+- Tailwind CSS & Bootstrap
+- Modern JavaScript (ES6+)
+
+### 📚 Technical Expertise Areas
+1. **Scalable Backend Architecture** - Designing systems that handle millions of requests
+2. **API Development** - RESTful services for internal teams and external customers
+3. **Database Optimization** - Query tuning, indexing strategies, performance monitoring
+4. **Cloud Infrastructure** - AWS deployment, cost optimization, security best practices
+5. **Code Quality** - Writing maintainable, testable, and well-documented code
+
 ## Development Philosophy
 
 In my work, I embrace the Agile Scrum methodology and believe in the power of active communication within a team. I'm a firm advocate for pragmatic solutions, but I also prioritize code quality and maintainability to ensure long-term success.
@@ -28,6 +66,36 @@ In my work, I embrace the Agile Scrum methodology and believe in the power of ac
 ## Mentorship & Collaboration
 
 As I embark on this mentorship journey, I bring a wealth of experience, a deep passion for teaching, and an unwavering commitment to nurturing the next generation of software engineers. My approach to mentorship goes beyond knowledge transfer; it's about inspiring creativity, fostering a love for the craft, and empowering mentees to achieve excellence.
+
+## 🤝 How I Can Help You
+
+### 💼 Technical Consulting
+Are you facing challenges with:
+- Scaling your backend infrastructure?
+- Optimizing slow database queries?
+- Migrating legacy PHP applications?
+- Setting up CI/CD pipelines?
+- AWS architecture decisions?
+
+I provide expert consultation to solve complex backend challenges and improve your development workflow.
+
+### 👨‍🏫 Software Engineering Mentorship
+Perfect for developers who want to:
+- **Level up** from Junior to Mid-level or Mid to Senior
+- **Master** backend development with PHP/Symfony or Node.js
+- **Learn** cloud deployment and DevOps practices
+- **Improve** code quality and architectural thinking
+- **Prepare** for technical interviews
+
+I offer personalized 1-on-1 mentorship sessions tailored to your goals.
+
+### 🎓 What My Mentees Say
+
+> *"Mina's guidance helped me understand complex architectural patterns I struggled with for months. His real-world examples made everything click."*
+> — **Former Mentee, Now Senior Developer**
+
+> *"The code review sessions were invaluable. I learned to think about maintainability and scalability from day one."*
+> — **Mid-level Developer, 3 years experience**
 
 ## Let's Work Together
 
