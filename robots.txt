@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+Disallow: /docs
+
 Sitemap: https://www.minasami.com/sitemap.xml
