@@ -198,10 +198,6 @@ But the fundamentals don't change: **You still need to think, decide, and take o
 
 That database backup script is now running in production, reliably backing up all databases every night. It took 2 hours of back-and-forth debugging with Claude, but I understand bash error handling now in a way I never would from reading docs.
 
-My GitLab CI pipeline uses clean Python instead of fragile bash, making it maintainable for the whole team.
-
-My Laravel API has consistent, clean error handling instead of 200+ lines of redundant try-catch blocks.
-
 **None of these outcomes came from AI giving me "the answer."** They came from AI helping me ask better questions, see blind spots, and think through tradeoffs I wouldn't have considered on my own.
 {:.section}
 
