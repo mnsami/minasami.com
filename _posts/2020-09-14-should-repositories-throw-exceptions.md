@@ -2,7 +2,7 @@
 layout: post
 title:  "Should repositories throw exceptions ?"
 tags: software-architecture design exception separation-of-concerns
-description: Delve into the best practices of handling data lookup operations in repository patterns. Explore whether to return null or throw exceptions for optimum software architecture.
+description: "Should repository layer throw exceptions? Exploring error handling patterns in repository design with practical PHP examples."
 ---
 
 Recently, I have been practicing separating the infrastructure layer in the projects I work or contribute to, from the rest of the application by using/writing repository classes. Which in turn consumed by the application services to read and/or write to the data models.

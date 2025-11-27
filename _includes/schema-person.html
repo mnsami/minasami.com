@@ -4,17 +4,42 @@
   "@type": "Person",
   "name": "{{ site.author.name }}",
   "url": "{{ site.url }}",
-  "image": "{{ site.logo | absolute_url }}",
-  "sameAs": [
-    "{{ site.social.links[0] }}",
-    "{{ site.social.links[1] }}",
-    "{{ site.social.links[2] }}"
+  "email": "{{ site.email }}",
+  "image": {
+    "@type": "ImageObject",
+    "url": "{{ site.logo | absolute_url }}",
+    "width": "600",
+    "height": "600"
+  },
+  "jobTitle": "Senior Software Engineer",
+  "description": "{{ site.description | strip_html | strip_newlines | escape }}",
+  "knowsAbout": [
+    "PHP Development",
+    "Symfony Framework",
+    "Laravel Framework",
+    "Node.js",
+    "Nest.js",
+    "AWS Cloud Computing",
+    "DevOps",
+    "CI/CD",
+    "Docker",
+    "RESTful API Design",
+    "Backend Architecture",
+    "MySQL",
+    "PostgreSQL",
+    "Database Optimization",
+    "Software Engineering Mentorship",
+    "Agile Scrum Methodology"
   ],
-  "jobTitle": "Software Engineer",
+  "sameAs": [
+    "https://twitter.com/MinaNabilSami",
+    "https://www.linkedin.com/in/mnsami",
+    "https://github.com/mnsami",
+    "https://instagram.com/minansami"
+  ],
   "worksFor": {
     "@type": "Organization",
-    "name": "{{ site.author.name }}"
-  },
-  "description": "{{ site.description | strip_html | strip_newlines | escape }}"
+    "name": "Independent Consultant"
+  }
 }
 </script>

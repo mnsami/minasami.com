@@ -6,8 +6,7 @@
 
 title: Mina Nabil Sami - Blog
 email: mina.nsami@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  I'm Mina, I'm a professional software engineer - since 2007 - with strong focus on back-end development and architecture. I'm very passionate about open source, product development and contributing to building solutions to the problems of life.
+description: "Senior software engineer with 16+ years building scalable backend systems. Expert in PHP (Symfony, Laravel), Node.js, AWS, and DevOps. Technical blog, mentorship, and consulting."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minasami.com" # the base hostname & protocol for your site, e.g. http://example.com
 

@@ -6,16 +6,25 @@
   "url": "{{ site.url }}",
   "logo": {
     "@type": "ImageObject",
-    "url": "{{ site.logo | absolute_url }}"
+    "url": "{{ site.logo | absolute_url }}",
+    "width": "600",
+    "height": "60"
   },
-  "sameAs": [
-    "{{ site.social.links[0] }}",
-    "{{ site.social.links[1] }}",
-    "{{ site.social.links[2] }}"
-  ],
+  "description": "{{ site.description | strip_html | strip_newlines | escape }}",
   "founder": {
     "@type": "Person",
     "name": "{{ site.author.name }}"
+  },
+  "sameAs": [
+    "https://twitter.com/MinaNabilSami",
+    "https://www.linkedin.com/in/mnsami",
+    "https://github.com/mnsami",
+    "https://instagram.com/minansami"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "{{ site.email }}",
+    "contactType": "Consulting & Mentorship"
   }
 }
 </script>

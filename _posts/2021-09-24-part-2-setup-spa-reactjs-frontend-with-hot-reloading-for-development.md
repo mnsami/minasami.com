@@ -2,7 +2,7 @@
 layout: post
 title:  "Part 2: Setup a SPA reactjs frontend with hot reloading for development"
 tags: reactjs how-tos php symfony docker
-description: Step-by-step guide on setting up a full-stack development environment using Docker, Symfony for back-end RESTful API, and ReactJS for SPA with hot reloading enabled.
+description: "React SPA with hot reloading for Symfony backend. Part 2: Configure React development server with HMR and Symfony API integration."
 ---
 
 Previously, in [part 1]({% link _posts/2021-06-23-part-1-setup-reactjs-symfony-app-with-hotloading.md %}) we went through building a very effective development environment using docker and achieved:

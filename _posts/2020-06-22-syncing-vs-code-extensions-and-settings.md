@@ -2,7 +2,7 @@
 layout: post
 title:  "Tips & tricks: Sync VS-Code extensions list, editor settings and add it to source control."
 tags: how-tos vs-code automation
-description: This is a how-to post about syncing VS code extension list, editor settings and adding all that to source control, so you are able to keep track of your vs-code settings changes, change by change, and backup and restore when needed, by adding it to source control.
+description: "Sync VS Code settings and extensions across multiple machines using Settings Sync. Complete setup guide with cloud backup and restore."
 ---
 
 As a back-end developer, PHP focused, I use <a href="https://www.jetbrains.com/phpstorm/" target="_blank" rel="noopener">PhpStorm</a> as my favorite IDE, because of all its powerful features list, beside that I have my own personal preferred UI customization settings that I apply like color theme, font and code templates. And since it is my personal customization, I use a PhpStorm feature to either sync the settings to my JetBrains account or you can export them and you manage that yourself, and I do that because I have invested a lot of time, finding the perfect font, theme color and settings to increase my productivity with code templates adjustments and make it comfortable for myself and eye since I spend on it a lot of time.
