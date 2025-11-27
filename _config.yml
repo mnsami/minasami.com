@@ -74,6 +74,9 @@ exclude:
   - README.md
   - Makefile
   - .github/
+  - docs/
+  - .claude/
+  - .vscode/
 
 # website param
 params:

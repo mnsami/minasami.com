@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /docs
+
 # Disallow admin or draft pages
 Disallow: /admin/
 Disallow: /_drafts/
