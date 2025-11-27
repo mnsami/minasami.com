@@ -8,6 +8,8 @@ tags: ai automation
 description: "Discover how AI code assistants changed my problem-solving approach. Real examples of debugging silent failures, choosing the right tools, and refactoring messy code through collaborative AI sessions."
 ---
 
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/ai-collab.png" | relative_url }}" alt="collaborating with ai" width="310" height="235" />
+
 I used to think AI code assistants were fancy autocomplete. Type a comment, get some boilerplate, move on. That lasted about a week.
 
 Then I hit a bug that had no error message, no Stack Overflow match, and no obvious cause. My bash script was silently dying after backing up one database instead of two. No logs. No failures. Just... nothing.
@@ -24,6 +26,8 @@ Here's what I've learned about the patterns that actually work.
 **The situation:** That database backup script. Worked perfectly for one database, completely ignored the second. Zero errors in logs.
 
 **Old approach:** Google "bash script stops in loop," Stack Overflow → 47 results, none matching my exact problem, spend an hour trying random fixes.
+
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/ai-debug.png" | relative_url }}" alt="what am i not seeing?" width="310" height="235" />
 
 **AI approach:**
 ```
@@ -53,6 +57,8 @@ Within 10 minutes: **Found it.** The script was dying on a post-increment arithm
 
 The AI didn't just say "use X instead." It walked through my exact problems and showed how they'd look in both tools. Not theoretical comparisons—but my specific use case in each approach.
 
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/ai-choose-tool.png" | relative_url }}" alt="Which Tool Actually Fits?" width="310" height="235" />
+
 **The result:** Switched tools. The new version was cleaner, easier to maintain, and actually solved my problems. What would've been 200 lines of workarounds became 80 lines of straightforward code.
 
 **The insight:** "Industry standard" doesn't mean "right for your problem." Sometimes the best decision is to change direction, and AI can help you see that objectively.
@@ -61,6 +67,8 @@ The AI didn't just say "use X instead." It walked through my exact problems and 
 {:.section}
 
 ## Pattern 3: The "Clean Up This Mess" Refactoring Session
+
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/ai-refactor.png" | relative_url }}" alt="Clean Up This Mess" width="310" height="235" />
 
 **The situation:** API with messy error handling. Same error-checking pattern copy-pasted across 20+ different places. Every time I added a new feature, I had to update all of them. Classic technical debt.
 
