@@ -6,7 +6,7 @@ tags: php software-architecture design-patterns exception-handling repository-pa
 description: "Should repository layer throw exceptions? Exploring error handling patterns in repository design with practical PHP examples."
 ---
 
-Recently, I have been practicing separating the infrastructure layer in the projects I work or contribute to, from the rest of the application by using/writing repository classes. Which in turn consumed by the application services to read and/or write to the data models.
+Recently, I have been practicing separating the infrastructure layer in the projects I work or contribute to (particularly in [Symfony-based applications]({{ site.baseurl }}{% post_url 2021-06-23-part-1-setup-reactjs-symfony-app-with-hotloading %})), from the rest of the application by using/writing repository classes. Which in turn consumed by the application services to read and/or write to the data models.
 
 What I want to focus on here, is mainly lookup operations, and model lookup isn't found, should the repository throw the exception, which in turn surrounded by a `try...catch` block in the application service, to decide how to handle this exception ? or should the repository just return `null` and the service checks for the return value ?
 
@@ -168,5 +168,11 @@ In the end, it is a matter of choice. But for me, it is clear and makes sense, t
 
 Also, if you write complicated service functions, it makes easier with less amount of code by eliminating the `try...catch` and just enough with checking for `null` values returned from the repositories.
 
+This pragmatic approach to error handling mirrors the same philosophy I apply when [choosing between strict mode and simple mode in bash scripts]({{ site.baseurl }}{% post_url 2025-11-10-periodically-run-database-backup %}) - sometimes explicit is better than implicit, and practical reliability trumps theoretical "best practices."
+
 If you think otherwise, or have a better way of doing things, I'm always open to learn from others, message me or leave a comment.
+
+---
+
+**Want to discuss software architecture patterns?** I offer [mentorship](/mentorship/) for engineers looking to improve their architectural decision-making and design patterns.
 {:.section}

@@ -4,12 +4,7 @@
   "@type": "Organization",
   "name": "{{ site.title }}",
   "url": "{{ site.url }}",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "{{ site.logo | absolute_url }}",
-    "width": "600",
-    "height": "60"
-  },
+  "logo": "{{ site.logo | absolute_url }}",
   "description": "{{ site.description | strip_html | strip_newlines | escape }}",
   "founder": {
     "@type": "Person",

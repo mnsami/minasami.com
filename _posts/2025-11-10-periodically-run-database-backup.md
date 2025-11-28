@@ -701,13 +701,13 @@ Hardcoded credentials are never acceptable. Use proper credential management fro
 Silent failures are the hardest to track down. When something doesn't work as expected, add explicit debug logging to find the EXACT point of failure. My script worked perfectly for one database but silently died on the second - only thorough debugging revealed it was an arithmetic expression trap with `set -e`.
 
 ### 4. Explicit Error Handling > Magic
-Tools like `set -e` are powerful but have subtle gotchas (arithmetic expressions, command substitutions, pipelines). For complex scripts with loops and counters, explicit error handling with `if` statements is often MORE reliable than "strict mode." Don't let "best practices" override real-world reliability.
+Tools like `set -e` are powerful but have subtle gotchas (arithmetic expressions, command substitutions, pipelines). For complex scripts with loops and counters, explicit error handling with `if` statements is often MORE reliable than "strict mode." This mirrors the same principle I discuss in [choosing the right architectural patterns]({{ site.baseurl }}{% post_url 2020-09-14-should-repositories-throw-exceptions %}) - sometimes pragmatic solutions trump theoretical "best practices."
 
 ### 5. Logs Are Your Future Self's Best Friend
 Centralized, rotated, searchable logs aren't optional. They're how you'll debug issues at 2 AM when something breaks. Do it right from the start.
 
 ### 6. Automation Isn't Optional
-If it's important enough to do, it's important enough to automate. Manual processes are technical debt.
+If it's important enough to do, it's important enough to automate. Manual processes are technical debt. Whether it's [automating your development workflow with AI]({{ site.baseurl }}{% post_url 2025-11-27-how-ai-became-the-most-reliable-partner-in-my-engineering-career %}) or streamlining repetitive tasks, automation multiplies your impact.
 
 ### 7. Test Before You Trust
 Never wait for cron to tell you your script is broken. Test manually. Check logs. Verify backups can actually be restored. Test both "happy path" and edge cases.
@@ -734,3 +734,7 @@ This setup is production-ready for my current scale, but there's always room to 
 - Multi-region backup strategy
 
 But for now? This works. It's secure, maintainable, and monitored. And that's what production-ready means.
+
+---
+
+**Want to level up your DevOps skills?** I offer [mentorship for engineers](/mentorship/) looking to grow from junior to senior level, covering topics like production automation, infrastructure best practices, and debugging complex systems.

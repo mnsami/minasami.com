@@ -5,12 +5,7 @@
   "name": "{{ site.author.name }}",
   "url": "{{ site.url }}",
   "email": "{{ site.email }}",
-  "image": {
-    "@type": "ImageObject",
-    "url": "{{ site.logo | absolute_url }}",
-    "width": "600",
-    "height": "600"
-  },
+  "image": "{{ site.logo | absolute_url }}",
   "jobTitle": "Senior Software Engineer",
   "description": "{{ site.description | strip_html | strip_newlines | escape }}",
   "knowsAbout": [
