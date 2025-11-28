@@ -1,11 +1,12 @@
 ---
 layout: post
 title:  "How to make use of Makefile to shorthand long commands"
-tags: how-tos docker automation
+categories: [devops]
+tags: makefile docker automation build-tools workflow ci-cd
 description: "Learn how to use Makefiles to automate development workflows. Practical examples for PHP, Node.js, and Docker projects."
 ---
 
-I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects, either backend or frontend and specially `docker-compose`, I spend extra time writing and thinking about the command I would like to run inside my container, so, let's say I would like to run a simple `composer install` so this will result in typing
+I like automation and none repetitive tasks, also, I don't like to write too much when it comes to handling with `cli` commands. And, since I work much with `docker` in my projects (whether [building SPAs with React and Symfony]({{ site.baseurl }}{% post_url 2021-06-23-part-1-setup-reactjs-symfony-app-with-hotloading %}) or backend APIs), I spend extra time writing and thinking about the command I would like to run inside my container, so, let's say I would like to run a simple `composer install` so this will result in typing
 
 <pre>
     <code class="bash">
@@ -245,7 +246,7 @@ phpcbf:
 
 ### 4. Let's handle database
 
-Now, in our project we are working with databases, so we need to shortcut some Symfony doctrine ORM commands to interact with our databases, below we are going to append some useful `make` commands, which I consider the most used commands during development.
+Now, in our project we are working with databases, so we need to shortcut some Symfony doctrine ORM commands to interact with our databases. While we're automating database workflows, you might also want to check out my guide on [building production-ready database backup systems]({{ site.baseurl }}{% post_url 2025-11-10-periodically-run-database-backup %}) for automating backups with bash scripts and cron jobs. Below we are going to append some useful `make` commands, which I consider the most used commands during development.
 
 You can adjust them to your liking.
 
@@ -306,7 +307,7 @@ As you can, you can go nuts with your `makefile` and make adapt whatever command
 
 But this doesn't mean you can get ride of running `docker-compose exec api bash` to switch to the `terminal` of the container, the above is intended to save time and effort in writing too much in the cli.
 
-You can also, make use of `makefile` in any of the projects you are working on, I use it for my frontend projects as well.
+You can also, make use of `makefile` in any of the projects you are working on, I use it for my frontend projects as well. Combined with [other productivity tools and automation workflows]({{ site.baseurl }}{% post_url 2020-06-22-syncing-vs-code-extensions-and-settings %}), Makefiles can significantly boost your development efficiency.
 
 ## References
 

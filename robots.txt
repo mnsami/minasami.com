@@ -11,6 +11,3 @@ Disallow: /docs/
 # Sitemaps (both www and non-www)
 Sitemap: https://minasami.com/sitemap.xml
 Sitemap: https://www.minasami.com/sitemap.xml
-
-# Crawl delay (be nice to search engines)
-Crawl-delay: 1

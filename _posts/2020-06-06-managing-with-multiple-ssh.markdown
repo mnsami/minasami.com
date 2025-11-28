@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Managing multiple ssh keys"
-tags: ssh git automation how-tos
+categories: [developer-productivity]
+tags: ssh ssh-keys git github gitlab automation workflow developer-tools security
 description: "Master managing multiple SSH keys for different Git accounts. Step-by-step guide to configure SSH for GitHub, GitLab, and Bitbucket simultaneously."
 ---
 

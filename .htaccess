@@ -17,5 +17,32 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteRule ^2021/06/10/reactjs-proxy.html$ https://minasami.com/2021/06/10/cors-errors-fix-with-reactjs.html [R=301,L]
+
+    # Legacy redirects - old filename to current with category
+    RewriteRule ^2021/06/10/reactjs-proxy\.html$ /fullstack/2021/06/10/cors-errors-fix-with-reactjs.html [R=301,L]
+
+    # Category-based URL redirects (November 2025)
+    # SSH post redirect
+    RewriteRule ^2020/06/06/managing-with-multiple-ssh\.html$ /developer-productivity/2020/06/06/managing-with-multiple-ssh.html [R=301,L]
+
+    # VS Code post redirect
+    RewriteRule ^2020/06/22/syncing-vs-code-extensions-and-settings\.html$ /developer-productivity/2020/06/22/syncing-vs-code-extensions-and-settings.html [R=301,L]
+
+    # Repository exception post redirect
+    RewriteRule ^2020/09/14/should-repositories-throw-exceptions\.html$ /php-development/2020/09/14/should-repositories-throw-exceptions.html [R=301,L]
+
+    # CORS post redirect
+    RewriteRule ^2021/06/10/cors-errors-fix-with-reactjs\.html$ /fullstack/2021/06/10/cors-errors-fix-with-reactjs.html [R=301,L]
+
+    # Makefile post redirect
+    RewriteRule ^2021/06/17/use-of-makefile-in-your-projects\.html$ /devops/2021/06/17/use-of-makefile-in-your-projects.html [R=301,L]
+
+    # React Symfony Part 1 redirect
+    RewriteRule ^2021/06/23/part-1-setup-reactjs-symfony-app-with-hotloading\.html$ /fullstack/2021/06/23/part-1-setup-reactjs-symfony-app-with-hotloading.html [R=301,L]
+
+    # React Symfony Part 2 redirect
+    RewriteRule ^2021/09/24/part-2-setup-spa-reactjs-frontend-with-hot-reloading-for-development\.html$ /fullstack/2021/09/24/part-2-setup-spa-reactjs-frontend-with-hot-reloading-for-development.html [R=301,L]
+
+    # AI post redirect
+    RewriteRule ^2025/11/27/how-ai-became-the-most-reliable-partner-in-my-engineering-career\.html$ /developer-productivity/2025/11/27/how-ai-became-the-most-reliable-partner-in-my-engineering-career.html [R=301,L]
 </IfModule>

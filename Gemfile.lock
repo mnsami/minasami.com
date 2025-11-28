@@ -156,6 +156,7 @@ DEPENDENCIES
   jekyll-feed
   jekyll-seo-tag
   jekyll-sitemap
+  nokogiri
   tzinfo
   tzinfo-data
   wdm

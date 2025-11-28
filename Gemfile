@@ -21,6 +21,7 @@ group :jekyll_plugins do
   gem "html-proofer"
   gem "jekyll-seo-tag"
   gem "jekyll-sitemap"
+  gem "nokogiri" # For image sitemap generation
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem

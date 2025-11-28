@@ -1,4 +1,4 @@
-{% if page.layout == "post" or page.layout == "page" %}
+{% if page.layout == "post" or page.layout == "page" or page.layout == "category" %}
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
     <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
@@ -18,7 +18,7 @@
       <span itemprop="name">{{ page.title }}</span>
       <meta itemprop="position" content="3" />
     </li>
-    {% elsif page.layout == "page" %}
+    {% elsif page.layout == "page" or page.layout == "category" %}
     <li class="breadcrumb-item active" aria-current="page" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
       <span itemprop="name">{{ page.title }}</span>
       <meta itemprop="position" content="2" />

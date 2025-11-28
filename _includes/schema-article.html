@@ -5,12 +5,7 @@
   "@type": "BlogPosting",
   "headline": "{{ page.title | escape }}",
   "description": "{{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}",
-  "image": {
-    "@type": "ImageObject",
-    "url": "{{ page.image | default: site.logo | absolute_url }}",
-    "width": "1200",
-    "height": "630"
-  },
+  "image": "{{ page.image | default: site.logo | absolute_url }}",
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
   "author": {
@@ -21,12 +16,7 @@
   "publisher": {
     "@type": "Organization",
     "name": "{{ site.title }}",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "{{ site.logo | absolute_url }}",
-      "width": "600",
-      "height": "60"
-    }
+    "logo": "{{ site.logo | absolute_url }}"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
