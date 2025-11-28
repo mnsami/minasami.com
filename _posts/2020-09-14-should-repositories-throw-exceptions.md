@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Should repositories throw exceptions ?"
-tags: software-architecture design exception separation-of-concerns
+categories: [php-development]
+tags: php software-architecture design-patterns exception-handling repository-pattern best-practices clean-code solid-principles
 description: "Should repository layer throw exceptions? Exploring error handling patterns in repository design with practical PHP examples."
 ---
 

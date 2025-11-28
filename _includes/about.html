@@ -47,10 +47,12 @@
                             <h3 class="tags-header">tags</h3>
                             <div class="tags-cloud">
                                 {% for tag in site.tags %}
-                                    <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">
-                                        {{- tag[0] -}}
-                                        <span class="badge badge-pill">{{- tag[1].size -}}</span>
-                                    </a>
+                                    {% if tag[1].size >= 2 %}
+                                        <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">
+                                            {{- tag[0] -}}
+                                            <span class="badge badge-pill">{{- tag[1].size -}}</span>
+                                        </a>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>

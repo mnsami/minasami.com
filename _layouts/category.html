@@ -1,0 +1,53 @@
+---
+layout: default
+---
+
+{%- include breadcrumb.html -%}
+
+<div class="category-page">
+    <h1 class="page-heading">{{ page.category | capitalize | replace: "-", " " }}</h1>
+    <p class="category-description">
+        {% if page.description %}
+            {{ page.description }}
+        {% else %}
+            Explore {% if site.categories[page.category].size == 1 %}1 article{% else %}{{ site.categories[page.category].size }} articles{% endif %} about {{ page.category | capitalize | replace: "-", " " }}.
+            Learn from practical examples, tutorials, and in-depth technical content.
+        {% endif %}
+    </p>
+
+    {% if site.categories[page.category].size > 0 %}
+        <div class="posts">
+            {% for post in site.categories[page.category] %}
+                <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
+                    <div class="card-body">
+                        <a href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}" class="card-link">
+                            <h2 class="card-title h5" itemprop="headline">{{ post.title }}</h2>
+                        </a>
+                        <div class="post-meta">
+                            <span class="post-post-date">
+                                <img width="28" height="28" src="/assets/images/calendar-icon.png" alt='Published on {{ post.date | date: "%b %-d, %Y" }}' loading="lazy"/>
+                                <time datetime="{{ post.date | date_to_xmlschema }}" itemprop="datePublished">
+                                    {{- post.date | date: "%b %-d, %Y" -}}
+                                </time>
+                            </span>
+                            <span class="post-reading-time">
+                                | {%- include reading_time.html content=post.content -%}
+                            </span>
+                        </div>
+                        {% if site.show_excerpts == true %}
+                            <p class="card-text" itemprop="description">
+                                {% if post.description %}
+                                    {{- post.description -}}
+                                {% else %}
+                                    {{- post.excerpt | strip_html -}}
+                                {% endif %}
+                            </p>
+                        {% endif %}
+                        <a href="{{ post.url | relative_url }}" aria-label="Continue reading {{ post.title | escape }}" class="card-link">Continue reading →</a>
+                        <link itemprop="url" href="{{ post.url | absolute_url }}">
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

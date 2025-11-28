@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Tips & tricks: Sync VS-Code extensions list, editor settings and add it to source control."
-tags: how-tos vs-code automation
+categories: [developer-productivity]
+tags: vscode ide extensions automation developer-tools productivity workflow
 description: "Sync VS Code settings and extensions across multiple machines using Settings Sync. Complete setup guide with cloud backup and restore."
 ---
 

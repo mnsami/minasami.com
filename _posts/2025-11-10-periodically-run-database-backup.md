@@ -3,8 +3,8 @@ layout: post
 title: "Building a Production-Ready Database Backup System: From Simple Script to Robust Automation"
 date: 2025-11-10
 author: Mina Sami
-categories: [devops, tutorials]
-tags: mariadb mysql devops bash automation backup database linux production logrotate cron
+categories: [devops]
+tags: database mysql mariadb backup automation bash linux cron production database-administration
 description: Learn how to evolve a basic MySQL/MariaDB backup script into a production-ready automated system with proper logging, error handling, and security best practices.
 ---
 
@@ -50,6 +50,8 @@ When you're learning DevOps, it's tempting to reach for the shiniest tools. My i
 - Complex CI/CD pipelines
 
 But here's the first important lesson: **Don't over-engineer for problems you don't have yet.**
+
+Just like [using Makefiles to automate development workflows]({{ site.baseurl }}{% post_url 2021-06-17-use-of-makefile-in-your-projects %}), sometimes the simplest solution is the best one for your current needs.
 
 With only 2 databases and no immediate disaster recovery requirements, I needed to ask myself: *What problem am I actually solving?*
 

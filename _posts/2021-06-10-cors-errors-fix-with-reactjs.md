@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Dealing with CORS Errors in React two ways"
-tags: reactjs nginx cors how-tos
+categories: [fullstack]
+tags: react cors nginx frontend backend api-development debugging troubleshooting javascript
 description: "Fix CORS errors in React.js applications. Understanding CORS policy, configuring headers, and resolving cross-origin issues."
 ---
 
@@ -57,6 +58,8 @@ If your frontend is served on a different domain than from what your backend api
 If you running your frontend on `https` and your backend is on `http` or vice versa.
 
 All the above reasons doesn't mean that `ReactJS` sucks at making api requests, it means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers.
+
+If you're building a React + backend setup (like [React with Symfony]({{ site.baseurl }}{% post_url 2021-06-23-part-1-setup-reactjs-symfony-app-with-hotloading %})), you'll encounter CORS issues during development. Let's look at two ways to solve this.
 {:.section}
 
 ## But how can we move on with development ?

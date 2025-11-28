@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "Part 1: Setup a dockerized Symfony backend app with ReactJs for frontend with hotloading enabled"
-tags: reactjs how-tos php symfony docker
+categories: [fullstack]
+tags: react symfony php docker webpack hot-reload spa tutorial
 description: "Build a React.js + Symfony application with hot module reloading. Part 1: Project setup, Webpack configuration, and development workflow."
 ---
 
@@ -20,7 +21,7 @@ Docker is the most efficient tool to help you develop your apps in the most pred
 
 Also, it solve the most biggest problem
 
-<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/works_on_my_machine.jpeg" | relative_url }}" alt="Works on my machine" width="310" height="235" />
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/works_on_my_machine.jpeg" | relative_url }}" alt="Works on my machine" />
 {:.section}
 
 ## Requirements for the development environment
@@ -487,7 +488,7 @@ So, after we have setup everything for our api to work, let's test it.
 
 If you go to your browser the type `http://localhost:90/api/v1/healthCheck` you will get the following response.
 
-<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/i_am_alive.png" | relative_url }}" alt="I am alive" width="399" height="134" />
+<img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/i_am_alive.png" | relative_url }}" alt="I am alive" />
 {:.section}
 
 ### Wrapping up
@@ -501,7 +502,7 @@ So, we have come to an end of this tutorial, where we so far accomplished the fo
 5. Help developers focus more on the user stories, rather than worry about a stable development environment.
 {:.section}
 
-### What is next ?
+### What is next?
 
-In the next blog of this series, I will create simple reactjs frontend to consume and API, and make it work with hot-loading.
+In [Part 2 of this series]({{ site.baseurl }}{% post_url 2021-09-24-part-2-setup-spa-reactjs-frontend-with-hot-reloading-for-development %}), I'll create a simple ReactJS frontend to consume the API and make it work with hot-loading.
 {:.section}

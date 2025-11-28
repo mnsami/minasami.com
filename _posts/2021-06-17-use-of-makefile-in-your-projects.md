@@ -1,7 +1,8 @@
 ---
 layout: post
 title:  "How to make use of Makefile to shorthand long commands"
-tags: how-tos docker automation
+categories: [devops]
+tags: makefile docker automation build-tools workflow ci-cd
 description: "Learn how to use Makefiles to automate development workflows. Practical examples for PHP, Node.js, and Docker projects."
 ---
 
