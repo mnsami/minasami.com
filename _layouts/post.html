@@ -21,6 +21,16 @@ layout: default
         <span class="post-reading-time">
             | {%- include reading_time.html content=content-%}
         </span>
+        {% if page.categories.size > 0 %}
+        <span class="post-category">
+            | Category:
+            {% for category in page.categories %}
+                <a href="/categories/{{ category }}/" class="badge bg-primary text-decoration-none" rel="category" aria-label="View posts in {{ category | replace: '-', ' ' | capitalize }} category">
+                    {{- category | replace: '-', ' ' | capitalize -}}
+                </a>
+            {% endfor %}
+        </span>
+        {% endif %}
     </div>
     <div class="post-body" itemprop="articleBody">
         {{- content -}}

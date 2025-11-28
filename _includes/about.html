@@ -42,15 +42,39 @@
                     {% endif %}
                 </ul>
                 <div class="d-none d-sm-block d-md-block d-lg-block">
+                    {% if site.categories.size > 0 %}
+                        <div class="categories-section">
+                            <h3 class="categories-header">
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="category-icon">
+                                    <path d="M2 2h4v4H2V2zm6 0h6v4H8V2zM2 8h4v4H2V8zm6 0h6v4H8V8z" fill="currentColor"/>
+                                </svg>
+                                Categories
+                            </h3>
+                            <div class="categories-list">
+                                {% for category in site.categories %}
+                                    <a href="/categories/{{ category[0] }}/" class="category-pill">
+                                        <span class="category-name">{{- category[0] | replace: '-', ' ' | capitalize -}}</span>
+                                        <span class="category-count">{{- category[1].size -}}</span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
                     {% if site.tags.size > 0 %}
-                        <div class="tags text-center">
-                            <h3 class="tags-header">tags</h3>
+                        <div class="tags-section">
+                            <h3 class="tags-header">
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="tag-icon">
+                                    <path d="M2 1h8l4 4v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                    <path d="M6 1v4h4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                                </svg>
+                                Tags
+                            </h3>
                             <div class="tags-cloud">
                                 {% for tag in site.tags %}
                                     {% if tag[1].size >= 2 %}
-                                        <a href="/tags/{{ tag[0] }}" class="tag-title text-wrap">
-                                            {{- tag[0] -}}
-                                            <span class="badge badge-pill">{{- tag[1].size -}}</span>
+                                        <a href="/tags/{{ tag[0] }}" class="tag-pill">
+                                            <span class="tag-name">{{- tag[0] -}}</span>
+                                            <span class="tag-count">{{- tag[1].size -}}</span>
                                         </a>
                                     {% endif %}
                                 {% endfor %}
