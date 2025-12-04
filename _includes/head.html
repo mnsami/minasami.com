@@ -4,10 +4,10 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <!-- SEO: Canonical URL -->
-<link rel="canonical" href="{{ page.url | absolute_url }}">
+<link rel="canonical" href="{% if page.canonical_url %}{{ page.canonical_url }}{% else %}{{ page.url | absolute_url }}{% endif %}">
 
 <!-- Title Tag - Optimized for SEO -->
-<title>{% if page.tag %}Tag: {{ page.tag | capitalize }} | {{ site.title }}{% elsif page.title and page.title != site.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.params.tagline }}{% endif %}</title>
+<title>{% if page.tag %}Tag: {{ page.tag | capitalize }} | {{ site.title }}{% elsif page.category %}{{ page.title }} | {{ site.title }}{% elsif page.title and page.title != site.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.params.tagline }}{% endif %}</title>
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">

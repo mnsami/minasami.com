@@ -5,19 +5,12 @@ layout: default
 {%- include breadcrumb.html -%}
 
 <div class="category-page">
-    <h1 class="page-heading">{{ page.category | capitalize | replace: "-", " " }}</h1>
-    <p class="category-description">
-        {% if page.description %}
-            {{ page.description }}
-        {% else %}
-            Explore {% if site.categories[page.category].size == 1 %}1 article{% else %}{{ site.categories[page.category].size }} articles{% endif %} about {{ page.category | capitalize | replace: "-", " " }}.
-            Learn from practical examples, tutorials, and in-depth technical content.
-        {% endif %}
-    </p>
+    <h1 class="page-heading">{{ page.category_display_name }}</h1>
+    <p class="category-description">{{ page.description }}</p>
 
-    {% if site.categories[page.category].size > 0 %}
+    {% if page.post_count > 0 %}
         <div class="posts">
-            {% for post in site.categories[page.category] %}
+            {% for post in page.posts %}
                 <article class="card" itemscope itemtype="https://schema.org/BlogPosting">
                     <div class="card-body">
                         <a href="{{ post.url | relative_url }}" aria-label="Read {{ post.title | escape }}" class="card-link">
