@@ -48,7 +48,10 @@ jobs:
               uses: actions/upload-artifact@v4
               with:
                   name: website
-                  path: .
+                  include-hidden-files: true
+                  path: |
+                      .
+                      !.claude
 
     test:
         if: ${{ success() }}
