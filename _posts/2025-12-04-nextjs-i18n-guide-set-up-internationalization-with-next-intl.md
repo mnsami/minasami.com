@@ -519,6 +519,6 @@ Happy coding! 🌍
 
 ## Resources
 
-- [next-intl Documentation](https://next-intl-docs.vercel.app/)
+- [next-intl Documentation](https://next-intl.dev/)
 - [Next.js Internationalization](https://nextjs.org/docs/app/building-your-application/routing/internationalization)
 - [MDN: Internationalization](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
