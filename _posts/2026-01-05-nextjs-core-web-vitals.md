@@ -378,7 +378,7 @@ This is where the real optimization happens.
 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
-2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-12-nextjs-dynamic-multilingual-sitemaps %})
+2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
 4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-18-nextjs-schema-markup-guide %})
 5. [Location Pages: My Secret to 250% SEO Growth]({{ site.baseurl }}{% post_url 2025-12-19-nextjs-location-pages-seo %})
