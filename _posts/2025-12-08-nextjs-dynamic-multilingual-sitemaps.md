@@ -2,7 +2,7 @@
 layout: post
 title: "Building Dynamic Multilingual Sitemaps in Next.js"
 description: "A comprehensive sitemap helped Google discover 75+ pages it was missing. Here's how to build dynamic sitemaps with language alternates for multilingual Next.js apps."
-date: 2025-12-06
+date: 2025-12-08
 categories: [web-development, seo]
 tags: [nextjs, seo, sitemap, i18n, internationalization]
 author: Mina Sami
@@ -293,8 +293,11 @@ You've now got Google discovering and crawling your pages efficiently. But disco
 
 In the next post, I'll show you how to write meta tags and Open Graph tags that dramatically increase your click-through rate from search results. These tags took my CTR from 2.1% to 4.3%—more than doubling my organic traffic without changing rankings.
 
+**Read next:** [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
+
 ---
 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
 2. Building Dynamic Multilingual Sitemaps in Next.js (you are here)
+3. Schema Markup: 5 Types for Rich Search Results({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
