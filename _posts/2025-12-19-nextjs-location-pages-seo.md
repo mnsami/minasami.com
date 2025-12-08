@@ -2,7 +2,7 @@
 layout: post
 title: "Location Pages: My Secret to 250% SEO Growth"
 description: "Five location pages generated 60% of my total organic traffic within 8 weeks. Here's the exact strategy for building location SEO pages that actually rank and convert."
-date: 2025-12-09
+date: 2025-12-19
 categories: [web-development, seo]
 tags: [nextjs, seo, local-seo, location-pages, traffic-growth]
 author: Mina Sami
@@ -350,8 +350,6 @@ Location pages drove my traffic growth, but there was still a problem: **bounce 
 
 That's where performance optimization comes in. In the next post, I'll show you the 3 Core Web Vitals fixes that dropped my bounce rate by 35% and actually improved my rankings—without changing any content.
 
-**Read next:** [Core Web Vitals: Fix These 3 Things First]({{ site.baseurl }}{% post_url 2026-01-05-nextjs-core-web-vitals %})
-
 ---
 
 **Full SEO Series for Next.js:**
@@ -360,5 +358,3 @@ That's where performance optimization comes in. In the next post, I'll show you 
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
 5. Location Pages: My Secret to 250% SEO Growth (you are here)
-6. [Core Web Vitals: Fix These 3 Things First]({{ site.baseurl }}{% post_url 2026-01-05-nextjs-core-web-vitals %})
-7. [Google Search Console: Finding Hidden Growth]({{ site.baseurl }}{% post_url 2026-01-06-google-search-console-growth %})
