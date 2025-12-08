@@ -171,7 +171,7 @@ Fixing robots.txt solves the "can Google see my site?" problem. But that's just 
 
 In my next post, I'll show you how to build dynamic multilingual sitemaps that actually get all your content indexed—including the location pages that drove 60% of my SEO growth.
 
-**Read next:** [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-12-nextjs-dynamic-multilingual-sitemaps %})
+**Read next:** [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 
 ---
 
