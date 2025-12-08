@@ -293,8 +293,6 @@ You've now got Google discovering and crawling your pages efficiently. But disco
 
 In the next post, I'll show you how to write meta tags and Open Graph tags that dramatically increase your click-through rate from search results. These tags took my CTR from 2.1% to 4.3%—more than doubling my organic traffic without changing rankings.
 
-**Read next:** [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
-
 ---
 
 **Full SEO Series for Next.js:**
