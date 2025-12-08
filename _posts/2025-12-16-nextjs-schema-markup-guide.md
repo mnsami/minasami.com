@@ -398,6 +398,8 @@ But here's what took me from good SEO to **250% traffic growth**: location-based
 
 In the next post, I'll show you exactly how to build location pages that rank fast and convert better than your homepage.
 
+**Read next:** [Location Pages: My Secret to 250% SEO Growth]({{ site.baseurl }}{% post_url 2025-12-19-nextjs-location-pages-seo %})
+
 ---
 
 **Full SEO Series for Next.js:**
@@ -405,3 +407,4 @@ In the next post, I'll show you exactly how to build location pages that rank fa
 2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 4. Schema Markup: 5 Types for Rich Search Results (you are here)
+5. [Location Pages: My Secret to 250% SEO Growth]({{ site.baseurl }}{% post_url 2025-12-19-nextjs-location-pages-seo %})
