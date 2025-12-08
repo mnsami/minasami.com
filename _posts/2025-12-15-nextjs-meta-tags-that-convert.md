@@ -2,7 +2,7 @@
 layout: post
 title: "Meta Tags That Actually Convert Clicks"
 description: "I doubled my organic CTR from 2.1% to 4.3% by fixing meta tags and Open Graph images. Here's how to write titles and descriptions that people actually click."
-date: 2025-12-13
+date: 2025-12-15
 categories: [web-development, seo]
 tags: [nextjs, seo, meta-tags, open-graph, ctr-optimization]
 author: Mina Sami
