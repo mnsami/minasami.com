@@ -7,7 +7,9 @@
       "Bash(bundle exec jekyll build:*)",
       "Bash(ls:*)",
       "Bash(xargs ls:*)",
-      "Bash(bundle install:*)"
+      "Bash(bundle install:*)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)"
     ],
     "deny": [],
     "ask": []

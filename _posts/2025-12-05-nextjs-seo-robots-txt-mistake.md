@@ -171,15 +171,10 @@ Fixing robots.txt solves the "can Google see my site?" problem. But that's just 
 
 In my next post, I'll show you how to build dynamic multilingual sitemaps that actually get all your content indexed—including the location pages that drove 60% of my SEO growth.
 
-**Read next:** [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-12-nextjs-dynamic-multilingual-sitemaps %})
+**Read next:** [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 
 ---
 
 **Full SEO Series for Next.js:**
 1. The Robots.txt Mistake That Cost Me Visitors (you are here)
-2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-12-nextjs-dynamic-multilingual-sitemaps %})
-3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
-4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-18-nextjs-schema-markup-guide %})
-5. [Location Pages: My Secret to 250% SEO Growth]({{ site.baseurl }}{% post_url 2025-12-19-nextjs-location-pages-seo %})
-6. [Core Web Vitals: Fix These 3 Things First]({{ site.baseurl }}{% post_url 2026-01-05-nextjs-core-web-vitals %})
-7. [Google Search Console: Finding Hidden Growth]({{ site.baseurl }}{% post_url 2025-12-11-google-search-console-growth %})
+2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
