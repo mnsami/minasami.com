@@ -293,15 +293,13 @@ You've now got Google discovering and crawling your pages efficiently. But disco
 
 In the next post, I'll show you how to write meta tags and Open Graph tags that dramatically increase your click-through rate from search results. These tags took my CTR from 2.1% to 4.3%—more than doubling my organic traffic without changing rankings.
 
-**Read next:** [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
+**Read next:** [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 
 ---
 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
 2. Building Dynamic Multilingual Sitemaps in Next.js (you are here)
-3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
-4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-18-nextjs-schema-markup-guide %})
+3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
+4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
 5. [Location Pages: My Secret to 250% SEO Growth]({{ site.baseurl }}{% post_url 2025-12-19-nextjs-location-pages-seo %})
-6. [Core Web Vitals: Fix These 3 Things First]({{ site.baseurl }}{% post_url 2026-01-05-nextjs-core-web-vitals %})
-7. [Google Search Console: Finding Hidden Growth]({{ site.baseurl }}{% post_url 2026-01-06-google-search-console-growth %})

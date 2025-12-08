@@ -8,7 +8,7 @@ tags: [nextjs, seo, local-seo, location-pages, traffic-growth]
 author: Mina Sami
 ---
 
-After implementing the technical foundation ([robots.txt]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %}), [sitemaps]({{ site.baseurl }}{% post_url 2025-12-12-nextjs-dynamic-multilingual-sitemaps %}), [meta tags]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %}), [schema markup]({{ site.baseurl }}{% post_url 2025-12-18-nextjs-schema-markup-guide %})), my pages were indexed and getting decent traffic.
+After implementing the technical foundation ([robots.txt]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %}), [sitemaps]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %}), [meta tags]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %}), [schema markup]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})), my pages were indexed and getting decent traffic.
 
 But I was stuck at ~200 organic visitors per month. Rankings were okay but plateauing. I needed a breakthrough.
 
@@ -357,8 +357,8 @@ That's where performance optimization comes in. In the next post, I'll show you 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
 2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
-3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-13-nextjs-meta-tags-that-convert %})
-4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-18-nextjs-schema-markup-guide %})
+3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
+4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
 5. Location Pages: My Secret to 250% SEO Growth (you are here)
 6. [Core Web Vitals: Fix These 3 Things First]({{ site.baseurl }}{% post_url 2026-01-05-nextjs-core-web-vitals %})
 7. [Google Search Console: Finding Hidden Growth]({{ site.baseurl }}{% post_url 2026-01-06-google-search-console-growth %})
