@@ -71,10 +71,19 @@ layout: default
 
 <!-- Code highlighter - conditionally loaded only when post contains code blocks -->
 {% if content contains '<pre>' or content contains '<code>' %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/atom-one-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js" defer></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
-<script>document.addEventListener('DOMContentLoaded', () => hljs.highlightAll());</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/typescript.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/yaml.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/languages/bash.min.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  hljs.configure({
+    ignoreUnescapedHTML: true
+  });
+  hljs.highlightAll();
+});
+</script>
 {% endif %}
 
 <!-- Disqus Comments - Lazy loaded when user scrolls near comments section -->

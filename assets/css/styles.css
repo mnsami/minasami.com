@@ -290,8 +290,39 @@ blockquote:before {
   margin-top: 5%;
 }
 
+/* Code block styling */
+pre {
+  background-color: #272822;
+  border-radius: 6px;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
 pre code {
-  font-size: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  color: #f8f8f2;
+  background: none;
+  padding: 0;
+}
+
+/* Inline code styling */
+code {
+  background-color: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  color: #e83e8c;
+}
+
+/* Make sure code inside pre doesn't get inline styling */
+pre code {
+  background-color: transparent;
+  padding: 0;
+  color: inherit;
 }
 
 .post .section {
