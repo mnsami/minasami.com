@@ -3,31 +3,23 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
+  "@id": "{{ page.url | absolute_url }}#article",
   "headline": "{{ page.title | escape }}",
   "description": "{{ page.description | default: page.excerpt | strip_html | strip_newlines | truncate: 160 | escape }}",
   "image": "{{ page.image | default: site.logo | absolute_url }}",
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
-  "author": {
-    "@type": "Person",
-    "name": "{{ site.author.name }}",
-    "url": "{{ site.url }}{{ '/about/' }}"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "{{ site.title }}",
-    "logo": "{{ site.logo | absolute_url }}"
-  },
+  "author": { "@id": "{{ site.url }}/#person" },
+  "publisher": { "@id": "{{ site.url }}/#organization" },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ page.url | absolute_url }}"
   },
   "keywords": "{{ page.tags | join: ', ' }}",
-  "articleBody": {{ content | strip_html | jsonify }},
+  "wordCount": {{ content | number_of_words }},
   "timeRequired": "PT{{ content | number_of_words | divided_by: 200 }}M",
-  "wordCount": "{{ content | number_of_words }}",
   "inLanguage": "en-US",
-  "isAccessibleForFree": "True",
+  "isAccessibleForFree": true,
   "isPartOf": {
     "@type": "Blog",
     "@id": "{{ site.url }}/#blog"

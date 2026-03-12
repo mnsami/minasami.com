@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Building Dynamic Multilingual Sitemaps in Next.js"
-description: "A comprehensive sitemap helped Google discover 75+ pages it was missing. Here's how to build dynamic sitemaps with language alternates for multilingual Next.js apps."
+description: "A comprehensive sitemap helped Google discover 75+ missing pages. How to build dynamic sitemaps with language alternates for multilingual Next.js apps."
 date: 2025-12-08
 categories: [web-development, seo]
 tags: [nextjs, seo, sitemap, i18n, internationalization]
