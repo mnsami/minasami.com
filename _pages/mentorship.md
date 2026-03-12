@@ -3,7 +3,7 @@ layout: page
 title: Mentorship
 menu: Mentorship
 permalink: /mentorship/
-description: "Unlock backend development mastery and career growth with exclusive mentorship on ADPlist. Benefit from 16+ years of expertise in PHP, NodeJs, software architecture, mock interviews, CV reviews, and personalized guidance for students' graduation projects. Shape your tech success story today!"
+description: "1-on-1 backend engineering mentorship on ADPList. 16+ years of PHP, Node.js & AWS expertise. Career guidance, mock interviews, system design, and CV reviews."
 image: /assets/portfolio.png
 ---
 

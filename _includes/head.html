@@ -33,11 +33,14 @@
 <noscript><link href="/assets/css/styles.css" rel="stylesheet"></noscript>
 
 <!-- Schema.org Structured Data -->
-{%- include schema-website.html -%}
-{%- include schema-person.html -%}
-{%- include schema-organization.html -%}
+{%- include schema-global.html -%}
 {%- include schema-article.html -%}
 {%- include schema-breadcrumb.html -%}
 
+<!-- Bootstrap Icons - async loaded -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+  rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"></noscript>
+
 {% capture env %}{{ jekyll.environment }}{% endcapture %}
-<script rel="preconnect" data-ad-client="ca-pub-4969239760465076" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" defer></script>
+<script data-ad-client="ca-pub-4969239760465076" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
