@@ -3,7 +3,7 @@
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
 layout: home
-title: Home
+title: "Backend Engineering Blog"
 description: "Senior Software Engineer | PHP, Symfony, Node.js, AWS Expert | Technical Blog & Mentorship"
 canonical_url: https://minasami.com/
 ---
