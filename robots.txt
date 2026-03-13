@@ -1,11 +1,16 @@
 User-agent: *
 Allow: /
 
-Disallow: /docs
-
 # Disallow admin or draft pages
 Disallow: /admin/
 Disallow: /_drafts/
 Disallow: /docs/
+
+# Disallow sensitive/system paths
+Disallow: /db_backups
+Disallow: /logs/
+Disallow: /images/
+Disallow: /cdn-cgi/
+Disallow: /search
 
 Sitemap: https://minasami.com/sitemap.xml

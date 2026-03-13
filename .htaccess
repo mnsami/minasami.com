@@ -45,4 +45,22 @@
 
     # AI post redirect
     RewriteRule ^2025/11/27/how-ai-became-the-most-reliable-partner-in-my-engineering-career\.html$ /developer-productivity/2025/11/27/how-ai-became-the-most-reliable-partner-in-my-engineering-career.html [R=301,L]
+
+    # Database backup post redirect (missing category prefix)
+    RewriteRule ^2025/11/10/periodically-run-database-backup\.html$ /devops/2025/11/10/periodically-run-database-backup.html [R=301,L]
+
+    # Category cleanup - posts moved from /web-development/seo/ to /web-development/
+    RewriteRule ^web-development/seo/2025/12/05/nextjs-seo-robots-txt-mistake\.html$ /web-development/2025/12/05/nextjs-seo-robots-txt-mistake.html [R=301,L]
+    RewriteRule ^web-development/seo/2025/12/08/nextjs-dynamic-multilingual-sitemaps\.html$ /web-development/2025/12/08/nextjs-dynamic-multilingual-sitemaps.html [R=301,L]
+    RewriteRule ^web-development/seo/2025/12/15/nextjs-meta-tags-that-convert\.html$ /web-development/2025/12/15/nextjs-meta-tags-that-convert.html [R=301,L]
+
+    # Tag alias redirects (old/inconsistent tag names → canonical tag pages)
+    RewriteRule ^tags/vs-code/?$ /tags/vscode/ [R=301,L]
+    RewriteRule ^tags/AI/?$ /tags/ai/ [R=301,NC,L]
+    RewriteRule ^tags/how-tos/?$ /tags/tutorial/ [R=301,L]
+    RewriteRule ^tags/reactjs/?$ /tags/react/ [R=301,L]
+    RewriteRule ^tags/devops/?$ /tags/automation/ [R=301,L]
+    RewriteRule ^tags/logrotate/?$ /tags/bash/ [R=301,L]
+    RewriteRule ^tags/separation-of-concerns/?$ /tags/design-patterns/ [R=301,L]
+    RewriteRule ^tags/design/?$ /tags/design-patterns/ [R=301,L]
 </IfModule>
