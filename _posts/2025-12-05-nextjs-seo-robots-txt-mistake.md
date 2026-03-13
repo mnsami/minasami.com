@@ -3,7 +3,7 @@ layout: post
 title: "The Robots.txt Mistake That Cost Me Visitors"
 description: "One line in my robots.txt file blocked Google from indexing 133 pages. Here's the critical Next.js configuration mistake that kills SEO—and how to fix it in 30 seconds."
 date: 2025-12-05
-categories: [web-development, seo]
+categories: [web-development]
 tags: [nextjs, seo, robots-txt, debugging]
 author: Mina Sami
 ---
