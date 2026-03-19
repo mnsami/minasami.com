@@ -1,13 +1,11 @@
 ---
 layout: page
-title: Mentorship
+title: "Backend Engineering Mentorship — PHP, Node.js & AWS"
 menu: Mentorship
 permalink: /mentorship/
 description: "1-on-1 backend engineering mentorship on ADPList. 16+ years of PHP, Node.js & AWS expertise. Career guidance, mock interviews, system design, and CV reviews."
 image: /assets/portfolio.png
 ---
-
-# Software Engineering Mentorship on ADPList
 
 <img class="rounded img-fluid" src="{{ "/assets/images/adplist-swag.png" | relative_url }}" alt="Mina Sami ADPList Mentorship Program - Backend Development and Career Guidance" loading="lazy" />
 
