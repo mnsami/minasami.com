@@ -13,4 +13,8 @@ Disallow: /images/
 Disallow: /cdn-cgi/
 Disallow: /search
 
+# Disallow image assets from being indexed as pages
+Disallow: /assets/images/
+
 Sitemap: https://minasami.com/sitemap.xml
+Sitemap: https://minasami.com/sitemap-images.xml
