@@ -1,9 +1,10 @@
 ---
 layout: post
-title:  "Dealing with CORS Errors in React two ways"
+title:  "How to Fix CORS Errors in React (Vite, Next.js & Nginx)"
 categories: [fullstack]
-tags: react cors nginx frontend backend api-development debugging troubleshooting javascript
-description: "Fix CORS errors in React.js applications. Understanding CORS policy, configuring headers, and resolving cross-origin issues."
+tags: react cors nginx vite nextjs frontend backend api-development debugging troubleshooting javascript
+description: "Fix CORS errors in React apps with Vite, Next.js, or Create React App. Covers the proxy approach for development and the correct Nginx headers for production."
+last_modified_at: 2026-01-15
 ---
 
 {:.section}
@@ -67,20 +68,62 @@ If you're building a React + backend setup (like [React with Symfony]({{ site.ba
 If you are facing this issue during your local development, then you have two types of solutions.
 {:.section}
 
-#### ReactJS solution
+#### Vite (recommended for new projects)
 
-Recently the `create-react-app` introduce a very nice feature to proxying API requests in development.
+If you're using Vite, configure a dev server proxy in `vite.config.js`:
 
-Where the only thing you have to do is add the below line in your project's `package.json`
+```js
+export default {
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+      }
+    }
+  }
+}
+```
 
-    "proxy": "http://api.endpoint.com/v1"
-
-where it tells the development server to proxy any unknown requests to your API server in development.
+Any request your React code makes to `/api/...` will be proxied to your backend during development. No CORS headers needed on the backend for local dev.
 
 **NOTE** This only works for local development.
 {:.section}
 
-#### Webserver (NGINX) solution - Preferred
+#### Next.js
+
+In Next.js, use `rewrites` in `next.config.js` to proxy API calls through the Next.js dev server:
+
+```js
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'http://localhost:8000/api/:path*',
+      },
+    ]
+  },
+}
+```
+
+This proxies all `/api/*` requests server-side, so the browser never makes a cross-origin request.
+{:.section}
+
+#### Create React App (legacy)
+
+If you're on the older `create-react-app`, add a `proxy` field to your `package.json`:
+
+```json
+"proxy": "http://api.endpoint.com/v1"
+```
+
+This tells the CRA dev server to forward unknown requests to your backend. Note: CRA is no longer actively maintained — Vite is the recommended replacement.
+
+**NOTE** This only works for local development.
+{:.section}
+
+#### Webserver (NGINX) solution - Preferred for production
 
 Alternatively, there is a solution that can be done on the webserver side, but it requires - as it implies - changes on the webserver.
 
