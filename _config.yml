@@ -4,9 +4,9 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Mina Nabil Sami - Blog
+title: Mina Sami
 email: mina.nsami@gmail.com
-description: "Senior software engineer with 16+ years building scalable backend systems. Expert in PHP (Symfony, Laravel), Node.js, AWS, and DevOps. Technical blog, mentorship, and consulting."
+description: "Senior software engineer with 18+ years building scalable backend systems. Expert in PHP (Symfony, Laravel), Node.js, AWS, and DevOps. Technical blog, mentorship, and consulting."
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://minasami.com" # the base hostname & protocol for your site, e.g. http://example.com
 
@@ -25,7 +25,7 @@ defaults:
       image: "/assets/portfolio.png"
 
 social:
-  name: Mina Nabil Sami
+  name: Mina Sami
   links:
     - https://twitter.com/MinaNabilSami
     - https://www.linkedin.com/in/mnsami
@@ -80,7 +80,7 @@ exclude:
 
 # website param
 params:
-  name: Mina Nabil Sami
+  name: Mina Sami
   tagline: Developer. Chef. Gamer.
   date_format: "%b %-d, %Y"
   sitemap: true
