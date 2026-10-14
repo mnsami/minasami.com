@@ -97,6 +97,9 @@ module Jekyll
       @site.pages.each do |page|
         next if page.url.start_with?('/assets/')
         next if page.url.end_with?('.xml')
+        next if page.data['sitemap'] == false
+        # Generated pages (tags, categories) carry their layout as content: UI icons, not content images
+        next unless File.exist?(@site.in_source_dir(page.relative_path))
 
         images = extract_images_from_content(page.content, page.data)
         next if images.empty?
@@ -114,8 +117,11 @@ module Jekyll
       images = []
       return images if content.nil? || content.empty?
 
-      # Extract images from featured image in front matter
-      if front_matter['image']
+      # Unwrap {{ "/path" | relative_url }} so the src regexes see the path
+      content = content.gsub(/\{\{\s*["']([^"']+)["'][^}]*\}\}/, '\\1')
+
+      # Extract images from featured image in front matter (skip the site-wide default)
+      if front_matter['image'] && front_matter['image'] != @config['logo']
         images << {
           url: absolute_url(front_matter['image']),
           title: front_matter['title'],
