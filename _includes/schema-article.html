@@ -10,7 +10,7 @@
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
   "author": { "@id": "{{ site.url }}/#person" },
-  "publisher": { "@id": "{{ site.url }}/#organization" },
+  "publisher": { "@id": "{{ site.url }}/#person" },
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "{{ page.url | absolute_url }}"

@@ -3,11 +3,11 @@ layout: page
 title: "Mina Sami — Senior Software Engineer & Engineering Mentor"
 menu: About Me
 permalink: /about/
-description: "16+ years building scalable backend systems with PHP, Node.js & AWS. Available for consulting, mentorship, and engineering partnerships. Based remotely."
+description: "18+ years building scalable backend systems with PHP, Node.js & AWS. Available for consulting, mentorship, and engineering partnerships. Based remotely."
 image: /assets/portfolio.png
 ---
 
-Hello, I'm **Mina Nabil Sami**, a seasoned software engineer with a passion for creating innovative and efficient solutions. With over 16 years of experience in the ever-evolving world of software development.
+Hello, I'm **Mina Sami**, a seasoned software engineer with a passion for creating innovative and efficient solutions. With over 18 years of experience in the ever-evolving world of software development.
 
 ## My Technical Expertise
 
