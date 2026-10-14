@@ -8,7 +8,7 @@
 {% if page.robots contains 'noindex' %}<meta name="robots" content="{{ page.robots }}">{% endif %}
 
 <!-- Title Tag - Optimized for SEO -->
-<title>{% if page.tag %}Tag: {{ page.tag | capitalize }} | {{ site.title }}{% elsif page.category %}{{ page.title }} | {{ site.title }}{% elsif page.title and page.title != site.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.params.tagline }}{% endif %}</title>
+<title>{% if page.tag %}Tag: {{ page.tag | capitalize }} | {{ site.title }}{% elsif page.category %}{{ page.title }} | {{ site.title }}{% elsif page.url == "/" %}{{ site.title }} – {{ page.title }}{% elsif page.title and page.title != site.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }} - {{ site.params.tagline }}{% endif %}</title>
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon_io/apple-touch-icon.png">
