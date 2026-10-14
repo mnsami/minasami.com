@@ -72,7 +72,7 @@
                             <div class="tags-cloud">
                                 {% for tag in site.tags %}
                                     {% if tag[1].size >= 2 %}
-                                        <a href="/tags/{{ tag[0] }}" class="tag-pill">
+                                        <a href="/tags/{{ tag[0] }}/" class="tag-pill">
                                             <span class="tag-name">{{- tag[0] -}}</span>
                                             <span class="tag-count">{{- tag[1].size -}}</span>
                                         </a>

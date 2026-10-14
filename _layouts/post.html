@@ -39,7 +39,7 @@ layout: default
     <div class="post-tags">
         Tags:
         {% for postTag in page.tags %}
-            <a href="/tags/{{ postTag }}" rel="tag" aria-label="View posts tagged with {{ postTag }}">{{- postTag -}}</a>
+            <a href="/tags/{{ postTag }}/" rel="tag" aria-label="View posts tagged with {{ postTag }}">{{- postTag -}}</a>
         {% endfor %}
     </div>
 </article>
