@@ -21,7 +21,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Mina Nabil Sami"
+      author: "Mina Sami"
       image: "/assets/portfolio.png"
 
 social:
@@ -37,7 +37,7 @@ twitter:
   card: summary_large_image
 
 author:
-  name: "Mina Nabil Sami"
+  name: "Mina Sami"
   twitter: MinaNabilSami
 
 logo: "/assets/portfolio.png"
