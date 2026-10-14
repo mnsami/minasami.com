@@ -35,9 +35,6 @@ module CategoriesPlugin
             self.data['post_count'] = post_count
             self.data['posts'] = posts.sort_by { |post| post.date }.reverse
 
-            # Canonical URL
-            self.data['canonical_url'] = File.join(site.config['url'] || '', @dir)
-
             # Open Graph metadata
             self.data['og_type'] = 'website'
             self.data['og_title'] = "#{display_name} Articles | #{site.config['title']}"
