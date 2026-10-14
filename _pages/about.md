@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "Mina Sami — Senior Software Engineer & Engineering Mentor"
+heading: About Mina Sami
 menu: About Me
 permalink: /about/
 description: "18+ years building scalable backend systems with PHP, Node.js & AWS. Available for consulting, mentorship, and engineering partnerships. Based remotely."
