@@ -16,8 +16,9 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon_io/favicon-16x16.png">
 <link rel="manifest" href="/assets/favicon_io/site.webmanifest">
 
-<!-- SEO Meta Tags -->
-{% seo title=false %}
+<!-- SEO Meta Tags (jekyll-seo-tag JSON-LD dropped; schema-*.html own structured data) -->
+{% capture seo_tags %}{% seo title=false %}{% endcapture %}
+{{ seo_tags | split: '<script type="application/ld+json">' | first }}
 
 <!-- Optimized Font Loading -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
