@@ -49,23 +49,7 @@ layout: default
 {%- include author-bio.html -%}
 
 <!-- Related Posts -->
-{% assign related_posts_count = 0 %}
-{% for post in site.posts %}
-  {% for tag in post.tags %}
-    {% if page.tags contains tag and post.url != page.url %}
-      {% assign related_posts_count = related_posts_count | plus: 1 %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-{% endfor %}
-
-{% if related_posts_count > 0 %}
-<hr/>
-<div class="related-posts">
-  <h3>Related Posts</h3>
-  {%- include related-posts.html -%}
-</div>
-{% endif %}
+{%- include related-posts.html -%}
 
 <!-- Code highlighter - conditionally loaded only when post contains code blocks -->
 {% if content contains '<pre>' or content contains '<code>' %}
