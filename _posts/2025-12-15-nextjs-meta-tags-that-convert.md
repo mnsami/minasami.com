@@ -364,3 +364,4 @@ In the next post, I cover the 5 schema types Google still supports in 2026, whic
 2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. Meta Tags That Actually Convert Clicks (you are here)
 4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})
+5. [Next.js Location Pages Without Doorway Spam]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-location-pages-seo %})
