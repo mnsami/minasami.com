@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Part 1: Setup a dockerized Symfony backend app with ReactJs for frontend with hotloading enabled"
+title:  "Part 1: Dockerized Symfony + React App with Hot Reloading"
 categories: [fullstack]
 tags: react symfony php docker webpack hot-reload spa tutorial
 description: "Build a React.js + Symfony application with hot module reloading. Part 1: Project setup, Webpack configuration, and development workflow."

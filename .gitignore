@@ -6,3 +6,5 @@ vendor
 _site_tags/*
 !_site_tags/.keep
 .claude
+
+.playwright-mcp

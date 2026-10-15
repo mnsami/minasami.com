@@ -20,6 +20,8 @@ module PostTagsPlugin
             self.read_yaml(File.join(base, '_layouts'), 'tag.html')
             self.data['tag'] = tag
             self.data['title'] = "Tag: #{tag}"
+            self.data['robots'] = 'noindex, follow'
+            self.data['sitemap'] = false
         end
     end
 end

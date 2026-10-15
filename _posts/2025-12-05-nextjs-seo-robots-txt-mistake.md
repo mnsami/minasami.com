@@ -3,7 +3,7 @@ layout: post
 title: "The Robots.txt Mistake That Cost Me Visitors"
 description: "One line in my robots.txt file blocked Google from indexing 133 pages. Here's the critical Next.js configuration mistake that kills SEO—and how to fix it in 30 seconds."
 date: 2025-12-05
-categories: [web-development, seo]
+categories: [web-development]
 tags: [nextjs, seo, robots-txt, debugging]
 author: Mina Sami
 ---
@@ -178,3 +178,5 @@ In my next post, I'll show you how to build dynamic multilingual sitemaps that a
 **Full SEO Series for Next.js:**
 1. The Robots.txt Mistake That Cost Me Visitors (you are here)
 2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
+3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
+4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})

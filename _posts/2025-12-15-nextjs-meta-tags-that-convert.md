@@ -3,7 +3,7 @@ layout: post
 title: "Meta Tags That Actually Convert Clicks"
 description: "I doubled my organic CTR from 2.1% to 4.3% by fixing meta tags and Open Graph images. Here's how to write titles and descriptions that people actually click."
 date: 2025-12-15
-categories: [web-development, seo]
+categories: [web-development]
 tags: [nextjs, seo, meta-tags, open-graph, ctr-optimization]
 author: Mina Sami
 ---
@@ -351,11 +351,11 @@ After implementing these meta tags:
 
 ## What's Next?
 
-Meta tags get people to click. But to really stand out in search results, you need **rich snippets**—those enhanced results with star ratings, FAQs, images, and structured data.
+Meta tags get people to click. The next step is **structured data**: the markup that makes your pages eligible for rich results such as product prices, breadcrumbs and your logo.
 
-In the next post, I'll show you how to implement 5 types of schema markup that transformed my plain search results into rich, eye-catching snippets. This took my already-good CTR and pushed it even higher.
+In the next post, I cover the 5 schema types Google still supports in 2026, which ones it has retired, and how to add them safely in Next.js.
 
-**Read next:** [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
+**Read next:** [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})
 
 ---
 
@@ -363,4 +363,4 @@ In the next post, I'll show you how to implement 5 types of schema markup that t
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
 2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. Meta Tags That Actually Convert Clicks (you are here)
-4. [Schema Markup: 5 Types for Rich Search Results]({{ site.baseurl }}{% post_url 2025-12-16-nextjs-schema-markup-guide %})
+4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})

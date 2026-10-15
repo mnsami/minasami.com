@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Building a Production-Ready Database Backup System: From Simple Script to Robust Automation"
+title: "Building a Production-Ready Database Backup System"
 date: 2025-11-10
 author: Mina Sami
 categories: [devops]
