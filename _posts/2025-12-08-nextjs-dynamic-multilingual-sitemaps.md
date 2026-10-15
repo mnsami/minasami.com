@@ -1,97 +1,81 @@
 ---
 layout: post
-title: "Building Dynamic Multilingual Sitemaps in Next.js"
-description: "A comprehensive sitemap helped Google discover 75+ missing pages. How to build dynamic sitemaps with language alternates for multilingual Next.js apps."
+title: "Dynamic Multilingual Sitemaps in Next.js"
+description: "Build a dynamic sitemap with correct hreflang alternates for a multilingual Next.js app, and avoid the lastmod and priority mistakes most examples make."
 date: 2025-12-08
+last_modified_at: 2026-10-15
 categories: [web-development]
 tags: [nextjs, seo, sitemap, i18n, internationalization]
 author: Mina Sami
 ---
 
-After [fixing my robots.txt disaster]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %}), I thought Google would automatically find all my pages. Two weeks later, I checked Google Search Console: still only 23 pages indexed.
+After [fixing my robots.txt mistake]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %}), Google could render the pages it had already found. But not every page had been found. They were spread across English and German versions, nested in deep routes, and I had no sitemap to point the crawler at all of them.
 
-The problem? Google had no efficient way to **discover** my pages. I had 156 pages spread across English and German versions, nested in complex routes, with no sitemap to guide the crawler.
+So I added a dynamic sitemap with language alternates. This post shows how, including two mistakes the first version of this post made.
 
-Once I built a proper dynamic sitemap with language alternates, indexing jumped from 23 to 60+ pages within two weeks, and eventually hit 156 pages fully indexed.
-
-**A good sitemap is like giving Google a map of your entire site—in every language.**
+**A good sitemap is a list of every page you want found, in every language.**
 
 ## Why Sitemaps Matter for Multilingual Sites
 
-Without a sitemap, Google:
-- Relies on finding internal links (slow and unreliable)
-- Might miss pages buried deep in navigation
-- Doesn't know about language relationships
-- Wastes crawl budget on less important pages
+A sitemap helps Google discover URLs, but it "doesn't guarantee that all the items in your sitemap will be crawled and indexed" ([Google](https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview)). Google says sitemaps help most when:
 
-With a proper multilingual sitemap, Google:
-- Discovers all pages immediately
-- Understands language alternates (English ↔ German)
-- Prioritizes important pages based on your hints
-- Indexes efficiently without wasted crawl budget
+- your site is large, so some pages are easy to miss through links;
+- your site is new and has few external links pointing to it;
+- your site has a lot of image or video content, or appears in Google News.
 
-My before/after:
-- **Before sitemap:** 23 pages indexed in 3 months
-- **After sitemap:** 60 pages indexed in 2 weeks, 156 pages in 6 weeks
+For a multilingual site, the sitemap does one more job: it can tell Google which pages are translations of each other, through `hreflang` alternates.
 
 ## Step 1: Create the Sitemap Generator
 
-Create `app/sitemap.ts`:
+Create `src/app/sitemap.ts`:
 
 ```typescript
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next'
+import { products } from '@/data/products'
 
-export default function generateSitemap(): MetadataRoute.Sitemap {
-  const site = process.env.SITE_URL ?? 'https://yoursite.com';
+const SITE_URL = process.env.SITE_URL ?? 'https://yoursite.com'
+const locales = ['en', 'de'] as const
 
-  // Static pages with SEO priorities
-  const staticPages = [
-    { slug: '', title: 'Home', priority: 1.0 },
-    { slug: 'about', title: 'About', priority: 0.8 },
-    { slug: 'services', title: 'Services', priority: 0.9 },
-    { slug: 'contact', title: 'Contact', priority: 0.8 },
-    // Legal pages (lower priority)
-    { slug: 'privacy', title: 'Privacy Policy', priority: 0.4 },
-    { slug: 'terms', title: 'Terms', priority: 0.4 },
-  ];
+// The date each page's content last really changed.
+// Update it when you edit the page, not on every deploy.
+const staticPages = [
+  { path: '', updatedAt: '2026-10-01' },
+  { path: '/about', updatedAt: '2026-06-12' },
+  { path: '/services', updatedAt: '2026-09-20' },
+  { path: '/contact', updatedAt: '2026-03-02' },
+  { path: '/privacy', updatedAt: '2025-11-30' },
+  { path: '/terms', updatedAt: '2025-11-30' },
+]
 
-  const entries: MetadataRoute.Sitemap = [];
+// One entry per language. Every entry lists all language versions,
+// including itself, which is what Google requires for hreflang.
+function localizedEntries(
+  path: string,
+  lastModified: string,
+  images?: string[],
+): MetadataRoute.Sitemap {
+  const url = (locale: string) => `${SITE_URL}/${locale}${path}`
+  const languages = Object.fromEntries(locales.map((l) => [l, url(l)]))
 
-  // Add static pages with language alternates
-  for (const { slug, priority } of staticPages) {
-    // Homepage and frequently updated pages change more often
-    const changeFreq = (slug === '' || slug === 'services')
-      ? 'daily'
-      : 'weekly';
+  return locales.map((locale) => ({
+    url: url(locale),
+    lastModified,
+    alternates: { languages },
+    ...(images && { images }),
+  }))
+}
 
-    // English version
-    entries.push({
-      url: `${site}/en/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: changeFreq,
-      priority: priority,
-      alternates: {
-        languages: {
-          de: `${site}/de/${slug}`,
-        },
-      },
-    });
-
-    // German version
-    entries.push({
-      url: `${site}/de/${slug}`,
-      lastModified: new Date(),
-      changeFrequency: changeFreq,
-      priority: priority,
-      alternates: {
-        languages: {
-          en: `${site}/en/${slug}`,
-        },
-      },
-    });
-  }
-
-  return entries;
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    ...staticPages.flatMap(({ path, updatedAt }) =>
+      localizedEntries(path, updatedAt),
+    ),
+    ...products.flatMap((product) =>
+      localizedEntries(`/products/${product.slug}`, product.updatedAt, [
+        `${SITE_URL}${product.image}`,
+      ]),
+    ),
+  ]
 }
 ```
 
@@ -99,77 +83,37 @@ This generates entries like:
 ```xml
 <url>
   <loc>https://yoursite.com/en/about</loc>
-  <lastmod>2025-12-06</lastmod>
-  <changefreq>weekly</changefreq>
-  <priority>0.8</priority>
+  <xhtml:link rel="alternate" hreflang="en" href="https://yoursite.com/en/about"/>
   <xhtml:link rel="alternate" hreflang="de" href="https://yoursite.com/de/about"/>
+  <lastmod>2026-06-12</lastmod>
 </url>
 ```
 
+Note that the English entry lists **itself** as well as the German version. Google says "each language version must list itself as well as all other language versions", and ignores the tags if two pages don't point to each other ([Google](https://developers.google.com/search/docs/specialty/international/localized-versions)).
+
 ## Step 2: Add Dynamic Pages
 
-If you have products, blog posts, or other dynamic content, add them:
+The `products` loop in Step 1 shows the pattern for anything that comes from data: products, blog posts, locations. Each item needs a slug, an image if it has one, and an `updatedAt` from your CMS or database:
 
 ```typescript
-// Import your data
-import { Products } from '@/data/products';
-
-// Inside generateSitemap function, after static pages:
-
-// Add dynamic product pages
-for (const product of Products) {
-  // English entry
-  entries.push({
-    url: `${site}/en/products/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-    alternates: {
-      languages: {
-        de: `${site}/de/products/${product.slug}`,
-      },
-    },
-    // ✅ Include images for richer search results
-    images: [
-      `${site}/images/products/${product.slug}/${product.thumbnail}`,
-    ],
-  });
-
-  // German entry
-  entries.push({
-    url: `${site}/de/products/${product.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-    alternates: {
-      languages: {
-        en: `${site}/en/products/${product.slug}`,
-      },
-    },
-    images: [
-      `${site}/images/products/${product.slug}/${product.thumbnail}`,
-    ],
-  });
-}
+// src/data/products.ts
+export const products = [
+  {
+    slug: 'starter-kit',
+    image: '/images/products/starter-kit.jpg',
+    updatedAt: '2026-09-28', // from your CMS, not the build time
+  },
+]
 ```
 
-## Understanding Priority and Change Frequency
+The `images` field turns the sitemap into an image sitemap for those URLs as well, which Next.js supports directly ([Next.js docs](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap)).
 
-These are **hints** to search engines, not commands. But they help Google prioritize crawling.
+## What Google Actually Reads
 
-**Priority values (0.0 to 1.0):**
-- `1.0` - Homepage (most important)
-- `0.8-0.9` - Main pages (about, services, products listing)
-- `0.6-0.7` - Content pages (individual products, blog posts)
-- `0.3-0.4` - Legal pages (privacy, terms)
+Older sitemap guides, including the first version of this post, spend a lot of time on `priority` and `changeFrequency`. Skip them:
 
-**Change frequency:**
-- `daily` - Homepage, product listings, frequently updated content
-- `weekly` - Regular pages, individual products
-- `monthly` - Static content, location pages
-- `yearly` - Legal pages, rarely changing content
-
-**Pro tip:** Don't set everything to `daily` and priority `1.0`. Google will catch on and ignore your hints.
+- **Google ignores `<priority>` and `<changefreq>`** ([Google](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)). Bing says the same: "changefreq and priority are ignored by Bing" ([Bing](https://blogs.bing.com/webmaster/July-2025/Keeping-Content-Discoverable-with-Sitemaps-in-AI-Powered-Search)).
+- **`<lastmod>` matters, if it's honest.** Google uses it only "if it's consistently and verifiably accurate". That's why the code above uses each page's real content date. `lastModified: new Date()` stamps every URL with the build time on every deploy, which teaches search engines to ignore your dates.
 
 ## Step 3: Test Your Sitemap
 
@@ -183,10 +127,9 @@ curl http://localhost:3000/sitemap.xml
 
 **Check for:**
 - ✅ Valid XML structure
-- ✅ All pages present
-- ✅ Both language versions included
-- ✅ Language alternates correct
-- ✅ Priorities make sense
+- ✅ All pages present, in every language
+- ✅ Each URL lists itself **and** every other language version
+- ✅ `lastmod` dates match real content changes, not today's date
 - ✅ Images included where appropriate
 
 You should see something like:
@@ -197,10 +140,9 @@ You should see something like:
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://yoursite.com/en</loc>
-    <lastmod>2025-12-06T00:00:00.000Z</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://yoursite.com/en"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://yoursite.com/de"/>
+    <lastmod>2026-10-01</lastmod>
   </url>
   ...
 </urlset>
@@ -211,15 +153,14 @@ You should see something like:
 Make sure your sitemap is referenced in robots.txt (we covered this in the [previous post]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})):
 
 ```typescript
-// In app/robots.ts
+// In src/app/robots.ts
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       // ... your rules
     ],
     sitemap: `${SITE_URL}/sitemap.xml`, // ✅ Critical!
-    host: SITE_URL,
-  };
+  }
 }
 ```
 
@@ -230,11 +171,11 @@ export default function robots(): MetadataRoute.Robots {
 3. Go to **Sitemaps** section (left sidebar)
 4. Enter: `https://yoursite.com/sitemap.xml`
 5. Click **Submit**
-6. Wait 24-48 hours for initial processing
+6. Check back after Google has processed it
 
 **What to watch for:**
-- "Success" status (green checkmark)
-- Number of "Discovered" URLs
+- "Success" status
+- Number of discovered pages
 - Any errors or warnings
 
 If you see errors like "Couldn't fetch," check:
@@ -242,56 +183,49 @@ If you see errors like "Couldn't fetch," check:
 - Does the sitemap URL work in a browser?
 - Is robots.txt blocking the sitemap?
 
-## The Results
+## What to Expect
 
-My indexing timeline after adding the sitemap:
+A sitemap speeds up **discovery**, not indexing. After I added mine, Search Console showed Google discovering the pages it had missed. Indexing followed gradually, and I can't separate how much of that came from the sitemap and how much from the robots.txt fix. Pages that stay out of the index usually have a different problem: thin content, duplicates, or a rendering issue like the one in the [robots.txt post]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %}).
 
-- **Week 1:** Google fetched sitemap, discovered all 156 URLs
-- **Week 2:** 60 pages indexed (up from 23)
-- **Week 4:** 100 pages indexed
-- **Week 6:** 156 pages indexed (100% of my content!)
-
-Before the sitemap, Google was crawling randomly, finding maybe 1-2 new pages per week. After the sitemap, it systematically indexed everything.
+To follow progress, use the **Pages** report in Search Console and filter it by your sitemap.
 
 ## Common Mistakes to Avoid
 
-**1. Forgetting language alternates**
+**1. Incomplete language alternates**
 ```typescript
-// ❌ Bad: No alternates
-url: `${site}/en/page`
+// ❌ Bad: the English URL only lists the German one
+url: `${site}/en/page`,
+alternates: { languages: { de: `${site}/de/page` } }
 
-// ✅ Good: Includes alternates
+// ✅ Good: every language version, including itself
 url: `${site}/en/page`,
 alternates: {
-  languages: {
-    de: `${site}/de/page`
-  }
+  languages: { en: `${site}/en/page`, de: `${site}/de/page` },
 }
 ```
 
-**2. Wrong change frequency**
+**2. Build-time `lastmod`**
 ```typescript
-// ❌ Bad: Everything is daily
-changeFrequency: 'daily'  // Google won't believe you
+// ❌ Bad: every URL "changes" on every deploy
+lastModified: new Date()
 
-// ✅ Good: Realistic frequencies
-changeFrequency: slug === '' ? 'daily' : 'weekly'
+// ✅ Good: the date the content really changed
+lastModified: page.updatedAt
 ```
 
 **3. Including non-canonical URLs**
 Don't include:
-- Paginated pages (page=2, page=3)
-- Filter/sort variations
+- Filter and sort variations
 - Duplicate content
-- URLs with query parameters
+- URLs that canonicalize to another page
 
-Only include the canonical version of each page.
+Only include the canonical version of each page. Paginated pages (page 2, page 3) are different: Google says to "give each page its own canonical URL" rather than pointing them all at page 1 ([Google](https://developers.google.com/search/docs/specialty/ecommerce/pagination-and-incremental-page-loading)), so they can stay.
 
 ## What's Next?
 
-You've now got Google discovering and crawling your pages efficiently. But discovery isn't enough—you need those pages to stand out in search results and drive clicks.
+You've now got Google discovering and crawling your pages efficiently. But discovery isn't enough: you need those pages to stand out in search results and get clicked.
 
-In the next post, I'll show you how to write meta tags and Open Graph tags that dramatically increase your click-through rate from search results. These tags took my CTR from 2.1% to 4.3%—more than doubling my organic traffic without changing rankings.
+In the next post, I'll show you how to write titles, descriptions and Open Graph tags that people actually click, and how to measure the effect on your own site.
 
 **Read next:** [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 
@@ -299,7 +233,7 @@ In the next post, I'll show you how to write meta tags and Open Graph tags that 
 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
-2. Building Dynamic Multilingual Sitemaps in Next.js (you are here)
+2. Dynamic Multilingual Sitemaps in Next.js (you are here)
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})
 5. [Next.js Location Pages Without Doorway Spam]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-location-pages-seo %})
