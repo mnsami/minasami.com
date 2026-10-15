@@ -2,7 +2,7 @@
 layout: post
 title: "Next.js Location Pages Without Doorway Spam"
 description: "City pages can win local searches or get flagged as doorway spam. When a location page is legitimate, and how to build one in Next.js with i18n and hreflang."
-date: 2026-10-15 12:00:00 +0200
+date: 2026-10-15 09:00:00 +0200
 categories: [web-development]
 tags: [nextjs, seo, local-seo, location-pages, i18n]
 author: Mina Sami
