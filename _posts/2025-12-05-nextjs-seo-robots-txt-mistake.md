@@ -1,16 +1,17 @@
 ---
 layout: post
 title: "The Robots.txt Mistake That Cost Me Visitors"
-description: "One line in my robots.txt file blocked Google from indexing 133 pages. Here's the critical Next.js configuration mistake that kills SEO—and how to fix it in 30 seconds."
+description: "One line in my robots.txt stopped Google from rendering my Next.js pages the way visitors saw them. Here's the configuration mistake and how to fix it."
 date: 2025-12-05
+last_modified_at: 2026-10-15
 categories: [web-development]
 tags: [nextjs, seo, robots-txt, debugging]
 author: Mina Sami
 ---
 
-Three months after launching my first multilingual Next.js application, I opened Google Search Console expecting to see healthy indexing numbers. Instead, I found a graveyard: 156 pages crawled, only 23 indexed. The rest? "Crawled but not indexed."
+Three months after launching my first multilingual Next.js application, I opened Google Search Console expecting healthy indexing numbers. Instead, most of my pages were sitting under "Crawled - currently not indexed".
 
-I spent two weeks debugging. The site looked perfect in the browser. The code was clean. Internationalization worked flawlessly. But search engines were treating my carefully crafted multilingual site like broken HTML from 1999—no styling, no images, just plain text.
+I spent two weeks debugging. The site looked perfect in the browser. The code was clean. Internationalization worked. But when I ran URL Inspection and looked at the page Google had rendered, it was plain HTML: no styling, no images.
 
 The culprit? A single line in my `robots.txt`:
 
@@ -18,88 +19,63 @@ The culprit? A single line in my `robots.txt`:
 Disallow: /_next/
 ```
 
-That one line was blocking all JavaScript, CSS, and static assets. Google couldn't render the pages properly, so it simply refused to index them. **Fixing it took 30 seconds. Getting Google to re-crawl everything? Another month.**
+That one line blocked all JavaScript, CSS and optimized images. Google couldn't render the pages the way visitors saw them. **Fixing it took a minute. Getting Google to re-crawl everything took weeks.**
 
-Let me show you how to avoid this disaster.
+Let me show you how to avoid it.
 
 ## Why This Happens
 
-When you block `/_next/` entirely, you're telling search engines: "Don't access anything in this directory." Problem is, Next.js stores ALL your critical assets there:
+When you block `/_next/` entirely, you're telling search engines: "Don't access anything in this directory." The problem is that Next.js stores your critical assets there:
 
-- `/_next/static/` - Your JavaScript bundles and CSS files
-- `/_next/image/` - Optimized images
-- `/_next/data/` - Data for dynamic pages
+- `/_next/static/`: your JavaScript bundles and CSS files
+- `/_next/image`: optimized images
+- `/_next/data/`: JSON for client-side navigation in the Pages Router (the App Router doesn't use it)
 
-Without these, Google sees your beautiful React app as a blank page with unstyled HTML. And blank pages don't get indexed.
+Next.js renders HTML on the server, so the text is still in the page. But without the JavaScript, CSS and images, Google can't render the page as visitors see it, and anything that only appears after JavaScript runs is missing. Google's own guidance is clear: "if the absence of these resources make the page harder for Google's crawler to understand the page, don't block them" ([Google](https://developers.google.com/search/docs/crawling-indexing/robots/intro)).
 
-## The Evidence
+## What Changed After the Fix
 
-I'll never forget searching for my own site and seeing it ranked on page 3—not because of competition, but because Google's preview showed a wall of unstyled text that looked like a broken website from 2005. Nobody clicks on that.
+**Before:**
+- Most pages stuck under "Crawled - currently not indexed"
+- URL Inspection showed unstyled HTML without images
+- Google judged the pages on a broken version of them
 
-Here's what was happening:
+**After:**
+- URL Inspection showed the pages rendered with full styling and images
+- Over the following weeks, pages gradually moved into the index
 
-**Before (my mistake):**
-- 23 out of 156 pages indexed (15% index rate)
-- Search engines see unstyled HTML
-- Poor user experience in search results
-- Rankings suffer even when content is good
-- Weeks of wasted crawl budget
-
-**After (proper configuration):**
-- 156 pages indexed within 4 weeks (100% index rate)
-- Pages render correctly with full styling
-- JavaScript and CSS load properly
-- Images display correctly
-- Search results look professional and clickable
+I can't prove the robots.txt line was the only reason for the slow indexing: I also added a sitemap around the same time (that's the [next post]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})). But a page Google can't render properly is a page it judges on a broken version of itself, and that's worth fixing on its own.
 
 ## The Solution
 
-Create `app/robots.ts` with precise allow/disallow rules:
+The real fix is deleting `Disallow: /_next/`. Then make the rules explicit in `src/app/robots.ts`:
 
 ```typescript
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next'
 
-const SITE_URL = process.env.SITE_URL ?? 'https://yoursite.com';
+const SITE_URL = process.env.SITE_URL ?? 'https://yoursite.com'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: '*',
-        allow: [
-          '/',
-          '/images/',
-          '/assets/',
-          '/favicon.ico',
-          // ✅ CRITICAL: Allow static assets for proper rendering
-          '/_next/static/',
-          '/_next/image/',
-        ],
-        disallow: [
-          '/admin',
-          '/api/',
-          '/private/',
-          '/scripts/',
-          '/logs/',
-          // ✅ Only block _next/data directory (not needed for SEO)
-          '/_next/data/',
-          // Block build manifest files
-          '/*_buildManifest.js',
-          '/*_middlewareManifest.js',
-          '/*_ssgManifest.js',
-        ],
-      }
+        allow: '/',
+        // ✅ Nothing under /_next/ is blocked: Google needs it to render pages
+        disallow: ['/admin', '/api/', '/private/'],
+      },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
-  };
+  }
 }
 ```
 
-The key differences:
-1. **Allow `/_next/static/`** - JavaScript and CSS can load
-2. **Allow `/_next/image/`** - Images render properly
-3. **Block only `/_next/data/`** - This is safe to block (internal data fetching)
+The key points:
+1. **Don't disallow `/_next/`.** JavaScript, CSS and images all live under it.
+2. **If you must block something under `/_next/`**, add explicit `Allow` rules for `/_next/static/` and `/_next/image`. Note there's no trailing slash on the second one: optimized images are served from `/_next/image?url=…`, which a rule ending in `/` never matches.
+3. **No need to block `/_next/data/`.** The App Router doesn't use it, and in the Pages Router it's only fetched for client-side navigation: the first page load carries its data in the HTML.
+
+The `sitemap` line points to the sitemap from the next post. Leave out a `host:` line if you see one in older examples: Google supports only `user-agent`, `allow`, `disallow` and `sitemap` in robots.txt ([Google](https://developers.google.com/search/docs/crawling-indexing/robots/robots_txt)).
 
 ## How to Test Your Fix
 
@@ -115,53 +91,46 @@ You should see:
 ```txt
 User-Agent: *
 Allow: /
-Allow: /_next/static/
-Allow: /_next/image/
-Disallow: /_next/data/
-...
+Disallow: /admin
+Disallow: /api/
+Disallow: /private/
+
 Sitemap: https://yoursite.com/sitemap.xml
 ```
 
 **Critical checks:**
-- ✅ `/_next/static/` is in Allow list
-- ✅ `/_next/image/` is in Allow list
-- ✅ Only `/_next/data/` is disallowed
+- ✅ No `Disallow: /_next/` line
+- ✅ If anything under `/_next/` is disallowed, `/_next/static/` and `/_next/image` are explicitly allowed
 - ✅ Sitemap URL is present
 
 ## After You Deploy
 
 Once you've deployed the fix:
 
-1. **Request re-indexing in Google Search Console**
+1. **Check the rendered page in Google Search Console**
    - Go to URL Inspection
-   - Enter your homepage URL
-   - Click "Request Indexing"
-   - Repeat for your top 10 most important pages
+   - Enter one of your URLs and run a live test
+   - Open "View tested page" and check the screenshot: it should look like your site, not plain HTML
 
-2. **Monitor the recovery** (be patient!)
-   - Week 1-2: Google starts re-crawling
-   - Week 3-4: New pages getting indexed
-   - Week 5-8: Full recovery of indexing
+2. **Request re-indexing**
+   - Click "Request Indexing" for your homepage
+   - Repeat for your most important pages
 
-My timeline: 26 pages indexed → 60 pages (2 weeks) → 100+ pages (4 weeks) → 156 pages (6 weeks)
+3. **Monitor the recovery** (be patient!)
+   - Recovery takes weeks, not days, because Google has to re-crawl each page
+   - Watch the **Pages** report: URLs should move from "Crawled - currently not indexed" to indexed over time
 
-## The Mistake
+## Why It Cost Me Visitors
 
-Why do I say this cost me visitors? Let's do the math:
+Every page Google didn't index was a page nobody could find through search, for months. I can't give you a reliable number for what that cost. Be wary of anyone who multiplies pages × visitors × days to give you one: it assumes every page would have ranked and been clicked.
 
-- 133 pages not indexed for 3 months
-- Average 2-3 organic visitors per page per day (conservative estimate)
-- 133 pages × 2.5 visitors × 90 days = **~30,000 lost visitors**
-
-Even with a conservative 5% conversion rate to email signups or inquiries, that's **1,500 lost leads**. If even 1% of those would have converted to customers... you get the idea.
-
-**The opportunity cost of broken SEO is brutal.**
+What I can say: the fix takes a minute, and the delay it prevents is measured in months.
 
 ## Don't Make My Mistake
 
-This is one of the easiest SEO wins you can get. It takes 5 minutes to implement and can save you months of confusion and lost traffic.
+This is one of the easiest SEO wins you can get. It takes a minute to implement and can save you months of confusion and lost traffic.
 
-Check your robots.txt right now. If you see `Disallow: /_next/` without the specific subdirectory paths, you're blocking Google from indexing your site properly.
+Check your robots.txt right now. If you see `Disallow: /_next/`, you're blocking Google from rendering your site properly.
 
 Fix it. Deploy it. Request re-indexing. Move on.
 
@@ -169,15 +138,15 @@ Fix it. Deploy it. Request re-indexing. Move on.
 
 Fixing robots.txt solves the "can Google see my site?" problem. But that's just the foundation. Next, you need to make sure Google can **discover** all your pages efficiently.
 
-In my next post, I'll show you how to build dynamic multilingual sitemaps that actually get all your content indexed—including the location pages that drove 60% of my SEO growth.
+In my next post, I'll show you how to build a dynamic multilingual sitemap with correct language alternates.
 
-**Read next:** [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
+**Read next:** [Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 
 ---
 
 **Full SEO Series for Next.js:**
 1. The Robots.txt Mistake That Cost Me Visitors (you are here)
-2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
+2. [Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})
 5. [Next.js Location Pages Without Doorway Spam]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-location-pages-seo %})

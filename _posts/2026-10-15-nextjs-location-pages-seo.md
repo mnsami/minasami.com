@@ -242,7 +242,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 }
 ```
 
-Two things differ from most sitemap examples, including the [multilingual sitemaps post]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %}) in this series:
+Two things differ from most sitemap examples (the [multilingual sitemaps post]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %}) in this series explains both in more detail):
 
 - **`lastModified` comes from the content, not `new Date()`.** Google uses `lastmod` only "if it's consistently and verifiably accurate" ([Google](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap)). A build-time date that changes on every deploy teaches it to ignore yours.
 - **No `priority` or `changeFrequency`.** Google says it ignores both.
@@ -266,7 +266,7 @@ If several city pages land there, merge them into one "Areas we serve" page rath
 
 **Full SEO Series for Next.js:**
 1. [The Robots.txt Mistake That Cost Me Visitors]({{ site.baseurl }}{% post_url 2025-12-05-nextjs-seo-robots-txt-mistake %})
-2. [Building Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
+2. [Dynamic Multilingual Sitemaps in Next.js]({{ site.baseurl }}{% post_url 2025-12-08-nextjs-dynamic-multilingual-sitemaps %})
 3. [Meta Tags That Actually Convert Clicks]({{ site.baseurl }}{% post_url 2025-12-15-nextjs-meta-tags-that-convert %})
 4. [Next.js Schema Markup: 5 Types That Still Work]({{ site.baseurl }}{% post_url 2026-10-15-nextjs-schema-markup-guide %})
 5. Next.js Location Pages Without Doorway Spam (you are here)
