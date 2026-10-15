@@ -1,13 +1,9 @@
 User-agent: *
 Allow: /
 
-Disallow: /docs
+# UI icons, not content images
+Disallow: /assets/ui/
+Disallow: /cdn-cgi/
 
-# Disallow admin or draft pages
-Disallow: /admin/
-Disallow: /_drafts/
-Disallow: /docs/
-
-# Sitemaps (both www and non-www)
 Sitemap: https://minasami.com/sitemap.xml
-Sitemap: https://www.minasami.com/sitemap.xml
+Sitemap: https://minasami.com/sitemap-images.xml

@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Part 2: Setup a SPA reactjs frontend with hot reloading for development"
+title:  "Part 2: React SPA Frontend with Hot Reloading for Development"
 categories: [fullstack]
 tags: react symfony php docker spa hot-reload webpack development-environment tutorial
 description: "React SPA with hot reloading for Symfony backend. Part 2: Configure React development server with HMR and Symfony API integration."

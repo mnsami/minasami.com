@@ -1,13 +1,12 @@
 ---
 layout: page
-title: Mentorship
+title: "Backend Engineering Mentorship — PHP, Node.js & AWS"
+heading: Backend Engineering Mentorship
 menu: Mentorship
 permalink: /mentorship/
-description: "Unlock backend development mastery and career growth with exclusive mentorship on ADPlist. Benefit from 16+ years of expertise in PHP, NodeJs, software architecture, mock interviews, CV reviews, and personalized guidance for students' graduation projects. Shape your tech success story today!"
+description: "1-on-1 backend engineering mentorship on ADPList. 18+ years of PHP, Node.js & AWS expertise. Career guidance, mock interviews, system design, and CV reviews."
 image: /assets/portfolio.png
 ---
-
-# Software Engineering Mentorship on ADPList
 
 <img class="rounded img-fluid" src="{{ "/assets/images/adplist-swag.png" | relative_url }}" alt="Mina Sami ADPList Mentorship Program - Backend Development and Career Guidance" loading="lazy" />
 
@@ -17,7 +16,7 @@ Are you embarking on a journey into the realm of **backend development**, or per
 
 ### 1. Backend Development Mastery
 
-Dive deep into the world of backend coding with hands-on guidance tailored to your needs. Whether you're a beginner looking to grasp the essentials or an intermediate coder aiming for proficiency, I'll share my **16+ years of experience** to help you navigate challenges, master tools like **PHP** (utilizing Symfony & Laravel) and **Node.js** (with NestJS), and cultivate best practices.
+Dive deep into the world of backend coding with hands-on guidance tailored to your needs. Whether you're a beginner looking to grasp the essentials or an intermediate coder aiming for proficiency, I'll share my **18+ years of experience** to help you navigate challenges, master tools like **PHP** (utilizing Symfony & Laravel) and **Node.js** (with NestJS), and cultivate best practices.
 
 ### 2. Charting Your Career Path
 
@@ -45,7 +44,7 @@ Students, this one's for you! If you're in the throes of a graduation project or
 
 ### Why Choose This Mentorship?
 
-- ✅ **16+ years** of real-world software engineering experience
+- ✅ **18+ years** of real-world software engineering experience
 - ✅ Expertise in **PHP, Node.js, AWS, DevOps**, and modern backend technologies
 - ✅ Proven track record in **software architecture** and **system design**
 - ✅ Personalized guidance tailored to **your specific goals**

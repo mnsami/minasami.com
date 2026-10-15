@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "How AI Became the Most Reliable Partner in My Engineering Career: Lessons from Building Real Solutions"
+title: "How AI Became My Most Reliable Engineering Partner"
 date: 2025-11-27
 author: Mina Sami
 categories: [developer-productivity]
 tags: ai ai-tools github-copilot chatgpt productivity automation engineering senior-engineer career
-description: "Discover how AI code assistants changed my problem-solving approach. Real examples of debugging silent failures, choosing the right tools, and refactoring messy code through collaborative AI sessions."
+description: "How AI code assistants transformed my engineering approach. Real examples: debugging failures, choosing the right tools, and refactoring messy code through AI sessions."
 ---
 
 <img class="img-thumbnail img-fluid rounded mx-auto d-block" src="{{ "/assets/images/senior-engineer-ai-collaboration.png" | relative_url }}" alt="Senior software engineer sketching system architecture on a digital board with an AI hologram assisting, symbolizing human–AI collaboration in modern engineering" />
